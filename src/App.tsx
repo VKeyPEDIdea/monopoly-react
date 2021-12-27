@@ -1,9 +1,10 @@
+import PlayingField from './components/PlayingField';
 import './scss/custom.scss';
 
 const App = () => {
-  return (
-    <div className="App">Monopoly</div>
-  );
+	return (
+		<PlayingField />
+	);
 };
 
 export default App;
