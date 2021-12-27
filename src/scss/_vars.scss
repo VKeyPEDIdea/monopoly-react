@@ -10,9 +10,19 @@ $st-trans: all .25s ease-in-out;
 // Colors
 $color-white: #ffffff;
 $color-black: #000000;
+$color-gluon-grey: #1a1b1c;
 $color-grey: #808080;
+$color-cerebral-grey: #cccccc;
+$color-quicksilver: #a6a6a6;
+$color-persian-rose: #ff33a7;
 $color-pelati: #fd373b;
+$color-poppy-surprise: #ff5733;
+$color-wildfire: #FF8A33;
+$color-meteor-shower: #5733FF;
 $color-starfleet-blue: #0090ff;
+$color-brilliant-azure: #3396FF;
+$color-berta-blue: #33DBFF;
+$color-bright-light-green: #33E653;
 $color-drunken-dragonfly: #3ad581;
 $color-tropical-light: #93db72;
 $color-wasabi-paste: #cddf72;
@@ -31,19 +41,31 @@ $color-hampton: #e6d6a1;
 $color-highlighter-yellow: #F9E741;
 $color-mulgore-mustard: #C7AE33;
 $color-peach-bloom: #DF9D7F;
+$color-bright-grey: #ecedf1;
+$color-ash-in-the-air: #dadce6;
+$color-pale-shale: #c8cdde;
+$color-casandora-yellow: #ffcb5a;
+$color-giraffe: #fff833;
 
 // Background colors
-$color-body: $color-beaming-sun;
-$color-surface: $color-vanilla-frost;
-$color-dark: $color-searing-gorge-brown;
-$color-dark-light: $color-coconut;
-$color-disabled: $color-vanilla-frost;
+$color-body: $color-bright-grey;
+$color-surface: $color-white;
+$color-dark: $color-gluon-grey;
+
+// Accents colors
+$color-blue: $color-brilliant-azure;
+$color-blue-sky: $color-berta-blue;
+$color-red: $color-poppy-surprise;
+$color-green: $color-bright-light-green;
+$color-yellow: $color-giraffe;
+$color-orange: $color-wildfire;
+$color-purple: $color-meteor-shower;
+$color-pink: $color-persian-rose;
 
 // Text colors
-$color-on-body: $color-black;
-$color-on-dark: $color-swedish-yellow;
-$color-on-light: $color-searing-gorge-brown;
-$color-on-disabled: $color-ruddy-brown;
+$color-on-body: $color-gluon-grey;
+$color-on-dark: $color-white;
+$color-on-light: $color-gluon-grey;
 
 // Grid
 $grid-gap-width: 20px
