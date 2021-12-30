@@ -1,10 +1,12 @@
 import BottomLine from "./BottomLine";
 import TopLine from "./TopLine/";
+import classes from './PlayingField.module.scss';
 
 const PlayingField = () => {
 	return (
-		<div>
+		<div className={classes.field}>
 			<TopLine />
+			<div>central piece</div>
 			<BottomLine />
 		</div>
 	);
