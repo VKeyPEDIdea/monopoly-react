@@ -1,19 +1,20 @@
+import { SectorProps } from '../../../models/Sector.model';
 import classes from './Sector.module.scss';
-
-interface SectorProps {
-	isBottom?: boolean;
-	title: string;
-	price: number;
-};
 
 const Sector = ({
 	isBottom,
 	price,
-	title
-}: SectorProps) => {
-	const color = 'orange';
-	
-	if (isBottom) {
+	title,
+	color,
+	type,
+}: SectorProps) => {	
+	if (type !== 'Земельный участок') {
+		return (
+			<div className={[classes.sector, classes['sector--simple']].join(' ')}>
+				<p className={classes.title}>{title}</p>
+			</div>
+		);
+	} else if (isBottom) {
 		return (
 			<div className={classes.sector}>
 				<div className={`${classes.color} ${classes[`color--${color}`]}`}></div>
