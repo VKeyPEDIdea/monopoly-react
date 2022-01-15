@@ -1,0 +1,18 @@
+.board {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.left-section {
+
+}
+
+.middle-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.right-section {
+
+}

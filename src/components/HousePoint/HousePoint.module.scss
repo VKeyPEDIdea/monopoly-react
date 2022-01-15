@@ -1,0 +1,19 @@
+.house {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-right: 8px;
+}
+
+.icon {
+	height: 24px;
+	margin-bottom: 4px;
+}
+
+.price {
+	min-width: 52px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 18px;
+}
