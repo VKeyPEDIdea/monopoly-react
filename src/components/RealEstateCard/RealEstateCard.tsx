@@ -10,14 +10,19 @@ const RealEstateCard = ({
 	ownerName,
 }: RealEstateCardProps) => {
 	const housePointList = buildingList.map(({ state, price, buildType }) => {
-		return <HousePoint state={state} price={price} buildType={buildType}/>
+		return <div className={classes.point}>
+			<HousePoint key={title + price}
+				state={state}
+				price={price}
+				buildType={buildType}/>
+		</div>;
 	});
 
 	return (
 		<div className={classes.estate}>
-			<div className={classes.owner}>
+			{ ownerName ? <div className={classes.owner}>
 				<NameBadge name={ownerName}/>
-			</div>
+			</div> : null }
 			<div className={`${classes.color} ${classes[`color--${color}`]}`}></div>
 			<div className={classes.content}>
 				<p className={classes.title}>{title}</p>

@@ -1,6 +1,6 @@
 @import '../../scss/vars';
 
-.estate {
+.card {
 	background-color: $color-surface;
 	border: 4px solid $color-on-light;
 	position: relative;
@@ -22,6 +22,27 @@
 	font-size: 14px;
 	font-weight: 600;
 	text-transform: uppercase;
+	text-align: center;
+}
+
+.sector {
+	border-bottom: 1px solid $color-cerebral-grey;
+	padding-bottom: 12px;
+	margin-bottom: 12px;
+	
+	&:last-child {
+		border-bottom: none;
+		margin-bottom: 0;
+	}
+}
+
+.subheading {
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 16px;
+	text-transform: uppercase;
+	color: $color-purple;
+	margin-bottom: 8px;
 	text-align: center;
 }
 
