@@ -1,4 +1,5 @@
 import RealEstateCard from '../../RealEstateCard';
+import { realEstateExampleConfig } from '../../RealEstateCard/realEstateExample.config';
 import classes from './MiddleBoard.module.scss';
 
 const MiddleBoard = () => {
@@ -8,7 +9,10 @@ const MiddleBoard = () => {
 				Left section
 			</div>
 			<div className={classes['middle-section']}>
-				<RealEstateCard />
+				<RealEstateCard title='Бульвар мира'
+					color='green'
+					ownerName='Реджайна Обожаевна'
+					buildingList={realEstateExampleConfig}/>
 			</div>
 			<div className={classes['right-section']}>
 				Right section

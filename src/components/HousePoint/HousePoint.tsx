@@ -24,7 +24,10 @@ const HousePoint = ({
 	}
 
 	return (
-		<div className={classes.house}>
+		<div className={[
+			classes.house,
+			state === 'vacant' ? classes.vacant : ''
+		].join(' ')}>
 			<div className={classes.icon}>
 				<GIcon title={buildType} color={color}/>
 			</div>

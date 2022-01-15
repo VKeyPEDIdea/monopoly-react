@@ -1,8 +1,16 @@
+@import '../../scss/vars';
+
 .house {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin-right: 8px;
+}
+
+.vacant {
+	.price {
+		color: $color-disabled;
+	}
 }
 
 .icon {
