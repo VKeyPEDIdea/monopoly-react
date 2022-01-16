@@ -33,6 +33,7 @@
 	&:last-child {
 		border-bottom: none;
 		margin-bottom: 0;
+		padding-bottom: 0px;
 	}
 }
 
@@ -44,6 +45,7 @@
 	color: $color-purple;
 	margin-bottom: 8px;
 	text-align: center;
+	cursor: pointer;
 }
 
 .street {
@@ -56,6 +58,19 @@
 
 	&:last-child {
 		margin-right: 0;
+	}
+}
+
+.actions {
+	border-top: 4px solid $color-gluon-grey;
+	display: flex;
+}
+
+.btn {
+	flex-grow: 1;
+
+	&:first-child {
+		border-right: 4px solid $color-gluon-grey;
 	}
 }
 

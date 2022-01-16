@@ -1,6 +1,7 @@
 import MonopolyCard from '../../MonopolyCard';
 import RealEstateCard from '../../RealEstateCard';
 import { realEstateExampleConfig } from '../../RealEstateCard/realEstateExample.config';
+import { estateList } from '../../RealEstateCard/realEstateListExample.config';
 import classes from './MiddleBoard.module.scss';
 
 const MiddleBoard = () => {
@@ -14,7 +15,10 @@ const MiddleBoard = () => {
 					color='green'
 					ownerName='Реджайна Обожаевна'
 					buildingList={realEstateExampleConfig}/> */}
-				<MonopolyCard />
+				<MonopolyCard
+					color='green'
+					ownerName='Реджайна Обожаевна'
+					estateList={estateList}/>
 			</div>
 			<div className={classes['right-section']}>
 				Right section

@@ -1,0 +1,29 @@
+@import '../../scss/vars';
+
+.btn {
+	padding: 8px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 18px;
+	cursor: pointer;
+}
+
+.title {
+	font-weight: 600;
+	text-transform: uppercase;
+	margin-bottom: 2px;
+	color: $color-purple;
+}
+
+.details {
+	font-weight: 500;
+	margin-bottom: 0;
+
+	&--negative {
+		color: $color-red;
+	}
+
+	&--positive {
+		color: $color-green;
+	}
+}
