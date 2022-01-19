@@ -1,3 +1,4 @@
+import Dice from '../../Dice/Dice';
 import MonopolyCard from '../../MonopolyCard';
 import RealEstateCard from '../../RealEstateCard';
 import { realEstateExampleConfig } from '../../RealEstateCard/realEstateExample.config';
@@ -9,6 +10,7 @@ const MiddleBoard = () => {
 		<div className={classes.board}>
 			<div className={classes['left-section']}>
 				Left section
+				<Dice />
 			</div>
 			<div className={classes['middle-section']}>
 				{/* <RealEstateCard title='Бульвар мира'
