@@ -6,10 +6,20 @@
 	font-size: 14px;
 	line-height: 18px;
 	cursor: pointer;
+    
+    &:hover {
+        .title, .details {
+            color: $color-on-light;
+        }
+    }
+}
+
+.title, .details {
+    transition: color ease-in-out .25s;
 }
 
 .title {
-	font-weight: 600;
+    font-weight: 600;
 	text-transform: uppercase;
 	margin-bottom: 2px;
 	color: $color-purple;

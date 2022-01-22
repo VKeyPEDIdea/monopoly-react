@@ -1,4 +1,5 @@
 import Dice from '../../Dice/Dice';
+import ExtraDimensionСard from '../../ExtraDimensionСard';
 import MonopolyCard from '../../MonopolyCard';
 import RealEstateCard from '../../RealEstateCard';
 import { realEstateExampleConfig } from '../../RealEstateCard/realEstateExample.config';
@@ -17,10 +18,12 @@ const MiddleBoard = () => {
 					color='green'
 					ownerName='Реджайна Обожаевна'
 					buildingList={realEstateExampleConfig}/> */}
-				<MonopolyCard
-					color='green'
-					ownerName='Реджайна Обожаевна'
-					estateList={estateList}/>
+                <ExtraDimensionСard>
+                    <MonopolyCard
+                        color='green'
+                        ownerName='Реджайна Обожаевна'
+                        estateList={estateList}/>            
+                </ExtraDimensionСard>
 			</div>
 			<div className={classes['right-section']}>
 				Right section
