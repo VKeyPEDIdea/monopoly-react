@@ -11,12 +11,12 @@ const MonopolyCard = ({
 }: MonopolyCardProps) => {
 	const sectorList = estateList.map(({ title, buildingList }, index) => {
 		const street = buildingList.map(({ state, price, buildType }) => {
-			return <div className={classes.point}>
+			return <div className={classes.point} key={title + index + 'point' + price}>
 				<HousePoint state={state} price={price} buildType={buildType} />
 			</div>;
 		});
 		
-		return <div className={classes.sector} key={title + index}>
+		return <div className={classes.sector} key={title + index + 'sector'}>
 			<p className={classes.subheading}>{title}</p>
 			<div className={classes.street}>{street}</div>
 		</div>;
