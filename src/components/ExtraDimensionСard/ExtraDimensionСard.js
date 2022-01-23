@@ -10,10 +10,8 @@ const ExtraDimensionСard = props => {
 	const card = useRef(null);
 	const glow = useRef(null);
 	const content = useRef(null);
-    const glowColor1 = '#ffffff';
-    // const glowColor1 = '#ffffff11';
-    const glowColor2 = 'red';
-    // const glowColor2 = '#0000000f';
+    const glowColor1 = '#ffffff11';
+    const glowColor2 = '#0000000f';
 
 	function rotateToMouse(e) {
 		const mouseX = e.clientX;
@@ -59,6 +57,7 @@ const ExtraDimensionСard = props => {
 	const onImgMouseLeaveHandler = () => {
 		card.current.removeEventListener('mousemove', rotateToMouse);
 		card.current.style.transform = '';
+        content.current.style.filter = '';
 	};
 	
 	return(

@@ -10,15 +10,16 @@ const MiddleBoard = () => {
 	return (
 		<div className={classes.board}>
 			<div className={classes['left-section']}>
-				Left section
-				<Dice />
+                <div className={classes['dice-box']}>
+				    <Dice />
+                </div>
 			</div>
 			<div className={classes['middle-section']}>
 				{/* <RealEstateCard title='Бульвар мира'
 					color='green'
 					ownerName='Реджайна Обожаевна'
 					buildingList={realEstateExampleConfig}/> */}
-                <ExtraDimensionСard>
+                <ExtraDimensionСard scale='1.1'>
                     <MonopolyCard
                         color='green'
                         ownerName='Реджайна Обожаевна'
