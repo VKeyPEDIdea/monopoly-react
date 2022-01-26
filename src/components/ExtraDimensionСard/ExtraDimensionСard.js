@@ -25,7 +25,7 @@ const ExtraDimensionСard = props => {
 		const distance = Math.sqrt(center.x**2 + center.y**2);
 
 		content.current.style.filter = `
-			drop-shadow(${-center.x / 5}px ${-center.y / 5}px 4px rgba(0, 0, 0, .15))
+			drop-shadow(${-center.x / 5}px ${-center.y / 5}px 4px rgba(0, 0, 0, .10))
 		`;
 		
 		card.current.style.transform = `

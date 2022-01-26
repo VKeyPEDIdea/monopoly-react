@@ -15,15 +15,15 @@ const MiddleBoard = () => {
                 </div>
 			</div>
 			<div className={classes['middle-section']}>
-				{/* <RealEstateCard title='Бульвар мира'
-					color='green'
-					ownerName='Реджайна Обожаевна'
-					buildingList={realEstateExampleConfig}/> */}
                 <ExtraDimensionСard scale='1.1'>
-                    <MonopolyCard
+                    <RealEstateCard title='Бульвар мира'
                         color='green'
                         ownerName='Реджайна Обожаевна'
-                        estateList={estateList}/>            
+                        buildingList={realEstateExampleConfig}/>
+                    {/* <MonopolyCard
+                        color='green'
+                        ownerName='Реджайна Обожаевна'
+                        estateList={estateList}/>             */}
                 </ExtraDimensionСard>
 			</div>
 			<div className={classes['right-section']}>

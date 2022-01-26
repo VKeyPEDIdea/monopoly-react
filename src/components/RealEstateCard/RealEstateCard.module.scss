@@ -38,6 +38,19 @@
 	}
 }
 
+.actions {
+	border-top: 4px solid $color-gluon-grey;
+	display: flex;
+}
+
+.btn {
+	flex-grow: 1;
+
+	&:first-child {
+		border-right: 4px solid $color-gluon-grey;
+	}
+}
+
 .color {
 	height: 24px;
 

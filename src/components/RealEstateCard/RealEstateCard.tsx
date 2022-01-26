@@ -1,4 +1,5 @@
 import { RealEstateCardProps } from '../../models/RealEstateCardProps.model';
+import CardButton from '../CardButton';
 import HousePoint from '../HousePoint';
 import NameBadge from '../NameBadge';
 import classes from './RealEstateCard.module.scss';
@@ -30,6 +31,20 @@ const RealEstateCard = ({
 					{housePointList}
 				</div>
 			</div>
+            <div className={classes.actions}>
+                <div className={classes.btn}>
+                    <CardButton negative
+                        title='Купить'
+                        details='-90'
+                        click={() => console.log('Купить')} />
+                </div>
+                <div className={classes.btn}>
+                    <CardButton
+                        title='Продать'
+                        details='+45'
+                        click={() => console.log('Продать')} />
+                </div>
+            </div>
 		</div>
 	);
 };
