@@ -1,6 +1,7 @@
 import Dice from '../../Dice/Dice';
 import ExtraDimensionСard from '../../ExtraDimensionСard';
 import MonopolyCard from '../../MonopolyCard';
+import Rating from '../../Rating';
 import RealEstateCard from '../../RealEstateCard';
 import { realEstateExampleConfig } from '../../RealEstateCard/realEstateExample.config';
 import { estateList } from '../../RealEstateCard/realEstateListExample.config';
@@ -10,6 +11,7 @@ const MiddleBoard = () => {
 	return (
 		<div className={classes.board}>
 			<div className={classes['left-section']}>
+                <Rating />
                 <div className={classes['dice-box']}>
 				    <Dice />
                 </div>

@@ -1,0 +1,7 @@
+.rating {
+    padding: 12px 8px;
+    display: grid;
+    column-gap: 4px;
+    row-gap: 4px;
+    grid-template-columns: 48px max-content auto;
+}
