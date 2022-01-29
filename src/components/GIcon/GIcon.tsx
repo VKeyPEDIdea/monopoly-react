@@ -4,8 +4,10 @@ import { GIconProps } from "../../models/GIcon.model";
 const GIcon = ({
 	title,
 	color,
+    size
 }: GIconProps) => {
 	let pathes;
+    const sizeValue = size || 24;
 
 	switch (title) {
 		case 'house':
@@ -30,8 +32,8 @@ const GIcon = ({
 	return (
 		<>
 			<svg xmlns="http://www.w3.org/2000/svg"
-				width="24"
-				height="24"
+				width={sizeValue}
+				height={sizeValue}
 				viewBox="0 0 24 24">
 				{pathes}
 			</svg>
