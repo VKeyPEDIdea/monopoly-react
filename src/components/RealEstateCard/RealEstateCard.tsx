@@ -11,9 +11,8 @@ const RealEstateCard = ({
 	ownerName,
 }: RealEstateCardProps) => {
 	const housePointList = buildingList.map(({ state, price, buildType }) => {
-		return <div className={classes.point}>
-			<HousePoint key={title + price}
-				state={state}
+		return <div className={classes.point} key={title + price}>
+			<HousePoint state={state}
 				price={price}
 				buildType={buildType}/>
 		</div>;
@@ -48,7 +47,5 @@ const RealEstateCard = ({
 		</div>
 	);
 };
-
-// Добавить кнопки «Купить» и «Аукцион»
 
 export default RealEstateCard;

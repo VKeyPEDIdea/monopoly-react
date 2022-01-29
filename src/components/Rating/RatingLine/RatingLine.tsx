@@ -1,19 +1,9 @@
 import GIcon from '../../GIcon';
 import classes from './RatingLine.module.scss';
+import { RatingLineProps } from './RatingLineProps.model';
 
 const ICON_COLOR = '#C8CDDE';
-
-interface RatingLineProps {
-    position: number;
-    name: string;
-    cashCount: number;
-    propertyCount: number;
-    graphColumns: {
-        cashCol: number;
-        moneyCol: number;
-    };
-    isCurrent?: boolean;
-}
+const RATIO = 2;
 
 const RatingLine = ({
     position,
@@ -26,7 +16,6 @@ const RatingLine = ({
         moneyCol
     }
 }: RatingLineProps) => {
-
     return (
         <>
             <div className={[classes.position, isCurrent ? classes['position--current'] : ''].join(' ')}>{position}</div>
@@ -49,9 +38,9 @@ const RatingLine = ({
             </div>
             <div className={classes.graph}>
                 <div className={[classes.column, classes.money].join(' ')}
-                    style={{ width: `${cashCol}px`}}></div>
+                    style={{ width: `${cashCol * RATIO}px`}}></div>
                 <div className={[classes.column, classes.estate].join(' ')}
-                    style={{ width: `${moneyCol}px`}}></div>
+                    style={{ width: `${moneyCol * RATIO}px`}}></div>
             </div>
         </>
     );
