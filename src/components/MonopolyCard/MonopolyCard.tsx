@@ -1,4 +1,4 @@
-import { MonopolyCardProps } from '../../models/MonopolyCardProps.model';
+import { MonopolyCardProps } from './MonopolyCard.model';
 import CardButton from '../CardButton';
 import HousePoint from '../HousePoint';
 import NameBadge from '../NameBadge';

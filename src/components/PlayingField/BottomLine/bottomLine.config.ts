@@ -1,4 +1,4 @@
-import { SectorProps } from "../../../models/Sector.model";
+import { SectorProps } from "../Sector/Sector.model";
 
 export const bottomLineConfig: SectorProps[] = [
 	{

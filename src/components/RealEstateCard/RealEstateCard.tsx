@@ -1,4 +1,4 @@
-import { RealEstateCardProps } from '../../models/RealEstateCardProps.model';
+import { RealEstateCardProps } from './RealEstateCard.model';
 import CardButton from '../CardButton';
 import HousePoint from '../HousePoint';
 import NameBadge from '../NameBadge';

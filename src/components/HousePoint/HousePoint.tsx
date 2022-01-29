@@ -1,4 +1,4 @@
-import { HousePointProps } from '../../models/HousePoint.model';
+import { HousePointProps } from './HousePoint.model';
 import GIcon from '../GIcon/';
 import classes from './HousePoint.module.scss';
 

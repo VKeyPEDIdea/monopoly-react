@@ -1,4 +1,4 @@
-import { HousePointProps } from "./HousePoint.model";
+import { HousePointProps } from "../components/HousePoint/HousePoint.model";
 
 export interface RealEstate {
 	buildingList: HousePointProps[];

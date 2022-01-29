@@ -1,4 +1,4 @@
-import { Color } from "./color";
+import { Color } from "../../../models/color.type";
 import { SectorType } from "./SectorType.model";
 
 export interface SectorProps {

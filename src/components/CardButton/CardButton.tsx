@@ -1,4 +1,4 @@
-import { CardButtonProps } from '../../models/CardButtonProps.model';
+import { CardButtonProps } from './CardButtonProps.model';
 import classes from './CardButton.module.scss';
 
 const CardButton = ({
