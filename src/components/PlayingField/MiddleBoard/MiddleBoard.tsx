@@ -1,18 +1,22 @@
+import { useAppSelector } from '../../../app/hooks';
+import { selectMaxScore, selectOrderedPlayersList } from '../../../features/players/playersSlice';
 import Dice from '../../Dice/Dice';
 import ExtraDimensionСard from '../../ExtraDimensionСard';
 import MonopolyCard from '../../MonopolyCard';
 import Rating from '../../Rating';
-import { players } from '../../Rating/rating.config';
 import RealEstateCard from '../../RealEstateCard';
 import { realEstateExampleConfig } from '../../RealEstateCard/realEstateExample.config';
 import { estateList } from '../../RealEstateCard/realEstateListExample.config';
 import classes from './MiddleBoard.module.scss';
 
 const MiddleBoard = () => {
+    const players = useAppSelector(selectOrderedPlayersList);
+    const maxScore = useAppSelector(selectMaxScore);
+    
 	return (
 		<div className={classes.board}>
 			<div className={classes['left-section']}>
-                <Rating players={players}/>
+                <Rating players={players} maxScore={maxScore}/>
                 <div className={classes['dice-box']}>
 				    <Dice />
                 </div>

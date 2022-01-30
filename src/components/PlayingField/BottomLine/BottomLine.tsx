@@ -1,19 +1,22 @@
 import Sector from "../Sector";
 import classes from './BottomLine.module.scss';
-import { bottomLineConfig } from "./bottomLine.config";
+import { useAppSelector } from "../../../app/hooks";
+import { selectBottomLineSectors } from "../../../features/field/playingFieldSlice";
 
 const BottomLine = () => {
-	const sectorList = bottomLineConfig.map(({
+    const bottomLineSectors = useAppSelector(selectBottomLineSectors);
+	const sectorList = bottomLineSectors.map(({
 		title,
 		color,
 		price,
 		type,
+        isBottom
 	}, index) => {
 		return <Sector key={'sector' + index}
 			title={title}
 			price={price}
 			color={color}
-			isBottom={true}
+			isBottom={isBottom}
 			type={type} />;
 	});
 

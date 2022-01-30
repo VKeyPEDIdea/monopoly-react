@@ -3,16 +3,10 @@ import RatingLine from './RatingLine';
 import { RatingProps } from './RatingProps.model';
 
 const Rating = ({
-    players
+    players,
+    maxScore
 }: RatingProps) => {
-    // move to Redux ?
-    const orderedPlayers = players.sort((plr1, plr2) => {
-        return (plr2.cashCount + plr2.propertyCount) - (plr1.cashCount + plr1.propertyCount);
-    });
-
-    const maxScore = orderedPlayers[0].cashCount + orderedPlayers[0].propertyCount;
-    
-    const ratingLines = orderedPlayers.map(({
+    const ratingLines = players.map(({
         name,
         cashCount,
         propertyCount,

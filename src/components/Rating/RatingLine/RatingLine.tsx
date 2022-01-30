@@ -3,7 +3,6 @@ import classes from './RatingLine.module.scss';
 import { RatingLineProps } from './RatingLineProps.model';
 
 const ICON_COLOR = '#C8CDDE';
-const RATIO = 2;
 
 const RatingLine = ({
     position,
@@ -38,9 +37,9 @@ const RatingLine = ({
             </div>
             <div className={classes.graph}>
                 <div className={[classes.column, classes.money].join(' ')}
-                    style={{ width: `${cashCol * RATIO}px`}}></div>
+                    style={{ width: `${cashCol}%`}}></div>
                 <div className={[classes.column, classes.estate].join(' ')}
-                    style={{ width: `${moneyCol * RATIO}px`}}></div>
+                    style={{ width: `${moneyCol}%`}}></div>
             </div>
         </>
     );
