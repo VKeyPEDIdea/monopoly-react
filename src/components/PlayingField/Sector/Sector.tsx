@@ -1,4 +1,4 @@
-import { SectorProps } from './Sector.model';
+import { SectorProps } from './SectorProps.model';
 import classes from './Sector.module.scss';
 
 const Sector = ({

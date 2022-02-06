@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction, EntityState } from "@reduxjs/toolkit";
 import type { AppDispatch, RootState } from '../../app/store';
-import { SectorProps } from "../../components/PlayingField/Sector/Sector.model";
+import { SectorProps } from "../../components/PlayingField/Sector/SectorProps.model";
+import { Sector } from "../../models/Sector.model";
 
 interface PlayingFieldState {
-    sectorList: SectorProps[];
+    sectorList: Sector[];
 }
 
 const initialState: PlayingFieldState = {
@@ -14,6 +15,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Старт',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Гапеева',
@@ -21,6 +23,7 @@ const initialState: PlayingFieldState = {
             color: 'purple',
             type: 'Земельный участок',
             isBottom: false,
+            owner: 0,
         },
         {
             title: 'Банк',
@@ -28,6 +31,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Банк',
             isBottom: false,
+            owner: 1
         },
         {
             title: 'Кривогуза',
@@ -35,6 +39,7 @@ const initialState: PlayingFieldState = {
             color: 'purple',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Налог с дохода',
@@ -42,6 +47,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Ловушка',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Западный порт',
@@ -49,6 +55,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Транспортное предприятие',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Чкалова',
@@ -56,6 +63,7 @@ const initialState: PlayingFieldState = {
             color: 'blue',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Шанс',
@@ -63,6 +71,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Шанс',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Бухар Жирау',
@@ -70,6 +79,7 @@ const initialState: PlayingFieldState = {
             color: 'blue',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Пушкина',
@@ -77,6 +87,7 @@ const initialState: PlayingFieldState = {
             color: 'blue',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Тюрьма',
@@ -84,6 +95,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Ловушка',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Бульвар мира',
@@ -91,6 +103,7 @@ const initialState: PlayingFieldState = {
             color: 'blue-sky',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Электрическая компания',
@@ -98,6 +111,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Коммунальное предприятие',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Абая',
@@ -105,6 +119,7 @@ const initialState: PlayingFieldState = {
             color: 'blue-sky',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Гоголя',
@@ -112,6 +127,7 @@ const initialState: PlayingFieldState = {
             color: 'blue-sky',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Северный порт',
@@ -119,6 +135,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Транспортное предприятие',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Ержанова',
@@ -126,6 +143,7 @@ const initialState: PlayingFieldState = {
             color: 'green',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Банк',
@@ -133,6 +151,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Банк',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Ермекова',
@@ -140,6 +159,7 @@ const initialState: PlayingFieldState = {
             color: 'green',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Абдирова',
@@ -147,6 +167,7 @@ const initialState: PlayingFieldState = {
             color: 'green',
             type: 'Земельный участок',
             isBottom: false,
+            owner: null,
         },
         {
             title: 'Гостиничный комплекс',
@@ -154,6 +175,7 @@ const initialState: PlayingFieldState = {
             color: 'pink',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Дорогая покупка',
@@ -161,6 +183,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Ловушка',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Курортная зона',
@@ -168,6 +191,7 @@ const initialState: PlayingFieldState = {
             color: 'pink',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Шанс',
@@ -175,6 +199,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Шанс',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Южный порт',
@@ -182,6 +207,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Транспортное предприятие',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Авиакомпания',
@@ -189,6 +215,7 @@ const initialState: PlayingFieldState = {
             color: 'red',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Банк',
@@ -196,6 +223,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Банк',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Железная дорога',
@@ -203,6 +231,7 @@ const initialState: PlayingFieldState = {
             color: 'red',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Морские перевозки',
@@ -210,6 +239,7 @@ const initialState: PlayingFieldState = {
             color: 'red',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Арест',
@@ -217,6 +247,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Ловушка',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Сотовая связь',
@@ -224,6 +255,7 @@ const initialState: PlayingFieldState = {
             color: 'orange',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Водопроводная компания',
@@ -231,6 +263,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Коммунальное предприятие',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Интернет',
@@ -238,6 +271,7 @@ const initialState: PlayingFieldState = {
             color: 'orange',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Компьютерная техника',
@@ -245,6 +279,7 @@ const initialState: PlayingFieldState = {
             color: 'orange',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Восточный порт',
@@ -252,6 +287,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Транспортное предприятие',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Ресторан',
@@ -259,6 +295,7 @@ const initialState: PlayingFieldState = {
             color: 'yellow',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Ночной клуб',
@@ -266,6 +303,7 @@ const initialState: PlayingFieldState = {
             color: 'yellow',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Шанс',
@@ -273,6 +311,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Шанс',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Бар',
@@ -280,6 +319,7 @@ const initialState: PlayingFieldState = {
             color: 'yellow',
             type: 'Земельный участок',
             isBottom: true,
+            owner: null,
         },
         {
             title: 'Бесплатная парковка',
@@ -287,6 +327,7 @@ const initialState: PlayingFieldState = {
             color: null,
             type: 'Бесплатная парковка',
             isBottom: true,
+            owner: null,
         },
     ],
 };
