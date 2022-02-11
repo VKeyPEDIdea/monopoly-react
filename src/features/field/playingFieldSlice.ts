@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction, EntityState } from "@reduxjs/toolkit";
 import type { AppDispatch, RootState } from '../../app/store';
-import { SectorProps } from "../../components/PlayingField/Sector/SectorProps.model";
 import { Sector } from "../../core/Sector/Sector.interface";
 
 interface PlayingFieldState {
@@ -26,7 +25,7 @@ const initialState: PlayingFieldState = {
             owner: 0,
         },
         {
-            title: 'Bank',
+            title: 'Банк',
             price: 0,
             color: null,
             type: 'Bank',
@@ -66,7 +65,7 @@ const initialState: PlayingFieldState = {
             owner: null,
         },
         {
-            title: 'Chance',
+            title: 'Шанс',
             price: 0,
             color: null,
             type: 'Chance',
@@ -146,7 +145,7 @@ const initialState: PlayingFieldState = {
             owner: null,
         },
         {
-            title: 'Bank',
+            title: 'Банк',
             price: 0,
             color: null,
             type: 'Bank',
@@ -194,7 +193,7 @@ const initialState: PlayingFieldState = {
             owner: null,
         },
         {
-            title: 'Chance',
+            title: 'Шанс',
             price: 0,
             color: null,
             type: 'Chance',
@@ -218,7 +217,7 @@ const initialState: PlayingFieldState = {
             owner: null,
         },
         {
-            title: 'Bank',
+            title: 'Банк',
             price: 0,
             color: null,
             type: 'Bank',
@@ -306,7 +305,7 @@ const initialState: PlayingFieldState = {
             owner: null,
         },
         {
-            title: 'Chance',
+            title: 'Шанс',
             price: 0,
             color: null,
             type: 'Chance',

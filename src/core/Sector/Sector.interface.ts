@@ -5,8 +5,8 @@ import { SectorType } from "./SectorType.model";
 export interface Sector {
 	line: LineType;
 	title: string;
-	price: number;
-	color: Color | null;
+	price?: number;
+	readonly color?: Color | null;
 	type: SectorType;
-    owner: null | number;
+    owner?: null | number;
 };
