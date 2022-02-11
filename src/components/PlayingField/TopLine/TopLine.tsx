@@ -10,13 +10,13 @@ const TopLine = () => {
 		color,
 		price,
 		type,
-        isBottom
+        line
 	}, index) => {
 		return <Sector key={'sector' + index}
 			title={title}
 			price={price}
 			color={color}
-            isBottom={isBottom}
+            line={line}
 			type={type} />;
 	});
 	

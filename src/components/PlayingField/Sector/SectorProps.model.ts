@@ -1,8 +1,9 @@
 import { Color } from "../../../models/color.type";
-import { SectorType } from '../../../models/SectorType.model';
+import { SectorType } from '../../../core/Sector/SectorType.model';
+import { LineType } from '../../../models/LineType.type';
 
 export interface SectorProps {
-	isBottom?: boolean;
+	line: LineType;
 	title: string;
 	price: number;
 	color: Color | null;
