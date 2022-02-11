@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useAppSelector } from "../../app/hooks";
 import type { AppDispatch, RootState } from "../../app/store";
-import { Player } from "../../models/Player.interface";
-import { Person } from "../../models/Person.model";
+import { Player } from "../../core/Player/Player.interface";
+import { Person } from "../../core/Player/Person.model";
 
 interface PlayersState {
     list: Player[],
