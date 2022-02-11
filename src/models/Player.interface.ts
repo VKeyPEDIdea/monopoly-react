@@ -1,6 +1,6 @@
 export interface Player {
     isCurrent: boolean;
-    name: string;
+    readonly name: string;
     cashCount: number;
     propertyCount: number;
 } 

@@ -1,4 +1,4 @@
-import { Player } from "../../models/Player.model";
+import { Player } from "../../models/Player.interface";
 
 export interface RatingProps {
     players: Player[];

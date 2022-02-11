@@ -1,30 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useAppSelector } from "../../app/hooks";
 import type { AppDispatch, RootState } from "../../app/store";
-import { Player } from "../../models/Player.model";
+import { Player } from "../../models/Player.interface";
+import { Person } from "../../models/Person.model";
 
 interface PlayersState {
     list: Player[],
 }
 
-const testUser: Player = {
-    name: 'Реджайна',
-    cashCount: 7000,
-    isCurrent: true,
-    propertyCount: 3000,
-};
-const testUser2: Player = {
-    name: 'Павел',
-    cashCount: 5000,
-    isCurrent: false,
-    propertyCount: 2000,
-};
-const testUser3: Player = {
-    name: 'Тихон',
-    cashCount: 5000,
-    isCurrent: false,
-    propertyCount: 1000,
-};
+const testUser = new Person(
+    'Реджайна', true, 7000
+);
+const testUser2 = new Person(
+    'Павел', false, 5000
+);
+const testUser3 = new Person(
+    'Тихон', false, 5000
+);
 
 const initialState: PlayersState = {
     list: [testUser, testUser2, testUser3],
