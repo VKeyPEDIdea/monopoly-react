@@ -3,8 +3,10 @@ import { BankSector } from "../Sector/BankSector.model";
 import { Sector } from "../Sector/Sector.interface";
 import { SectorFabric } from "./SectorFabric.model";
 
-export class BankSectorFabric extends SectorFabric {
+class BankSectorFabric extends SectorFabric {
     createSector(line: LineType, title: string): Sector {
         return new BankSector(line, title);
     }
 }
+
+export const bankSectorFabric = new BankSectorFabric();
