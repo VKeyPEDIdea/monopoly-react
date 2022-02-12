@@ -7,13 +7,11 @@ export class FreeParkingSector implements Sector {
     readonly title: string;
     readonly type: SectorType;
     readonly price: number;
-    owner: null | number;
 
-    constructor(line: LineType, title: string, price: number, owner: null | number) {
+    constructor(line: LineType, title: string, price: number) {
         this.line = line;
         this.title = title;
-        this.type = 'TransportCompany';
+        this.type = 'FreeParking';
         this.price = price;
-        this.owner = owner;
     }
 }

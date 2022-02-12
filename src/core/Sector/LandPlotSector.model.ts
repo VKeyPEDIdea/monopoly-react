@@ -11,12 +11,17 @@ export class LandPlotSector implements Sector {
     readonly color: Color;
     owner: null | number;
 
-    constructor(line: LineType, title: string, price: number, color: Color, owner: null | number) {
+    constructor(line: LineType, title: string, price: number, color: Color) {
         this.line = line;
         this.title = title;
         this.type = 'LandPlot';
         this.price = price;
         this.color = color;
-        this.owner = owner;
+        this.owner = null;
     }
+
+    buySector() {}
+    holdAuction() {}
+    payRent() {}
+    putInPledge() {}
 }

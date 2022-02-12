@@ -2,7 +2,7 @@ import { LineType } from "../../models/LineType.type";
 import { Sector } from "./Sector.interface";
 import { SectorType } from "./SectorType.model";
 
-export class TransportCompanySector implements Sector {
+export class TrapSector implements Sector {
     line: LineType;
     readonly title: string;
     readonly type: SectorType;

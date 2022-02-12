@@ -9,11 +9,11 @@ export class TransportCompanySector implements Sector {
     readonly price: number;
     owner: null | number;
 
-    constructor(line: LineType, title: string, price: number, owner: null | number) {
+    constructor(line: LineType, title: string, price: number) {
         this.line = line;
         this.title = title;
         this.type = 'TransportCompany';
         this.price = price;
-        this.owner = owner;
+        this.owner = null;
     }
 }
