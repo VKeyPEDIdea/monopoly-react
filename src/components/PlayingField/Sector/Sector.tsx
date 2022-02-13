@@ -11,13 +11,14 @@ const Sector = ({
 }: SectorProps) => {	
 	if (type !== 'LandPlot') {
 		return (
-			<div className={[classes.sector, classes['sector--simple']].join(' ')}>
+			<div className={[classes.sector, classes['sector--simple']].join(' ')}
+                data-sector-id={id}>
 				<p className={classes.title}>{title}</p>
 			</div>
 		);
 	} else if (line === 'Bottom') {
 		return (
-			<div className={classes.sector}>
+			<div className={classes.sector} data-sector-id={id}>
 				<div className={`${classes.color} ${classes[`color--${color}`]}`}></div>
 				<div className={classes.meta}>
 					<p className={`${classes.title} ${classes['title--bottom']}`}>{title}</p>
