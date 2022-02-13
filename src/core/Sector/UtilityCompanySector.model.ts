@@ -1,19 +1,22 @@
 import { LineType } from "../../models/LineType.type";
+import { SectorCreateArg } from "../SectorFabric/SectorCreateArg.interface";
 import { Sector } from "./Sector.interface";
 import { SectorType } from "./SectorType.model";
 
 export class UtilityCompanySector implements Sector {
+    id: number;
     line: LineType;
     readonly title: string;
     readonly type: SectorType;
     readonly price: number;
     owner: null | number;
 
-    constructor(line: LineType, title: string, price: number) {
+    constructor({ id, line, title, price }: SectorCreateArg) {
+        this.id = id;
         this.line = line;
         this.title = title;
         this.type = 'UtilityCompany';
-        this.price = price;
+        this.price = price ?? 0;
         this.owner = null;
     }
 }

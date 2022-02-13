@@ -6,13 +6,15 @@ import classes from './TopLine.module.scss';
 const TopLine = () => {
     const topLineSectors = useAppSelector(selectTopLineSectors);
 	const sectorList = topLineSectors.map(({
-		title,
+		id,
+        title,
 		color,
 		price,
 		type,
         line
 	}, index) => {
 		return <Sector key={'sector' + index}
+            id={id}
 			title={title}
 			price={price}
 			color={color}

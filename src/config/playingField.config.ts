@@ -1,4 +1,5 @@
 import { Sector } from "../core/Sector/Sector.interface";
+import { SectorType } from "../core/Sector/SectorType.model";
 import { bankSectorFabric } from "../core/SectorFabric/BankSectorFabric.model";
 import { chanceSectorFabric } from "../core/SectorFabric/ChanceSectorFabric.model";
 import { freeParkingSectorFabric } from "../core/SectorFabric/FreeParkingSectorFabric.model";
@@ -7,8 +8,18 @@ import { startSectorFabric } from "../core/SectorFabric/StartSectorFabric.model"
 import { transportCompanySectorFabric } from "../core/SectorFabric/TransportCompanySectorFabric.model";
 import { trapSectorFabric } from "../core/SectorFabric/TrapSectorFabric.model";
 import { utilityCompanySectorFabric } from "../core/SectorFabric/UtilityCompanySectorFabric.model";
+import { Color } from "../models/color.type";
+import { LineType } from "../models/LineType.type";
 
-const playingFieldConfig: Sector[] = [
+interface Field {
+    title: string;
+    price: number;
+    type: SectorType;
+    line: LineType;
+    color?: Color;
+}
+
+const playingFieldConfig: Field[] = [
     {
         title: 'Старт',
         price: 0,
@@ -280,7 +291,7 @@ export const playingFieldList = playingFieldConfig.map(({
     line,
     color,
     price,
-}) => {
+}, index) => {
     let fabric;
 
     switch (type) {
@@ -308,7 +319,18 @@ export const playingFieldList = playingFieldConfig.map(({
         case 'UtilityCompany':
             fabric = utilityCompanySectorFabric;
             break;
+        default:
+            fabric = landPlotSectorFabric;
+            break;
     }
 
-    return fabric.createSector(line, title, price ?? 0, color ?? 'blue');
+    const config = {
+        id: index,
+        title,
+        line,
+        color,
+        price
+    };
+
+    return fabric.createSector(config);
 });

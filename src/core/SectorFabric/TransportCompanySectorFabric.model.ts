@@ -1,11 +1,11 @@
-import { LineType } from "../../models/LineType.type";
 import { Sector } from "../Sector/Sector.interface";
 import { TransportCompanySector } from "../Sector/TransportCompanySector.model";
+import { SectorCreateArg } from "./SectorCreateArg.interface";
 import { SectorFabric } from "./SectorFabric.model";
 
 class TransportCompanySectorFabric extends SectorFabric {
-    createSector(line: LineType, title: string, price: number): Sector {
-        return new TransportCompanySector(line, title, price);
+    createSector(config: SectorCreateArg): Sector {
+        return new TransportCompanySector(config);
     }
 }
 

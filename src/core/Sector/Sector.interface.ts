@@ -3,7 +3,8 @@ import { LineType } from '../../models/LineType.type';
 import { SectorType } from "./SectorType.model";
 
 export interface Sector {
-	line: LineType;
+	id: number;
+    line: LineType;
 	title: string;
 	price?: number;
 	readonly color?: Color | null;

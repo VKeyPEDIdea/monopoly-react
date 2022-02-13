@@ -2,6 +2,7 @@ import classes from './Sector.module.scss';
 import { Sector as SectorProps } from '../../../core/Sector/Sector.interface';
 
 const Sector = ({
+    id,
 	line,
 	price,
 	title,
@@ -27,7 +28,7 @@ const Sector = ({
 	}
 
 	return (
-		<div className={classes.sector}>
+		<div className={classes.sector} data-sector-id={id}>
 			<div className={classes.meta}>
 				<p className={classes.price}>{price}</p>
 				<p className={classes.title}>{title}</p>

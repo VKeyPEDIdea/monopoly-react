@@ -6,14 +6,16 @@ import { selectBottomLineSectors } from "../../../features/field/playingFieldSli
 const BottomLine = () => {
     const bottomLineSectors = useAppSelector(selectBottomLineSectors);
 	const sectorList = bottomLineSectors.map(({
-		title,
+		id,
+        title,
 		color,
 		price,
 		type,
         line,
 	}, index) => {
 		return <Sector key={'sector' + index}
-			title={title}
+            id={id}
+            title={title}
 			price={price}
 			color={color}
 			line={line}
