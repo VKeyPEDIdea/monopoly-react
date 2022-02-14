@@ -10,4 +10,6 @@ export interface Sector {
 	readonly color?: Color | null;
 	type: SectorType;
     owner?: null | number;
+    target?: boolean;
+    getСoordinates?(element: HTMLDivElement | null): void;
 };

@@ -8,15 +8,9 @@ interface PlayersState {
     list: Player[],
 }
 
-const testUser = new Person(
-    'Реджайна', true, 7000
-);
-const testUser2 = new Person(
-    'Павел', false, 5000
-);
-const testUser3 = new Person(
-    'Тихон', false, 5000
-);
+const testUser = { ...new Person('Реджайна', true, 7000) };
+const testUser2 = { ...new Person('Павел', false, 5000) };
+const testUser3 = { ...new Person('Тихон', false, 5000) };
 
 const initialState: PlayersState = {
     list: [testUser, testUser2, testUser3],

@@ -12,6 +12,7 @@ export class LandPlotSector implements Sector {
     readonly price: number;
     readonly color: Color;
     owner: null | number;
+    target?: boolean;
 
     constructor({ id, line, title, price, color}: SectorCreateArg) {
         this.id = id;
@@ -21,6 +22,7 @@ export class LandPlotSector implements Sector {
         this.price = price ?? 0;
         this.color = color ?? 'blue';
         this.owner = null;
+        this.target = false;
     }
 
     buySector() {}

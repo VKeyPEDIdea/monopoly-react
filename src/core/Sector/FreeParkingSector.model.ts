@@ -9,6 +9,7 @@ export class FreeParkingSector implements Sector {
     readonly title: string;
     readonly type: SectorType;
     readonly price: number;
+    target?: boolean;
 
     constructor({ id, line, title, price }: SectorCreateArg) {
         this.id = id;
@@ -16,5 +17,6 @@ export class FreeParkingSector implements Sector {
         this.title = title;
         this.type = 'FreeParking';
         this.price = price ?? 0;
+        this.target = false;
     }
 }

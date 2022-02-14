@@ -8,11 +8,13 @@ export class TrapSector implements Sector {
     line: LineType;
     readonly title: string;
     readonly type: SectorType;
+    target?: boolean;
 
     constructor({ id, line, title }: SectorCreateArg) {
         this.id = id;
         this.line = line;
         this.title = title;
         this.type = 'Trap';
+        this.target = false;
     }
 }

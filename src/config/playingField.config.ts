@@ -332,5 +332,5 @@ export const playingFieldList = playingFieldConfig.map(({
         price
     };
 
-    return fabric.createSector(config);
+    return { ...fabric.createSector(config) };
 });
