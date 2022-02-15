@@ -1,21 +1,29 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { selectTopLineSectors, setTargetCoordinates, setTargetSector } from "../../../features/field/playingFieldSlice";
+import {
+    selectTargetSectorId,
+    selectTopLineSectors,
+    setTargetCoordinates,
+    setTargetSector
+} from "../../../features/field/playingFieldSlice";
 import getSectorCoordinates from "../../../utilities/getSectorCoordinates";
 import Sector from "../Sector";
 import classes from './TopLine.module.scss';
 
 const TopLine = () => {
     const topLineSectors = useAppSelector(selectTopLineSectors);
+    const targetSectorId = useAppSelector(selectTargetSectorId);
     const dispatch = useAppDispatch();
+    
     const showCoordinates = (element: HTMLDivElement | null) => {
         const coordinates = getSectorCoordinates(element, 'Top');
         dispatch(setTargetCoordinates(coordinates));
     };
 
     useEffect(() => {
-        dispatch(setTargetSector(0));
+        dispatch(setTargetSector(targetSectorId));
     }, []);
+
 	const sectorList = topLineSectors.map(({
 		id,
         title,

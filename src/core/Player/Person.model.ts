@@ -1,18 +1,33 @@
+import { Coordinates } from "../../models/Coordinates.interface";
+import { idGenerator } from "../../utilities/idGenerator";
 import { Player } from "./Player.interface";
 import { PlayerType } from "./PlayerType.type";
 
 export class Person implements Player {
+    id: number;
     readonly name: string;
     isCurrent: boolean;
     cashCount: number;
     propertyCount: number;
     type: PlayerType;
+    location: {
+        coordinates: Coordinates;
+        id: number;
+    };
 
     constructor(name: string, isCurrent: boolean, cash: number) {
+        this.id = idGenerator.getNewPlayerID();
         this.isCurrent = isCurrent;
         this.name = name;
         this.cashCount = cash;
         this.propertyCount = 0;
         this.type = 'Person';
+        this.location = {
+            coordinates: {
+                x: null,
+                y: null,
+            },
+            id: 0
+        };
     }
 }

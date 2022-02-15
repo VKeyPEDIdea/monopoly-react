@@ -1,8 +1,20 @@
+import { PlayerChip as PlayerChipProps } from './PlayerChip.interface';
 import classes from './PlayerChip.module.scss'; 
 
-const PlayerChip = () => {
+const RADIUS = 16;
+
+const PlayerChip = ({
+    coordinates: { x, y },
+    name
+}: PlayerChipProps) => {
+    const placementStyles = {
+        left: `${x ? x - RADIUS : RADIUS}px`,
+        top: `${y ? y - RADIUS : RADIUS}px`,
+    };
+
     return (
-        <div className={[classes.chip, 'chips'].join(' ')}>Р</div>
+        <div className={[classes.chip, 'chips'].join(' ')}
+            style={placementStyles}>{name.slice(0, 1)}</div>
     );
 };
 

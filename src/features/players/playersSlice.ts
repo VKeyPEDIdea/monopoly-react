@@ -3,6 +3,7 @@ import { useAppSelector } from "../../app/hooks";
 import type { AppDispatch, RootState } from "../../app/store";
 import { Player } from "../../core/Player/Player.interface";
 import { Person } from "../../core/Player/Person.model";
+import { PlayerChipInfo } from "../../components/PlayerChip/PlayerChipContainer.interface";
 
 interface PlayersState {
     list: Player[],
@@ -19,8 +20,19 @@ const initialState: PlayersState = {
 export const playersSlice = createSlice({
     name: 'players',
     initialState,
-    reducers: {},
+    reducers: {
+        changePlayerLocationID: (state, { payload }) => {
+            const player = state.list.find(({ id }) => id === payload.playerId);
+            if (player) {
+                player.location.id = payload.locationId;
+            }
+        }
+    },
 });
+
+export const {
+    changePlayerLocationID,
+} = playersSlice.actions;
 
 export const selectPlayers = (state: RootState): Player[] => state.players.list;
 export const selectOrderedPlayersList = (state: RootState): Player[] => {
@@ -33,6 +45,14 @@ export const selectMaxScore = (): number => {
     const orderedPlayersList = useAppSelector(selectOrderedPlayersList);
     const { cashCount, propertyCount } = [...orderedPlayersList][0];
     return cashCount + propertyCount;
+};
+export const selectPlayersForChips = (state: RootState): PlayerChipInfo[] => {
+    return state.players.list.map(({ name, location }) => { 
+        return {
+            name,
+            locationId: location ? location.id : 0
+        }; 
+    });
 };
 
 export default playersSlice.reducer;

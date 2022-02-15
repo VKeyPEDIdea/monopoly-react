@@ -10,8 +10,8 @@ export default function getSectorCoordinates(element: HTMLDivElement | null, lin
             offsetHeight,
         } = element;
         return {
-            x: line === 'Top' ? offsetHeight : offsetTop,
-            y: offsetLeft + offsetWidth / 2,
+            x: offsetLeft + offsetWidth / 2,
+            y: line === 'Top' ? offsetHeight : offsetTop,
         };
     } else {
         return {

@@ -3,7 +3,6 @@ import { selectMaxScore, selectOrderedPlayersList } from '../../../features/play
 import Dice from '../../Dice/Dice';
 import ExtraDimensionСard from '../../ExtraDimensionСard';
 import MonopolyCard from '../../MonopolyCard';
-import PlayerChip from '../../PlayerChip';
 import Rating from '../../Rating';
 import RealEstateCard from '../../RealEstateCard';
 import { realEstateExampleConfig } from '../../RealEstateCard/realEstateExample.config';
@@ -17,7 +16,6 @@ const MiddleBoard = () => {
 	return (
 		<div className={classes.board}>
 			<div className={classes['left-section']}>
-                <PlayerChip />
                 <Rating players={players} maxScore={maxScore}/>
                 <div className={classes['dice-box']}>
 				    <Dice />
