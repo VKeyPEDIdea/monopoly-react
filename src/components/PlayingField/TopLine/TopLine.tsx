@@ -2,10 +2,9 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
     selectTargetSectorId,
-    selectTopLineSectors,
-    setTargetCoordinates,
-    setTargetSector
+    selectTopLineSectors, setTargetSector,
 } from "../../../features/field/playingFieldSlice";
+import { setPlayerCoordinatesByPlayerId } from "../../../features/players/playersSlice";
 import getSectorCoordinates from "../../../utilities/getSectorCoordinates";
 import Sector from "../Sector";
 import classes from './TopLine.module.scss';
@@ -17,7 +16,7 @@ const TopLine = () => {
     
     const showCoordinates = (element: HTMLDivElement | null) => {
         const coordinates = getSectorCoordinates(element, 'Top');
-        dispatch(setTargetCoordinates(coordinates));
+        dispatch(setPlayerCoordinatesByPlayerId({ playerId: 0, coordinates }));
     };
 
     useEffect(() => {
@@ -30,7 +29,6 @@ const TopLine = () => {
 		color,
 		price,
 		type,
-        target
 	}, index) => {
 		return <Sector key={'sector' + index}
             id={id}
@@ -40,7 +38,7 @@ const TopLine = () => {
             line='Top'
 			type={type}
             getСoordinates={showCoordinates}
-            target={target}
+            target={targetSectorId === id}
             />;
 	});
 	

@@ -1,10 +1,4 @@
-import { useEffect } from "react";
 import PlayerChip from ".";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-    selectTargetSectorCoordinates,
-    setTargetSector
-} from "../../features/field/playingFieldSlice";
 import { PlayerChipInfo } from "./PlayerChipContainer.interface";
 
 interface PlayerChipContainer {
@@ -14,16 +8,7 @@ interface PlayerChipContainer {
 const PlayerChipContainer = ({
     list,
 }: PlayerChipContainer) => {
-    // const dispatch = useAppDispatch();
-
-    // useEffect(() => {
-    //     dispatch(setTargetSector(targetSectorId));
-    // }, []);
-    
-    const chips = list.map(({ name, locationId }, index) => {
-        // dispatch(setTargetSector(locationId));
-        const coordinates = useAppSelector(selectTargetSectorCoordinates);
-
+    const chips = list.map(({ name, coordinates }, index) => {
         return <PlayerChip key={name + index}
             name={name}
             coordinates={coordinates}/>;

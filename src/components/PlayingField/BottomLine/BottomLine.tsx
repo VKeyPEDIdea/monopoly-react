@@ -1,25 +1,37 @@
 import Sector from "../Sector";
 import classes from './BottomLine.module.scss';
-import { useAppSelector } from "../../../app/hooks";
-import { selectBottomLineSectors } from "../../../features/field/playingFieldSlice";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { selectBottomLineSectors, selectTargetSectorId } from "../../../features/field/playingFieldSlice";
+import { setPlayerCoordinatesByPlayerId } from "../../../features/players/playersSlice";
+import getSectorCoordinates from "../../../utilities/getSectorCoordinates";
 
 const BottomLine = () => {
     const bottomLineSectors = useAppSelector(selectBottomLineSectors);
+    const targetSectorId = useAppSelector(selectTargetSectorId);
+    const dispatch = useAppDispatch();
+
+    const showCoordinates = (element: HTMLDivElement | null) => {
+        const coordinates = getSectorCoordinates(element, 'Bottom');
+        dispatch(setPlayerCoordinatesByPlayerId({ playerId: 0, coordinates }));
+    };
+
 	const sectorList = bottomLineSectors.map(({
 		id,
         title,
 		color,
 		price,
 		type,
-        line,
 	}, index) => {
 		return <Sector key={'sector' + index}
             id={id}
             title={title}
 			price={price}
 			color={color}
-			line={line}
-			type={type} />;
+			line='Bottom'
+			type={type}
+            getСoordinates={showCoordinates}
+            target={targetSectorId === id}
+            />;
 	});
 
 	return (

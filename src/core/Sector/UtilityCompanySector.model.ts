@@ -10,7 +10,6 @@ export class UtilityCompanySector implements Sector {
     readonly type: SectorType;
     readonly price: number;
     owner: null | number;
-    target?: boolean;
 
     constructor({ id, line, title, price }: SectorCreateArg) {
         this.id = id;
@@ -19,6 +18,5 @@ export class UtilityCompanySector implements Sector {
         this.type = 'UtilityCompany';
         this.price = price ?? 0;
         this.owner = null;
-        this.target = false;
     }
 }

@@ -1,13 +1,10 @@
 import { createSlice, PayloadAction, EntityState } from "@reduxjs/toolkit";
-import { useAppSelector } from "../../app/hooks";
 import type { AppDispatch, RootState } from '../../app/store';
 import { playingFieldList } from "../../config/playingField.config";
 import { Sector } from "../../core/Sector/Sector.interface";
-import { Coordinates } from "../../models/Coordinates.interface";
 interface PlayingFieldState {
     sectorList: Sector[];
     targetSector: {
-        coordinates: Coordinates;
         id: number;
     } 
 }
@@ -15,10 +12,6 @@ interface PlayingFieldState {
 const initialState: PlayingFieldState = {
     sectorList: playingFieldList,
     targetSector: {
-        coordinates: {
-            x: null,
-            y: null,
-        },
         id: 0,
     },
 };
@@ -28,20 +21,13 @@ export const playingFieldSlice = createSlice({
     initialState,
     reducers: {
         setTargetSector: (state, { payload }) => {
-            const sector = state.sectorList.find(({ id }) => payload === id);
-            if (sector) {
-                sector.target = true;
-            } 
-        },
-        setTargetCoordinates: (state, { payload }) => {
-            state.targetSector.coordinates = payload;
+            state.targetSector.id = payload;
         },
     },
 });
 
 export const {
     setTargetSector,
-    setTargetCoordinates,
 } = playingFieldSlice.actions;
 
 export const selectTopLineSectors = (state: RootState) => { 
@@ -49,9 +35,6 @@ export const selectTopLineSectors = (state: RootState) => {
 };
 export const selectBottomLineSectors = (state: RootState) => { 
     return state.field.sectorList.filter(({ line }) => line === 'Bottom');
-};
-export const selectTargetSectorCoordinates = (state: RootState) => {
-    return state.field.targetSector.coordinates;
 };
 export const selectTargetSectorId = (state: RootState) => {
     return state.field.targetSector.id;

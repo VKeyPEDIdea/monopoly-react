@@ -1,4 +1,6 @@
+import { Coordinates } from "../../models/Coordinates.interface";
+
 export interface PlayerChipInfo {
     name: string;
-    locationId: number;
+    coordinates: Coordinates;
 }

@@ -10,28 +10,35 @@ interface PlayersState {
 }
 
 const testUser = { ...new Person('Реджайна', true, 7000) };
-const testUser2 = { ...new Person('Павел', false, 5000) };
-const testUser3 = { ...new Person('Тихон', false, 5000) };
+// const testUser2 = { ...new Person('Павел', false, 5000) };
+// const testUser3 = { ...new Person('Тихон', false, 5000) };
 
 const initialState: PlayersState = {
-    list: [testUser, testUser2, testUser3],
+    list: [testUser],
 };
 
 export const playersSlice = createSlice({
     name: 'players',
     initialState,
     reducers: {
-        changePlayerLocationID: (state, { payload }) => {
+        changePlayerLocation: (state, { payload }) => {
             const player = state.list.find(({ id }) => id === payload.playerId);
             if (player) {
                 player.location.id = payload.locationId;
             }
-        }
+        },
+        setPlayerCoordinatesByPlayerId: (state, { payload }) => {
+            const player = state.list.find(({ id }) => id === payload.playerId);
+            if (player) {
+                player.location.coordinates = payload.coordinates;
+            }
+        },
     },
 });
 
 export const {
-    changePlayerLocationID,
+    changePlayerLocation,
+    setPlayerCoordinatesByPlayerId,
 } = playersSlice.actions;
 
 export const selectPlayers = (state: RootState): Player[] => state.players.list;
@@ -50,9 +57,13 @@ export const selectPlayersForChips = (state: RootState): PlayerChipInfo[] => {
     return state.players.list.map(({ name, location }) => { 
         return {
             name,
-            locationId: location ? location.id : 0
+            coordinates: location.coordinates,
         }; 
     });
+};
+
+export const selectCoordinatesByPlayerId = (state: RootState) => {
+    return 
 };
 
 export default playersSlice.reducer;
