@@ -53,7 +53,15 @@ export const takeStepOnField = (payload: [number, number]) => (dispatch: AppDisp
     const player = list.find(({ id }) => id === 0);
     const locationId = player ? player.location.id : 0;
     const [d1Value, d2Value] = payload;
-    const targetSectorId = locationId + d1Value + d2Value;
+    const result = locationId + d1Value + d2Value;
+    let targetSectorId;
+
+    if (result > 39) {
+        const diff = result - 40;
+        targetSectorId = diff;
+    } else {
+        targetSectorId = result;
+    }
     
     dispatch(setTargetSector(targetSectorId));
     dispatch(changePlayerLocation({ playerId: player?.id, locationId: targetSectorId }));
