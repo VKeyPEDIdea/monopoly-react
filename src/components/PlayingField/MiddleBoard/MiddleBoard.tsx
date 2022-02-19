@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../../app/hooks';
+import { takeStepOnField } from '../../../features/field/playingFieldSlice';
 import { selectMaxScore, selectOrderedPlayersList } from '../../../features/players/playersSlice';
 import Dice from '../../Dice/Dice';
 import ExtraDimensionСard from '../../ExtraDimensionСard';
@@ -12,13 +14,17 @@ import classes from './MiddleBoard.module.scss';
 const MiddleBoard = () => {
     const players = useAppSelector(selectOrderedPlayersList);
     const maxScore = useAppSelector(selectMaxScore);
+    const dispatch = useDispatch();
+    const onRollDiceHandler = (diceValue: [number, number]) => {       
+        dispatch(takeStepOnField(diceValue));
+    };
     
 	return (
 		<div className={classes.board}>
 			<div className={classes['left-section']}>
                 <Rating players={players} maxScore={maxScore}/>
                 <div className={classes['dice-box']}>
-				    <Dice />
+				    <Dice onRollDice={onRollDiceHandler}/>
                 </div>
 			</div>
 			<div className={classes['middle-section']}>

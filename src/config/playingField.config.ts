@@ -1,4 +1,3 @@
-import { Sector } from "../core/Sector/Sector.interface";
 import { SectorType } from "../core/Sector/SectorType.model";
 import { bankSectorFabric } from "../core/SectorFabric/BankSectorFabric.model";
 import { chanceSectorFabric } from "../core/SectorFabric/ChanceSectorFabric.model";
@@ -10,6 +9,7 @@ import { trapSectorFabric } from "../core/SectorFabric/TrapSectorFabric.model";
 import { utilityCompanySectorFabric } from "../core/SectorFabric/UtilityCompanySectorFabric.model";
 import { Color } from "../models/color.type";
 import { LineType } from "../models/LineType.type";
+import { idGenerator } from "../utilities/idGenerator";
 
 interface Field {
     title: string;
@@ -19,7 +19,7 @@ interface Field {
     color?: Color;
 }
 
-const playingFieldConfig: Field[] = [
+const topLineConfig: Field[] = [
     {
         title: 'Старт',
         price: 0,
@@ -151,6 +151,8 @@ const playingFieldConfig: Field[] = [
         type: 'LandPlot',
         line: 'Top',
     },
+];
+const bottomLineConfig: Field[] = [
     {
         title: 'Гостиничный комплекс',
         price: 400,
@@ -281,17 +283,17 @@ const playingFieldConfig: Field[] = [
         price: 0,
         type: 'FreeParking',
         line: 'Bottom',
-        
     },
 ];
+const bottomLineConfigReversed: Field[] = bottomLineConfig.reverse();
 
-export const playingFieldList = playingFieldConfig.map(({
+const topLineList = topLineConfig.map(({
     type,
     title,
     line,
     color,
     price,
-}, index) => {
+}) => {
     let fabric;
 
     switch (type) {
@@ -325,7 +327,7 @@ export const playingFieldList = playingFieldConfig.map(({
     }
 
     const config = {
-        id: index,
+        id: idGenerator.getNewSectorID(),
         title,
         line,
         color,
@@ -334,3 +336,53 @@ export const playingFieldList = playingFieldConfig.map(({
 
     return { ...fabric.createSector(config) };
 });
+const bottomLineList = bottomLineConfigReversed.map(({
+    type,
+    title,
+    line,
+    color,
+    price,
+}) => {
+    let fabric;
+
+    switch (type) {
+        case 'Bank':
+            fabric = bankSectorFabric;
+            break;
+        case 'Chance':
+            fabric = chanceSectorFabric;
+            break;
+        case 'FreeParking':
+            fabric = freeParkingSectorFabric;
+            break;
+        case 'LandPlot':
+            fabric = landPlotSectorFabric;
+            break;
+        case 'Start':
+            fabric = startSectorFabric;
+            break;
+        case 'TransportCompany':
+            fabric = transportCompanySectorFabric;
+            break;
+        case 'Trap':
+            fabric = trapSectorFabric;
+            break;
+        case 'UtilityCompany':
+            fabric = utilityCompanySectorFabric;
+            break;
+        default:
+            fabric = landPlotSectorFabric;
+            break;
+    }
+
+    const config = {
+        id: idGenerator.getNewSectorID(),
+        title,
+        line,
+        color,
+        price
+    };
+
+    return { ...fabric.createSector(config) };
+}).reverse();
+export const playingFieldList = [ ...topLineList, ...bottomLineList ];
