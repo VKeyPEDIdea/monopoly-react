@@ -4,4 +4,5 @@ export interface PlayerChip {
         y: number | null;
     },
     name: string;
+    isCurrent: boolean;
 }

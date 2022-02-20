@@ -46,15 +46,15 @@ export const selectBottomLineSectors = (state: RootState) => {
 export const selectTargetSectorId = (state: RootState) => {
     return state.field.targetSector.id;
 };
-export const takeStepOnField = (payload: [number, number]) => (dispatch: AppDispatch, getState: () => RootState) => {
-    dispatch(setDice(payload));
+export const takeStepOnField = (payload: {dice: [number, number], playerId: number}) => (dispatch: AppDispatch, getState: () => RootState) => {
+    dispatch(setDice(payload.dice));
 
     const { list } = getState().players;
-    const player = list.find(({ id }) => id === 0);
+    const player = list.find(({ id }) => id === payload.playerId);
     const locationId = player ? player.location.id : 0;
-    const [d1Value, d2Value] = payload;
+    const [d1Value, d2Value] = payload.dice;
     const result = locationId + d1Value + d2Value;
-    let targetSectorId;
+    let targetSectorId: number;
 
     if (result > 39) {
         const diff = result - 40;
@@ -64,8 +64,10 @@ export const takeStepOnField = (payload: [number, number]) => (dispatch: AppDisp
     }
     
     dispatch(setTargetSector(targetSectorId));
-    dispatch(changePlayerLocation({ playerId: player?.id, locationId: targetSectorId }));
-
+    dispatch(changePlayerLocation({
+        playerId: player?.id,
+        locationId: targetSectorId
+    }));
 };
 
 export default playingFieldSlice.reducer;

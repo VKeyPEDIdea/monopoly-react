@@ -6,7 +6,6 @@ import { PlayerType } from "./PlayerType.type";
 export class Person implements Player {
     id: number;
     readonly name: string;
-    isCurrent: boolean;
     cashCount: number;
     propertyCount: number;
     type: PlayerType;
@@ -15,9 +14,8 @@ export class Person implements Player {
         id: number;
     };
 
-    constructor(name: string, isCurrent: boolean, cash: number) {
+    constructor(name: string, cash: number) {
         this.id = idGenerator.getNewPlayerID();
-        this.isCurrent = isCurrent;
         this.name = name;
         this.cashCount = cash;
         this.propertyCount = 0;

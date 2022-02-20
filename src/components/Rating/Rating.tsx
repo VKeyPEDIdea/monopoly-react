@@ -4,21 +4,22 @@ import { RatingProps } from './RatingProps.model';
 
 const Rating = ({
     players,
-    maxScore
+    maxScore,
+    currentPlayer,
 }: RatingProps) => {
     const ratingLines = players.map(({
         name,
         cashCount,
         propertyCount,
-        isCurrent
+        id,
     }, index) => {
         return <RatingLine
-            key={index + 'rating line'}
+            key={index + '-rating-line'}
             position={index + 1} 
             name={name}
             cashCount={cashCount}
             propertyCount={propertyCount}
-            isCurrent={isCurrent}
+            isCurrent={currentPlayer === id}
             graphColumns={{
                 cashCol: cashCount * 100 / maxScore,
                 moneyCol: propertyCount * 100 / maxScore,

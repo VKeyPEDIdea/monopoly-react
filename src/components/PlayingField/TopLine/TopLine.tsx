@@ -1,10 +1,15 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
     selectTargetSectorId,
-    selectTopLineSectors, setTargetSector,
+    selectTopLineSectors,
 } from "../../../features/field/playingFieldSlice";
-import { setPlayerCoordinatesByPlayerId } from "../../../features/players/playersSlice";
+import {
+    moveChipToTargetSector,
+    selectCurrentPlayerId,
+    selectPlayersIdList,
+    setPlayerCoordinatesByPlayerId,
+} from "../../../features/players/playersSlice";
 import getSectorCoordinates from "../../../utilities/getSectorCoordinates";
 import Sector from "../Sector";
 import classes from './TopLine.module.scss';
@@ -12,16 +17,25 @@ import classes from './TopLine.module.scss';
 const TopLine = () => {
     const topLineSectors = useAppSelector(selectTopLineSectors);
     const targetSectorId = useAppSelector(selectTargetSectorId);
+    const playersIdList = useAppSelector(selectPlayersIdList);
+    const currentPlayerId = useAppSelector(selectCurrentPlayerId);
     const dispatch = useAppDispatch();
+    const [isInitialized, setIsInitialized] = useState(false);
     
     const showCoordinates = (element: HTMLDivElement | null) => {
         const coordinates = getSectorCoordinates(element, 'Top');
-        dispatch(setPlayerCoordinatesByPlayerId({ playerId: 0, coordinates }));
+        if (isInitialized) {
+            dispatch(moveChipToTargetSector({
+                currentPlayerId,
+                coordinates,
+            }));
+        } else {
+            for (const id of playersIdList) {
+                dispatch(setPlayerCoordinatesByPlayerId({ playerId: id, coordinates }));
+            }
+            setIsInitialized(true);
+        }
     };
-
-    useEffect(() => {
-        dispatch(setTargetSector(targetSectorId));
-    }, []);
 
 	const sectorList = topLineSectors.map(({
 		id,

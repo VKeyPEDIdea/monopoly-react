@@ -4,17 +4,21 @@ import type { AppDispatch, RootState } from "../../app/store";
 import { Player } from "../../core/Player/Player.interface";
 import { Person } from "../../core/Player/Person.model";
 import { PlayerChipInfo } from "../../components/PlayerChip/PlayerChipContainer.interface";
+import { Coordinates } from "../../models/Coordinates.interface";
 
 interface PlayersState {
     list: Player[],
+    currentPlayerId: number;
 }
 
-const testUser = { ...new Person('Реджайна', true, 7000) };
-// const testUser2 = { ...new Person('Павел', false, 5000) };
-// const testUser3 = { ...new Person('Тихон', false, 5000) };
+const testUser = { ...new Person('Реджайна', 7000) };
+const testUser2 = { ...new Person('Павел', 5000) };
+const testUser3 = { ...new Person('Тихон', 8500) };
+const testUser4 = { ...new Person('Максим', 6500) };
 
 const initialState: PlayersState = {
-    list: [testUser],
+    list: [testUser, testUser2, testUser3, testUser4],
+    currentPlayerId: 0,
 };
 
 export const playersSlice = createSlice({
@@ -33,12 +37,20 @@ export const playersSlice = createSlice({
                 player.location.coordinates = payload.coordinates;
             }
         },
+        turnToNextPlayer: state => {
+            if (state.currentPlayerId < state.list.length - 1) {
+                state.currentPlayerId += 1;
+            } else {
+                state.currentPlayerId = 0;
+            }
+        },
     },
 });
 
 export const {
     changePlayerLocation,
     setPlayerCoordinatesByPlayerId,
+    turnToNextPlayer,
 } = playersSlice.actions;
 
 export const selectPlayers = (state: RootState): Player[] => state.players.list;
@@ -54,10 +66,11 @@ export const selectMaxScore = (): number => {
     return cashCount + propertyCount;
 };
 export const selectPlayersForChips = (state: RootState): PlayerChipInfo[] => {
-    return state.players.list.map(({ name, location }) => { 
+    return state.players.list.map(({ name, location, id }) => { 
         return {
             name,
             coordinates: location.coordinates,
+            id,
         }; 
     });
 };
@@ -68,9 +81,22 @@ export const selectPlayerLocationId = (state: RootState, playerId: number): numb
     }
     return null;
 };
-
-export const selectCoordinatesByPlayerId = (state: RootState) => {
-    return 
+export const selectPlayersIdList = (state: RootState): number[] => {
+    return state.players.list.map(({ id }) => id);
+};
+export const selectCurrentPlayerId = (state: RootState): number => {
+    return state.players.currentPlayerId;
+};
+export const moveChipToTargetSector = (payload: { currentPlayerId: number; coordinates: Coordinates}) => (dispatch: AppDispatch) => {
+    setTimeout(() => {
+        dispatch(setPlayerCoordinatesByPlayerId({
+            playerId: payload.currentPlayerId,
+            coordinates: payload.coordinates
+        }));
+        setTimeout(() => {
+            dispatch(turnToNextPlayer());
+        }, 1500);
+    }, 1000);
 };
 
 export default playersSlice.reducer;
