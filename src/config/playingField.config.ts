@@ -17,6 +17,8 @@ interface Field {
     type: SectorType;
     line: LineType;
     color?: Color;
+    rentPrice?: number[];
+    housePrice?: number;
 }
 
 const topLineConfig: Field[] = [
@@ -29,6 +31,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Гапеева',
         price: 60,
+        rentPrice: [2, 10, 30, 90, 160, 250],
+        housePrice: 50,
         color: 'purple',
         type: 'LandPlot',
         line: 'Top',
@@ -42,6 +46,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Кривогуза',
         price: 60,
+        rentPrice: [4, 20, 60, 180, 320, 450],
+        housePrice: 50,
         color: 'purple',
         type: 'LandPlot',
         line: 'Top',
@@ -61,6 +67,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Чкалова',
         price: 100,
+        rentPrice: [6, 30, 90, 270, 400, 550],
+        housePrice: 50,
         color: 'blue',
         type: 'LandPlot',
         line: 'Top',
@@ -74,6 +82,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Бухар Жирау',
         price: 100,
+        rentPrice: [6, 30, 90, 270, 400, 550],
+        housePrice: 50,
         color: 'blue',
         type: 'LandPlot',
         line: 'Top',
@@ -81,6 +91,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Пушкина',
         price: 120,
+        rentPrice: [8, 40, 100, 300, 450, 600],
+        housePrice: 50,
         color: 'blue',
         type: 'LandPlot',
         line: 'Top',
@@ -94,6 +106,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Бульвар мира',
         price: 140,
+        rentPrice: [10, 50, 150, 450, 625, 750],
+        housePrice: 100,
         color: 'blue-sky',
         type: 'LandPlot',
         line: 'Top',
@@ -107,6 +121,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Абая',
         price: 140,
+        rentPrice: [10, 50, 150, 450, 625, 750],
+        housePrice: 100,
         color: 'blue-sky',
         type: 'LandPlot',
         line: 'Top',
@@ -114,6 +130,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Гоголя',
         price: 160,
+        rentPrice: [12, 60, 180, 500, 700, 900],
+        housePrice: 100,
         color: 'blue-sky',
         type: 'LandPlot',
         line: 'Top',
@@ -127,6 +145,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Ержанова',
         price: 180,
+        rentPrice: [14, 70, 200, 550, 750, 950],
+        housePrice: 100,
         color: 'green',
         type: 'LandPlot',
         line: 'Top',
@@ -140,6 +160,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Ермекова',
         price: 180,
+        rentPrice: [14, 70, 200, 550, 750, 950],
+        housePrice: 100,
         color: 'green',
         type: 'LandPlot',
         line: 'Top',
@@ -147,6 +169,8 @@ const topLineConfig: Field[] = [
     {
         title: 'Абдирова',
         price: 200,
+        rentPrice: [16, 80, 220, 600, 800, 1000],
+        housePrice: 100,
         color: 'green',
         type: 'LandPlot',
         line: 'Top',
@@ -156,6 +180,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Гостиничный комплекс',
         price: 400,
+        rentPrice: [50, 200, 600, 1400, 1700, 200],
+        housePrice: 100,
         color: 'pink',
         type: 'LandPlot',
         line: 'Bottom',
@@ -169,6 +195,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Курортная зона',
         price: 350,
+        rentPrice: [35, 175, 500, 1100, 1300, 1500],
+        housePrice: 200,
         color: 'pink',
         type: 'LandPlot',
         line: 'Bottom',
@@ -188,6 +216,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Авиакомпания',
         price: 400,
+        rentPrice: [28, 150, 450, 1000, 1200, 1400],
+        housePrice: 200,
         color: 'red',
         type: 'LandPlot',
         line: 'Bottom',
@@ -201,6 +231,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Железная дорога',
         price: 300,
+        rentPrice: [26, 130, 390, 900, 1100, 1275],
+        housePrice: 200,
         color: 'red',
         type: 'LandPlot',
         line: 'Bottom',
@@ -208,6 +240,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Морские перевозки',
         price: 300,
+        rentPrice: [26, 130, 390, 900, 1100, 1275],
+        housePrice: 200,
         color: 'red',
         type: 'LandPlot',
         line: 'Bottom',
@@ -221,6 +255,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Сотовая связь',
         price: 280,
+        rentPrice: [24, 120, 360, 850, 1025, 1200],
+        housePrice: 150,
         color: 'orange',
         type: 'LandPlot',
         line: 'Bottom',
@@ -234,6 +270,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Интернет',
         price: 260,
+        rentPrice: [22, 110, 330, 800, 975, 1150],
+        housePrice: 150,
         color: 'orange',
         type: 'LandPlot',
         line: 'Bottom',
@@ -241,6 +279,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Компьютерная техника',
         price: 260,
+        rentPrice: [22, 110, 330, 800, 975, 1150],
+        housePrice: 150,
         color: 'orange',
         type: 'LandPlot',
         line: 'Bottom',
@@ -254,6 +294,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Ресторан',
         price: 240,
+        rentPrice: [20, 100, 300, 750, 925, 1100],
+        housePrice: 150,
         color: 'yellow',
         type: 'LandPlot',
         line: 'Bottom',
@@ -261,6 +303,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Ночной клуб',
         price: 220,
+        rentPrice: [18, 90, 250, 700, 875, 1050],
+        housePrice: 150,
         color: 'yellow',
         type: 'LandPlot',
         line: 'Bottom',
@@ -274,6 +318,8 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Бар',
         price: 220,
+        rentPrice: [18, 90, 250, 700, 875, 1050],
+        housePrice: 150,
         color: 'yellow',
         type: 'LandPlot',
         line: 'Bottom',
