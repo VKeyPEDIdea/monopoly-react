@@ -287,102 +287,58 @@ const bottomLineConfig: Field[] = [
 ];
 const bottomLineConfigReversed: Field[] = bottomLineConfig.reverse();
 
-const topLineList = topLineConfig.map(({
-    type,
-    title,
-    line,
-    color,
-    price,
-}) => {
-    let fabric;
-
-    switch (type) {
-        case 'Bank':
-            fabric = bankSectorFabric;
-            break;
-        case 'Chance':
-            fabric = chanceSectorFabric;
-            break;
-        case 'FreeParking':
-            fabric = freeParkingSectorFabric;
-            break;
-        case 'LandPlot':
-            fabric = landPlotSectorFabric;
-            break;
-        case 'Start':
-            fabric = startSectorFabric;
-            break;
-        case 'TransportCompany':
-            fabric = transportCompanySectorFabric;
-            break;
-        case 'Trap':
-            fabric = trapSectorFabric;
-            break;
-        case 'UtilityCompany':
-            fabric = utilityCompanySectorFabric;
-            break;
-        default:
-            fabric = landPlotSectorFabric;
-            break;
-    }
-
-    const config = {
-        id: idGenerator.getNewSectorID(),
+function getSectorList(config: Field[]) {
+    return config.map(({
+        type,
         title,
         line,
         color,
-        price
-    };
+        price,
+    }) => {
+        let fabric;
+    
+        switch (type) {
+            case 'Bank':
+                fabric = bankSectorFabric;
+                break;
+            case 'Chance':
+                fabric = chanceSectorFabric;
+                break;
+            case 'FreeParking':
+                fabric = freeParkingSectorFabric;
+                break;
+            case 'LandPlot':
+                fabric = landPlotSectorFabric;
+                break;
+            case 'Start':
+                fabric = startSectorFabric;
+                break;
+            case 'TransportCompany':
+                fabric = transportCompanySectorFabric;
+                break;
+            case 'Trap':
+                fabric = trapSectorFabric;
+                break;
+            case 'UtilityCompany':
+                fabric = utilityCompanySectorFabric;
+                break;
+            default:
+                fabric = landPlotSectorFabric;
+                break;
+        }
+    
+        const config = {
+            id: idGenerator.getNewSectorID(),
+            title,
+            line,
+            color,
+            price
+        };
+    
+        return { ...fabric.createSector(config) };
+    })
+}
+const topLineList = getSectorList(topLineConfig);
+const bottomLineList = getSectorList(bottomLineConfigReversed).reverse();
 
-    return { ...fabric.createSector(config) };
-});
-const bottomLineList = bottomLineConfigReversed.map(({
-    type,
-    title,
-    line,
-    color,
-    price,
-}) => {
-    let fabric;
-
-    switch (type) {
-        case 'Bank':
-            fabric = bankSectorFabric;
-            break;
-        case 'Chance':
-            fabric = chanceSectorFabric;
-            break;
-        case 'FreeParking':
-            fabric = freeParkingSectorFabric;
-            break;
-        case 'LandPlot':
-            fabric = landPlotSectorFabric;
-            break;
-        case 'Start':
-            fabric = startSectorFabric;
-            break;
-        case 'TransportCompany':
-            fabric = transportCompanySectorFabric;
-            break;
-        case 'Trap':
-            fabric = trapSectorFabric;
-            break;
-        case 'UtilityCompany':
-            fabric = utilityCompanySectorFabric;
-            break;
-        default:
-            fabric = landPlotSectorFabric;
-            break;
-    }
-
-    const config = {
-        id: idGenerator.getNewSectorID(),
-        title,
-        line,
-        color,
-        price
-    };
-
-    return { ...fabric.createSector(config) };
-}).reverse();
 export const playingFieldList = [ ...topLineList, ...bottomLineList ];
