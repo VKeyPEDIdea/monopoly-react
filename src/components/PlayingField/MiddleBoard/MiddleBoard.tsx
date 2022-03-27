@@ -4,15 +4,12 @@ import { takeStepOnField } from '../../../features/field/playingFieldSlice';
 import {
     selectCurrentPlayerId,
     selectMaxScore,
-    selectOrderedPlayersList
+    selectOrderedPlayersList,
 } from '../../../features/players/playersSlice';
 import Dice from '../../Dice/Dice';
 import ExtraDimensionСard from '../../ExtraDimensionСard';
-import MonopolyCard from '../../MonopolyCard';
 import Rating from '../../Rating';
-import RealEstateCard from '../../RealEstateCard';
-import { realEstateExampleConfig } from '../../RealEstateCard/realEstateExample.config';
-import { estateList } from '../../RealEstateCard/realEstateListExample.config';
+import SectorCardPresenter from '../../SectorCardPresenter';
 import classes from './MiddleBoard.module.scss';
 
 const MiddleBoard = () => {
@@ -26,7 +23,7 @@ const MiddleBoard = () => {
             playerId: currentPlayerId
         }));
     };
-    
+
 	return (
 		<div className={classes.board}>
 			<div className={classes['left-section']}>
@@ -39,14 +36,8 @@ const MiddleBoard = () => {
 			</div>
 			<div className={classes['middle-section']}>
                 <ExtraDimensionСard scale='1.1'>
-                    <RealEstateCard title='Бульвар мира'
-                        color='green'
-                        ownerName='Реджайна Обожаевна'
-                        buildingList={realEstateExampleConfig}/>
-                    {/* <MonopolyCard
-                        color='green'
-                        ownerName='Реджайна Обожаевна'
-                        estateList={estateList}/>             */}
+                    <SectorCardPresenter />
+
                 </ExtraDimensionСard>
 			</div>
 			<div className={classes['right-section']}>

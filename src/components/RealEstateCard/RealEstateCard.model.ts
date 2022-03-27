@@ -3,7 +3,7 @@ import { HousePointProps } from "../HousePoint/HousePoint.model";
 
 export interface RealEstateCardProps {
 	buildingList: HousePointProps[];
-	color: Color;
+	color: Color | null;
 	title: string;
-	ownerName: string;
+	ownerName: string | null;
 }

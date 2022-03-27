@@ -87,6 +87,9 @@ export const selectPlayersIdList = (state: RootState): number[] => {
 export const selectCurrentPlayerId = (state: RootState): number => {
     return state.players.currentPlayerId;
 };
+export const selectPlayerByID = (state: RootState, id: number) => {
+    return state.players.list.find(player => player.id === id)?.name || null;
+};
 export const moveChipToTargetSector = (payload: { currentPlayerId: number; coordinates: Coordinates}) => (dispatch: AppDispatch) => {
     setTimeout(() => {
         dispatch(setPlayerCoordinatesByPlayerId({

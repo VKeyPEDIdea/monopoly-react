@@ -46,6 +46,9 @@ export const selectBottomLineSectors = (state: RootState) => {
 export const selectTargetSectorId = (state: RootState) => {
     return state.field.targetSector.id;
 };
+export const selectTargetSector = (state: RootState) => {
+    return state.field.sectorList.find(({ id }) => id === state.field.targetSector.id);
+};
 export const takeStepOnField = (payload: {dice: [number, number], playerId: number}) => (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(setDice(payload.dice));
 
