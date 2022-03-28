@@ -8,9 +8,10 @@ const RealEstateCard = ({
 	buildingList,
 	color,
 	title,
+    price,
 	ownerName,
 }: RealEstateCardProps) => {
-	const housePointList = buildingList.map(({ state, price, buildType }) => {
+	const housePointList = buildingList?.map(({ state, price, buildType }) => {
 		return <div className={classes.point} key={title + price}>
 			<HousePoint state={state}
 				price={price}
@@ -32,16 +33,17 @@ const RealEstateCard = ({
 			</div>
             <div className={classes.actions}>
                 <div className={classes.btn}>
-                    <CardButton negative
-                        title='Купить'
-                        details='-90'
-                        click={() => console.log('Купить')} />
-                </div>
-                <div className={classes.btn}>
-                    <CardButton
-                        title='Продать'
-                        details='+45'
-                        click={() => console.log('Продать')} />
+                    {
+                        ownerName 
+                            ? <CardButton negative
+                                title='Оплатить аренду'
+                                details='-90'
+                                click={() => console.log('Оплатить аренду')} />
+                            : <CardButton negative
+                                title='Купить участок'
+                                details={`-${price}`}
+                                click={() => console.log('Купить участок')} />
+                    }
                 </div>
             </div>
 		</div>

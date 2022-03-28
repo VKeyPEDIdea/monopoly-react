@@ -45,9 +45,10 @@
 
 .btn {
 	flex-grow: 1;
-
-	&:first-child {
-		border-right: 4px solid $color-gluon-grey;
+    border-right: 4px solid $color-gluon-grey;
+    
+	&:last-child {
+        border-right: none;
 	}
 }
 
