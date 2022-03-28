@@ -2,7 +2,12 @@ import { createSlice, PayloadAction, EntityState } from "@reduxjs/toolkit";
 import type { AppDispatch, RootState } from '../../app/store';
 import { playingFieldList } from "../../config/playingField.config";
 import { Sector } from "../../core/Sector/Sector.interface";
-import { changePlayerLocation } from "../players/playersSlice";
+import { BuySectorData } from '../../models/BuySectorData.interface';
+import {
+    changePlayerLocation,
+    decreasePlayersCashCount,
+    increasePlayersPropertyCount
+} from "../players/playersSlice";
 interface PlayingFieldState {
     sectorList: Sector[];
     targetSector: {
@@ -29,12 +34,20 @@ export const playingFieldSlice = createSlice({
         setDice: (state, { payload }) => {
             state.dice = payload;
         },
+        setOwnerForSector: (state, { payload }) => {
+            const sector = state.sectorList.find(sector => sector.id === payload.sectorId);
+
+            if (sector && sector.owner !== undefined) {
+                sector.owner = payload.playerId;
+            }
+        },
     },
 });
 
 export const {
     setTargetSector,
     setDice,
+    setOwnerForSector,
 } = playingFieldSlice.actions;
 
 export const selectTopLineSectors = (state: RootState) => { 
@@ -47,7 +60,8 @@ export const selectTargetSectorId = (state: RootState) => {
     return state.field.targetSector.id;
 };
 export const selectTargetSector = (state: RootState) => {
-    return state.field.sectorList.find(({ id }) => id === state.field.targetSector.id);
+    return state.field.sectorList.find(({ id }) => id === state.field.targetSector.id)
+        || state.field.sectorList[0];
 };
 export const takeStepOnField = (payload: {dice: [number, number], playerId: number}) => (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(setDice(payload.dice));
@@ -72,5 +86,19 @@ export const takeStepOnField = (payload: {dice: [number, number], playerId: numb
         locationId: targetSectorId
     }));
 };
+export const buySector = (payload: BuySectorData) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const sector = getState().field.sectorList.find(({ id }) => id === payload.sectorId);
+    if (sector) {
+        dispatch(decreasePlayersCashCount({
+            count: sector?.price,
+            playerId: payload.playerId
+        }));
+        dispatch(setOwnerForSector(payload));
+        dispatch(increasePlayersPropertyCount({
+            count: sector.price ? sector.price / 2 : 0,
+            playerId: payload.playerId,
+        }))
+    }
+}
 
 export default playingFieldSlice.reducer;

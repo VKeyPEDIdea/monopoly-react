@@ -1,35 +1,55 @@
-import { useAppSelector } from "../../app/hooks";
-import { selectTargetSector } from "../../features/field/playingFieldSlice";
-import { selectPlayerByID } from "../../features/players/playersSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { buySector, selectTargetSector } from "../../features/field/playingFieldSlice";
+import { selectCurrentPlayerId, selectPlayerByID } from "../../features/players/playersSlice";
+import { BuySectorData } from "../../models/BuySectorData.interface";
 import RealEstateCard from "../RealEstateCard";
 
 const SectorCardPresenter = () => {
-    const sector = useAppSelector(selectTargetSector) || null;
+    const {
+        id,
+        type,
+        title,
+        color,
+        owner,
+        price,
+        houseList,
+    } = useAppSelector(selectTargetSector);
+    const dispatch = useAppDispatch();
+    const currentPlayerId = useAppSelector(selectCurrentPlayerId);
+    const ownerId = (owner !== undefined) ? owner : null;
+    const ownerName = useAppSelector(state => selectPlayerByID(state, ownerId));
+    
     let card;
 
-    if (sector) {
-        switch (sector.type) {
-            case 'LandPlot':
-                const {
-                    title,
-                    color,
-                    owner,
-                    price,
-                    houseList,
-                } = sector;
+    const buySectorClickHandler = (payload: BuySectorData) => {
+        console.log(payload);
+        dispatch(buySector(payload));
+    };
 
-                const ownerName = owner ? useAppSelector(state => selectPlayerByID(state, owner)) : '';
+    switch (type) {
+        case 'LandPlot':
+            const cardData = {
+                title,
+                ownerName,
+                isShowToOwner: currentPlayerId === ownerId,
+                price: price ? price : 0,
+                color: color ? color : 'blue',
+                buildingList: houseList ? houseList : null,
+            };
+            const payload = {
+                playerId: currentPlayerId,
+                sectorId: id || null,
+            };
 
-                card = <RealEstateCard title={title}
-                    price={price ? price : 0}
-                    color={color ? color : 'blue'}
-                    ownerName={ownerName}
-                    buildingList={houseList ? houseList : null}/>
-                break;
-        
-            default:
-                break;
-        }
+            card = (
+                <RealEstateCard data={cardData} 
+                    onbuySectorClick={() => buySectorClickHandler(payload)}
+                />
+            );
+            break;
+    
+        default:
+            break;
     }
 
     return (

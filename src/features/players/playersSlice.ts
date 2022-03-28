@@ -44,6 +44,30 @@ export const playersSlice = createSlice({
                 state.currentPlayerId = 0;
             }
         },
+        decreasePlayersCashCount: (state, { payload }) => {
+            const player = state.list.find(player => player.id === payload.playerId);
+            if (player) {
+                player.cashCount -= payload.count;
+            }
+        },
+        increasePlayersCashCount: (state, { payload }) => {
+            const player = state.list.find(player => player.id === payload.playerId);
+            if (player) {
+                player.cashCount += payload.count;
+            }
+        },
+        decreasePlayersPropertyCount: (state, { payload }) => {
+            const player = state.list.find(player => player.id === payload.playerId);
+            if (player) {
+                player.propertyCount -= payload.count;
+            }
+        },
+        increasePlayersPropertyCount: (state, { payload }) => {
+            const player = state.list.find(player => player.id === payload.playerId);
+            if (player) {
+                player.propertyCount += payload.count;
+            }
+        },
     },
 });
 
@@ -51,6 +75,10 @@ export const {
     changePlayerLocation,
     setPlayerCoordinatesByPlayerId,
     turnToNextPlayer,
+    decreasePlayersCashCount,
+    decreasePlayersPropertyCount,
+    increasePlayersCashCount,
+    increasePlayersPropertyCount,
 } = playersSlice.actions;
 
 export const selectPlayers = (state: RootState): Player[] => state.players.list;
@@ -87,7 +115,7 @@ export const selectPlayersIdList = (state: RootState): number[] => {
 export const selectCurrentPlayerId = (state: RootState): number => {
     return state.players.currentPlayerId;
 };
-export const selectPlayerByID = (state: RootState, id: number) => {
+export const selectPlayerByID = (state: RootState, id: number | null) => {
     return state.players.list.find(player => player.id === id)?.name || null;
 };
 export const moveChipToTargetSector = (payload: { currentPlayerId: number; coordinates: Coordinates}) => (dispatch: AppDispatch) => {

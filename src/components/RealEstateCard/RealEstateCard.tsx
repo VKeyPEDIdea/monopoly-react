@@ -5,11 +5,15 @@ import NameBadge from '../NameBadge';
 import classes from './RealEstateCard.module.scss';
 
 const RealEstateCard = ({
-	buildingList,
-	color,
-	title,
-    price,
-	ownerName,
+    data: {
+        buildingList,
+        color,
+        title,
+        price,
+        ownerName,
+        isShowToOwner,
+    },
+    onbuySectorClick
 }: RealEstateCardProps) => {
 	const housePointList = buildingList?.map(({ state, price, buildType }) => {
 		return <div className={classes.point} key={title + price}>
@@ -18,6 +22,23 @@ const RealEstateCard = ({
 				buildType={buildType}/>
 		</div>;
 	});
+
+    let btnTitle: string = '';
+    let btnDetails: string = '';
+    let btnAction = onbuySectorClick;
+
+    if (ownerName) {
+        if (isShowToOwner) {
+            btnTitle = 'Продать участок';
+            btnDetails = `+${price / 2}`;
+        } else {
+            btnTitle = 'Оплатить аренду';
+            btnDetails = `-${price}`;
+        }
+    } else {
+        btnTitle = 'Купить участок'
+        btnDetails = `-${price}`;
+    }
 
 	return (
 		<div className={classes.estate}>
@@ -33,17 +54,10 @@ const RealEstateCard = ({
 			</div>
             <div className={classes.actions}>
                 <div className={classes.btn}>
-                    {
-                        ownerName 
-                            ? <CardButton negative
-                                title='Оплатить аренду'
-                                details='-90'
-                                click={() => console.log('Оплатить аренду')} />
-                            : <CardButton negative
-                                title='Купить участок'
-                                details={`-${price}`}
-                                click={() => console.log('Купить участок')} />
-                    }
+                    <CardButton negative={!isShowToOwner}
+                        title={btnTitle}
+                        details={btnDetails}
+                        click={btnAction} />
                 </div>
             </div>
 		</div>
