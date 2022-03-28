@@ -13,7 +13,8 @@ const RealEstateCard = ({
         ownerName,
         isShowToOwner,
     },
-    onbuySectorClick
+    onbuySectorClick,
+    onSellSectorClick,
 }: RealEstateCardProps) => {
 	const housePointList = buildingList?.map(({ state, price, buildType }) => {
 		return <div className={classes.point} key={title + price}>
@@ -31,6 +32,7 @@ const RealEstateCard = ({
         if (isShowToOwner) {
             btnTitle = 'Продать участок';
             btnDetails = `+${price / 2}`;
+            btnAction = onSellSectorClick;
         } else {
             btnTitle = 'Оплатить аренду';
             btnDetails = `-${price}`;
@@ -38,6 +40,7 @@ const RealEstateCard = ({
     } else {
         btnTitle = 'Купить участок'
         btnDetails = `-${price}`;
+        btnAction = onbuySectorClick;
     }
 
 	return (

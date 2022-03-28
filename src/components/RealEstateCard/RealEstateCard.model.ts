@@ -11,4 +11,5 @@ export interface RealEstateCardProps {
         isShowToOwner: boolean;
     }
     onbuySectorClick(): void;
+    onSellSectorClick(): void;
 }

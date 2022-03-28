@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { buySector, selectTargetSector } from "../../features/field/playingFieldSlice";
+import { buySector, selectTargetSector, sellSector } from "../../features/field/playingFieldSlice";
 import { selectCurrentPlayerId, selectPlayerByID } from "../../features/players/playersSlice";
 import { BuySectorData } from "../../models/BuySectorData.interface";
 import RealEstateCard from "../RealEstateCard";
@@ -22,9 +22,12 @@ const SectorCardPresenter = () => {
     let card;
 
     const buySectorClickHandler = (payload: BuySectorData) => {
-        console.log(payload);
         dispatch(buySector(payload));
     };
+
+    const sellSectorClickHandler = (payload: BuySectorData) => {
+        dispatch(sellSector(payload));
+    }
 
     switch (type) {
         case 'LandPlot':
@@ -43,6 +46,7 @@ const SectorCardPresenter = () => {
 
             card = (
                 <RealEstateCard data={cardData} 
+                    onSellSectorClick={() => sellSectorClickHandler(payload)}
                     onbuySectorClick={() => buySectorClickHandler(payload)}
                 />
             );

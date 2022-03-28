@@ -6,6 +6,8 @@ import { BuySectorData } from '../../models/BuySectorData.interface';
 import {
     changePlayerLocation,
     decreasePlayersCashCount,
+    decreasePlayersPropertyCount,
+    increasePlayersCashCount,
     increasePlayersPropertyCount
 } from "../players/playersSlice";
 interface PlayingFieldState {
@@ -41,6 +43,11 @@ export const playingFieldSlice = createSlice({
                 sector.owner = payload.playerId;
             }
         },
+        setFreeSector: (state, { payload }) => {
+            const sector = state.sectorList.find(sector => sector.id === payload.sectorId);
+
+            if (sector) sector.owner = null;
+        },
     },
 });
 
@@ -48,6 +55,7 @@ export const {
     setTargetSector,
     setDice,
     setOwnerForSector,
+    setFreeSector,
 } = playingFieldSlice.actions;
 
 export const selectTopLineSectors = (state: RootState) => { 
@@ -99,6 +107,20 @@ export const buySector = (payload: BuySectorData) => (dispatch: AppDispatch, get
             playerId: payload.playerId,
         }))
     }
-}
+};
+export const sellSector = (payload: BuySectorData) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const sector = getState().field.sectorList.find(({ id }) => id === payload.sectorId);
+    if (sector) {
+        dispatch(increasePlayersCashCount({
+            count: sector.price ? sector.price / 2 : 0,
+            playerId: payload.playerId
+        }));
+        dispatch(setFreeSector({ sectorId: payload.sectorId }));
+        dispatch(decreasePlayersPropertyCount({
+            count: sector.price ? sector.price / 2 : 0,
+            playerId: payload.playerId,
+        }))
+    }
+};
 
 export default playingFieldSlice.reducer;
