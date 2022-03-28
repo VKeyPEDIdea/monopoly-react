@@ -6,10 +6,13 @@
 	font-size: 14px;
 	line-height: 18px;
 	cursor: pointer;
+    transition: all .4s ease;
     
     &:hover {
+        background-color: $color-purple;
+
         .title, .details {
-            color: $color-on-light;
+            color: $color-on-purple;
         }
     }
 }
