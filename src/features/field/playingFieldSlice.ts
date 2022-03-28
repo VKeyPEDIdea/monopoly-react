@@ -122,5 +122,22 @@ export const sellSector = (payload: BuySectorData) => (dispatch: AppDispatch, ge
         }))
     }
 };
+export const payRent = (payload: {
+    sectorId: number | null,
+    ownerPlayerId: number | null,
+    tenantPlayerId: number
+}) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const sector = getState().field.sectorList.find(({ id }) => id === payload.sectorId);
+    if (sector) {
+        dispatch(increasePlayersCashCount({
+            count: sector.rentPrice ? sector.rentPrice : 0,
+            playerId: payload.ownerPlayerId,
+        }));
+        dispatch(decreasePlayersCashCount({
+            count: sector.rentPrice ? sector.rentPrice : 0,
+            playerId: payload.tenantPlayerId,
+        }));
+    }
+};
 
 export default playingFieldSlice.reducer;

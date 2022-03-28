@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { buySector, selectTargetSector, sellSector } from "../../features/field/playingFieldSlice";
+import { buySector, payRent, selectTargetSector, sellSector } from "../../features/field/playingFieldSlice";
 import { selectCurrentPlayerId, selectPlayerByID } from "../../features/players/playersSlice";
 import { BuySectorData } from "../../models/BuySectorData.interface";
 import RealEstateCard from "../RealEstateCard";
@@ -12,6 +12,7 @@ const SectorCardPresenter = () => {
         color,
         owner,
         price,
+        rentPrice,
         houseList,
     } = useAppSelector(selectTargetSector);
     const dispatch = useAppDispatch();
@@ -27,7 +28,15 @@ const SectorCardPresenter = () => {
 
     const sellSectorClickHandler = (payload: BuySectorData) => {
         dispatch(sellSector(payload));
-    }
+    };
+
+    const payRentSectorClickHandler = (payload: {
+        sectorId: number | null,
+        ownerPlayerId: number | null,
+        tenantPlayerId: number,    
+    }) => {
+        dispatch(payRent(payload));
+    };
 
     switch (type) {
         case 'LandPlot':
@@ -38,16 +47,23 @@ const SectorCardPresenter = () => {
                 price: price ? price : 0,
                 color: color ? color : 'blue',
                 buildingList: houseList ? houseList : null,
+                rentPrice: rentPrice || null,
             };
             const payload = {
                 playerId: currentPlayerId,
                 sectorId: id || null,
+            };
+            const payRentPayload = {
+                sectorId: id || null,
+                ownerPlayerId: ownerId,
+                tenantPlayerId: currentPlayerId,            
             };
 
             card = (
                 <RealEstateCard data={cardData} 
                     onSellSectorClick={() => sellSectorClickHandler(payload)}
                     onbuySectorClick={() => buySectorClickHandler(payload)}
+                    onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
                 />
             );
             break;
