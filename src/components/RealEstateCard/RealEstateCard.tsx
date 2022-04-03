@@ -3,6 +3,7 @@ import CardButton from '../CardButton';
 import HousePoint from '../HousePoint';
 import NameBadge from '../NameBadge';
 import classes from './RealEstateCard.module.scss';
+import confetti from 'canvas-confetti';
 
 const RealEstateCard = ({
     data: {
@@ -43,7 +44,13 @@ const RealEstateCard = ({
     } else {
         btnTitle = 'Купить участок'
         btnDetails = `-${price}`;
-        btnAction = onbuySectorClick;
+        btnAction = () => {
+            onbuySectorClick();
+            confetti({
+                particleCount: 300,
+                spread: 100
+            });
+        };
     }
 
 	return (
