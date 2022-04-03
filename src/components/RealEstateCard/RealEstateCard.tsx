@@ -49,7 +49,7 @@ const RealEstateCard = ({
 	return (
 		<div className={classes.estate}>
 			{ ownerName ? <div className={classes.owner}>
-				<NameBadge name={ownerName}/>
+				<NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
 			</div> : null }
 			<div className={`${classes.color} ${classes[`color--${color}`]}`}></div>
 			<div className={classes.content}>

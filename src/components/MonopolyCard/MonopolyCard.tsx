@@ -8,6 +8,7 @@ const MonopolyCard = ({
 	color,
 	estateList,
 	ownerName,
+    isShowToOwner,
 }: MonopolyCardProps) => {
 	const sectorList = estateList.map(({ title, buildingList }, index) => {
 		const street = buildingList.map(({ state, price, buildType }) => {
@@ -25,7 +26,7 @@ const MonopolyCard = ({
 	return (
 		<div className={classes.card}>
 			<div className={classes.owner}>
-				<NameBadge name={ownerName}/>
+				<NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
 			</div>
 			<div className={`${classes.color} ${classes[`color--${color}`]}`}></div>
 			<div className={classes.content}>

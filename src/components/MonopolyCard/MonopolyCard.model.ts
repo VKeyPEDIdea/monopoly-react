@@ -5,4 +5,5 @@ export interface MonopolyCardProps {
 	color: Color;
 	estateList: RealEstate[];
 	ownerName: string;
+    isShowToOwner: boolean; 
 };
