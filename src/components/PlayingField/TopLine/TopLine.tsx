@@ -43,6 +43,7 @@ const TopLine = () => {
 		color,
 		price,
 		type,
+        owner,
 	}, index) => {
 		return <Sector key={'sector' + index}
             id={id}
@@ -51,6 +52,7 @@ const TopLine = () => {
 			color={color}
             line='Top'
 			type={type}
+            owner={owner}
             getСoordinates={showCoordinates}
             target={targetSectorId === id}
             />;
