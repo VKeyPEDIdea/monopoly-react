@@ -2,6 +2,9 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { buySector, payRent, selectTargetSector, sellSector } from "../../features/field/playingFieldSlice";
 import { selectCurrentPlayerId, selectPlayerByID } from "../../features/players/playersSlice";
 import { BuySectorData } from "../../models/BuySectorData.interface";
+import FlipCard from "../FlipCard";
+import FaceSideMailCard from "../MailCard/FaceSideMailCard/";
+import BackSideCard from "../MailCard/ShirtSideMailCard/";
 import RealEstateCard from "../RealEstateCard";
 
 const SectorCardPresenter = () => {
@@ -65,6 +68,28 @@ const SectorCardPresenter = () => {
                     onbuySectorClick={() => buySectorClickHandler(payload)}
                     onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
                 />
+            );
+            break;
+        case 'Chance':
+            card = (
+                <FlipCard
+                    front={
+                        <BackSideCard title='Шанс'/>
+                    }
+                    back={
+                        <FaceSideMailCard />
+                    } />
+            );
+            break;
+        case 'Bank':
+            card = (
+                <FlipCard
+                    front={
+                        <BackSideCard title='Банк'/>
+                    }
+                    back={
+                        <FaceSideMailCard />
+                    } />
             );
             break;
     

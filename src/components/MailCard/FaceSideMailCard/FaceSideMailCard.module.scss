@@ -1,0 +1,18 @@
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 400px;
+    height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+}

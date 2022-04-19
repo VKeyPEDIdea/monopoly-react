@@ -1,0 +1,41 @@
+.container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    display: block;
+    min-width: 400px;
+    width: fit-content;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.card {
+    position: relative;
+    height: 100%;
+    width: fit-content;
+    transform-style: preserve-3d;
+    transition: all 600ms;
+    z-index: 20;
+    overflow: hidden;
+
+    &--flip {
+        transform: rotateX(180deg);
+    }
+}
+
+.front, .back {
+    background-color: #fff;
+    position: absolute;
+    border-radius: 8px;
+    height: 100%;
+    width: fit-content;
+    backface-visibility: hidden;
+    border-radius: 8px;
+}
+
+.back {
+    transform: rotateX(180deg);
+}
