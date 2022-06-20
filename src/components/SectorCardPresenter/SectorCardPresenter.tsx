@@ -77,8 +77,16 @@ const SectorCardPresenter = () => {
                         <BackSideCard title='Шанс'/>
                     }
                     back={
-                        <FaceSideMailCard />
-                    } />
+                        <FaceSideMailCard detailsText="Оплатите услуги доктора"
+                            btn={{
+                                clickHandler: () => console.log('Оплата'),
+                                count: '-50',
+                                negative: true,
+                                title: 'Оплатите'
+                            }}
+                        />
+                    }
+                />
             );
             break;
         case 'Bank':
@@ -88,8 +96,16 @@ const SectorCardPresenter = () => {
                         <BackSideCard title='Банк'/>
                     }
                     back={
-                        <FaceSideMailCard />
-                    } />
+                        <FaceSideMailCard detailsText="Оплатите услуги доктора"
+                            btn={{
+                                clickHandler: () => console.log('Оплата'),
+                                count: '-50',
+                                negative: true,
+                                title: 'Оплатите'
+                            }}
+                        />
+                    }
+                />
             );
             break;
     

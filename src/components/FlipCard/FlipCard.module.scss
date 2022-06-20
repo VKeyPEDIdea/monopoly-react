@@ -19,7 +19,6 @@
     transform-style: preserve-3d;
     transition: all 600ms;
     z-index: 20;
-    overflow: hidden;
 
     &--flip {
         transform: rotateX(180deg);
