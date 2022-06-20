@@ -5,8 +5,8 @@ const FlipCard = ({
     front,
     back,
 }: {
-    front: any;
-    back: any;
+    front: React.ReactNode;
+    back: React.ReactNode;
 }) => {
     const [isFlipped, setIsFlipped] = useState(false);
 

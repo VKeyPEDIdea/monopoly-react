@@ -5,6 +5,7 @@ import { Player } from "../../core/Player/Player.interface";
 import { Person } from "../../core/Player/Person.model";
 import { PlayerChipInfo } from "../../components/PlayerChip/PlayerChipContainer.interface";
 import { Coordinates } from "../../models/Coordinates.interface";
+import { setTargetSector } from "features/field/playingFieldSlice";
 
 interface PlayersState {
     list: Player[],
@@ -124,10 +125,15 @@ export const moveChipToTargetSector = (payload: { currentPlayerId: number; coord
             playerId: payload.currentPlayerId,
             coordinates: payload.coordinates
         }));
-        setTimeout(() => {
-            dispatch(turnToNextPlayer());
-        }, 1500);
     }, 1000);
+};
+
+export const passTheQueue = () => (dispatch: AppDispatch, getState: () => RootState) => {
+    dispatch(turnToNextPlayer());
+    const currentPlayerId = getState().players.currentPlayerId;
+    const player = getState().players.list.find(({ id }) => currentPlayerId === id);
+    const currentLocationId = player?.location.id;
+    dispatch(setTargetSector(currentLocationId));
 };
 
 export default playersSlice.reducer;

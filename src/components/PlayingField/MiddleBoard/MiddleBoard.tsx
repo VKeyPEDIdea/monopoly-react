@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../../app/hooks';
 import { takeStepOnField } from '../../../features/field/playingFieldSlice';
 import {
+    passTheQueue,
     selectCurrentPlayerId,
     selectMaxScore,
     selectOrderedPlayersList,
@@ -23,6 +24,9 @@ const MiddleBoard = () => {
             playerId: currentPlayerId
         }));
     };
+    const foo = () => {
+        dispatch(passTheQueue());
+    };
 
 	return (
 		<div className={classes.board}>
@@ -37,11 +41,10 @@ const MiddleBoard = () => {
 			<div className={classes['middle-section']}>
                 <ExtraDimensionСard scale='1.1'>
                     <SectorCardPresenter />
-
                 </ExtraDimensionСard>
 			</div>
 			<div className={classes['right-section']}>
-				Right section
+				<button onClick={foo}>Передать очередь след игроку</button>
 			</div>
 		</div>
 	);
