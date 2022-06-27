@@ -1,11 +1,19 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { buySector, payRent, selectTargetSector, sellSector } from "../../features/field/playingFieldSlice";
-import { selectCurrentPlayerId, selectPlayerByID } from "../../features/players/playersSlice";
-import { BuySectorData } from "../../models/BuySectorData.interface";
-import FlipCard from "../FlipCard";
-import FaceSideMailCard from "../MailCard/FaceSideMailCard/";
-import BackSideCard from "../MailCard/ShirtSideMailCard/";
-import RealEstateCard from "../RealEstateCard";
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { payRent } from 'features/field/actions';
+import {
+    buySector,
+    sellSector,
+} from 'features/field/actions';
+import {
+    selectCurrentPlayerId,
+    selectPlayerByID
+} from 'features/players/playersSlice';
+import { selectTargetSector } from 'features/field/selectors';
+import { BuySectorData } from 'models/BuySectorData.interface';
+import FlipCard from 'components/FlipCard';
+import FaceSideMailCard from 'components/MailCard/FaceSideMailCard';
+import BackSideCard from 'components/MailCard/ShirtSideMailCard';
+import RealEstateCard from 'components/RealEstateCard';
 
 const SectorCardPresenter = () => {
     const {

@@ -1,17 +1,15 @@
-import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import {
-    selectTargetSectorId,
-    selectTopLineSectors,
-} from "../../../features/field/playingFieldSlice";
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { selectTargetSectorId } from 'features/field/selectors';
+import { selectTopLineSectors } from 'features/field/selectors';
 import {
     moveChipToTargetSector,
     selectCurrentPlayerId,
     selectPlayersIdList,
     setPlayerCoordinatesByPlayerId,
-} from "../../../features/players/playersSlice";
-import getSectorCoordinates from "../../../utilities/getSectorCoordinates";
-import Sector from "../Sector";
+} from 'features/players/playersSlice';
+import getSectorCoordinates from 'utilities/getSectorCoordinates';
+import Sector from 'components/PlayingField/Sector/';
 import classes from './TopLine.module.scss';
 
 const TopLine = () => {
@@ -55,7 +53,7 @@ const TopLine = () => {
             owner={owner}
             getСoordinates={showCoordinates}
             target={targetSectorId === id}
-            />;
+        />;
 	});
 	
 	return (

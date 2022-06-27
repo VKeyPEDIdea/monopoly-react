@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { useAppSelector } from '../../../app/hooks';
-import { takeStepOnField } from '../../../features/field/playingFieldSlice';
+import { useAppSelector } from 'app/hooks';
+import { takeStepOnField } from 'features/field/actions';
 import {
     passTheQueue,
     selectCurrentPlayerId,

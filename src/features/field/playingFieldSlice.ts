@@ -1,15 +1,7 @@
-import { createSlice, PayloadAction, EntityState } from "@reduxjs/toolkit";
-import type { AppDispatch, RootState } from '../../app/store';
-import { playingFieldList } from "../../config/playingField.config";
-import { Sector } from "../../core/Sector/Sector.interface";
-import { BuySectorData } from '../../models/BuySectorData.interface';
-import {
-    changePlayerLocation,
-    decreasePlayersCashCount,
-    decreasePlayersPropertyCount,
-    increasePlayersCashCount,
-    increasePlayersPropertyCount
-} from "../players/playersSlice";
+import { createSlice } from '@reduxjs/toolkit';
+import { playingFieldList } from 'config/playingField.config';
+import { Sector } from 'core/Sector/Sector.interface';
+
 interface PlayingFieldState {
     sectorList: Sector[];
     targetSector: {
@@ -57,87 +49,5 @@ export const {
     setOwnerForSector,
     setFreeSector,
 } = playingFieldSlice.actions;
-
-export const selectTopLineSectors = (state: RootState) => { 
-    return state.field.sectorList.filter(({ line }) => line === 'Top');
-};
-export const selectBottomLineSectors = (state: RootState) => { 
-    return state.field.sectorList.filter(({ line }) => line === 'Bottom');
-};
-export const selectTargetSectorId = (state: RootState) => {
-    return state.field.targetSector.id;
-};
-export const selectTargetSector = (state: RootState) => {
-    return state.field.sectorList.find(({ id }) => id === state.field.targetSector.id)
-        || state.field.sectorList[0];
-};
-export const takeStepOnField = (payload: {dice: [number, number], playerId: number}) => (dispatch: AppDispatch, getState: () => RootState) => {
-    dispatch(setDice(payload.dice));
-
-    const { list } = getState().players;
-    const player = list.find(({ id }) => id === payload.playerId);
-    const locationId = player ? player.location.id : 0;
-    const [d1Value, d2Value] = payload.dice;
-    const result = locationId + d1Value + d2Value;
-    let targetSectorId: number;
-
-    if (result > 39) {
-        const diff = result - 40;
-        targetSectorId = diff;
-    } else {
-        targetSectorId = result;
-    }
-    
-    dispatch(setTargetSector(targetSectorId));
-    dispatch(changePlayerLocation({
-        playerId: player?.id,
-        locationId: targetSectorId
-    }));
-};
-export const buySector = (payload: BuySectorData) => (dispatch: AppDispatch, getState: () => RootState) => {
-    const sector = getState().field.sectorList.find(({ id }) => id === payload.sectorId);
-    if (sector) {
-        dispatch(decreasePlayersCashCount({
-            count: sector?.price,
-            playerId: payload.playerId
-        }));
-        dispatch(setOwnerForSector(payload));
-        dispatch(increasePlayersPropertyCount({
-            count: sector.price ? sector.price / 2 : 0,
-            playerId: payload.playerId,
-        }))
-    }
-};
-export const sellSector = (payload: BuySectorData) => (dispatch: AppDispatch, getState: () => RootState) => {
-    const sector = getState().field.sectorList.find(({ id }) => id === payload.sectorId);
-    if (sector) {
-        dispatch(increasePlayersCashCount({
-            count: sector.price ? sector.price / 2 : 0,
-            playerId: payload.playerId
-        }));
-        dispatch(setFreeSector({ sectorId: payload.sectorId }));
-        dispatch(decreasePlayersPropertyCount({
-            count: sector.price ? sector.price / 2 : 0,
-            playerId: payload.playerId,
-        }))
-    }
-};
-export const payRent = (payload: {
-    sectorId: number | null,
-    ownerPlayerId: number | null,
-    tenantPlayerId: number
-}) => (dispatch: AppDispatch, getState: () => RootState) => {
-    const sector = getState().field.sectorList.find(({ id }) => id === payload.sectorId);
-    if (sector) {
-        dispatch(increasePlayersCashCount({
-            count: sector.rentPrice ? sector.rentPrice : 0,
-            playerId: payload.ownerPlayerId,
-        }));
-        dispatch(decreasePlayersCashCount({
-            count: sector.rentPrice ? sector.rentPrice : 0,
-            playerId: payload.tenantPlayerId,
-        }));
-    }
-};
 
 export default playingFieldSlice.reducer;
