@@ -1,5 +1,5 @@
 import PlayingField from '../components/PlayingField';
-import 'app/styles/index.scss';
+import 'app/index.scss';
 
 const App = () => {
 	return (
