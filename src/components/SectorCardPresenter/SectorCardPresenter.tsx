@@ -1,13 +1,13 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { payRent } from 'features/field/actions';
+import { payRent } from 'features/field/reducers';
 import {
     buySector,
     sellSector,
-} from 'features/field/actions';
+} from 'features/field/reducers';
 import {
     selectCurrentPlayerId,
     selectPlayerByID
-} from 'features/players/playersSlice';
+} from 'features/players/selectors';
 import { selectTargetSector } from 'features/field/selectors';
 import { BuySectorData } from 'models/BuySectorData.interface';
 import FlipCard from 'components/FlipCard';

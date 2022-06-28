@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectTargetSectorId } from 'features/field/selectors';
-import { selectTopLineSectors } from 'features/field/selectors';
 import {
-    moveChipToTargetSector,
-    selectCurrentPlayerId,
-    selectPlayersIdList,
-    setPlayerCoordinatesByPlayerId,
-} from 'features/players/playersSlice';
+    selectTargetSectorId,
+    selectTopLineSectors
+} from 'features/field/selectors';
+import { selectPlayersIdList } from 'features/players/selectors';
+import { selectCurrentPlayerId } from 'features/players/selectors';
+import { moveChipToTargetSector } from 'features/players/reducers';
+import { setPlayerCoordinatesByPlayerId } from 'features/players/playersSlice';
 import getSectorCoordinates from 'utilities/getSectorCoordinates';
 import Sector from 'components/PlayingField/Sector/';
 import classes from './TopLine.module.scss';

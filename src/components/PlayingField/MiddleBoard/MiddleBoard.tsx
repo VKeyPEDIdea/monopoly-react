@@ -1,16 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'app/hooks';
-import { takeStepOnField } from 'features/field/actions';
+import { takeStepOnField } from 'features/field/reducers';
 import {
-    passTheQueue,
-    selectCurrentPlayerId,
-    selectMaxScore,
     selectOrderedPlayersList,
-} from '../../../features/players/playersSlice';
-import Dice from '../../Dice/Dice';
-import ExtraDimensionСard from '../../ExtraDimensionСard';
-import Rating from '../../Rating';
-import SectorCardPresenter from '../../SectorCardPresenter';
+    selectMaxScore,
+} from 'features/players/selectors';
+import { selectCurrentPlayerId } from 'features/players/selectors';
+import { passTheQueue } from 'features/players/reducers';
+import Dice from 'components/Dice';
+import ExtraDimensionСard from 'components/ExtraDimensionСard';
+import Rating from 'components/Rating';
+import SectorCardPresenter from 'components/SectorCardPresenter';
 import classes from './MiddleBoard.module.scss';
 
 const MiddleBoard = () => {
