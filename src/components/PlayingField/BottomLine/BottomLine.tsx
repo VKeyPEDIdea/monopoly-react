@@ -1,15 +1,13 @@
-import Sector from "../Sector";
+import Sector from 'components/PlayingField/Sector/';
 import classes from './BottomLine.module.scss';
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
+    selectTargetSectorId,
     selectBottomLineSectors,
-    selectTargetSectorId
-} from "../../../features/field/playingFieldSlice";
-import {
-    moveChipToTargetSector,
-    selectCurrentPlayerId,
-} from "../../../features/players/playersSlice";
-import getSectorCoordinates from "../../../utilities/getSectorCoordinates";
+} from 'features/field/selectors';
+import { selectCurrentPlayerId } from 'features/players/selectors';
+import { moveChipToTargetSector } from 'features/players/reducers';
+import getSectorCoordinates from 'utilities/getSectorCoordinates';
 
 const BottomLine = () => {
     const bottomLineSectors = useAppSelector(selectBottomLineSectors);

@@ -1,13 +1,13 @@
-import BottomLine from "./BottomLine";
-import TopLine from "./TopLine/";
+import BottomLine from './BottomLine';
+import TopLine from './TopLine/';
 import classes from './PlayingField.module.scss';
-import MiddleBoard from "./MiddleBoard";
-import { useAppSelector } from "../../app/hooks";
-import PlayerChipContainer from "../PlayerChip/PlayerChipContainer";
+import MiddleBoard from './MiddleBoard';
+import { useAppSelector } from 'app/hooks';
+import PlayerChipContainer from 'components/PlayerChip/PlayerChipContainer';
 import {
-    selectCurrentPlayerId,
     selectPlayersForChips,
-} from "../../features/players/playersSlice";
+    selectCurrentPlayerId,
+} from 'features/players/selectors';
 
 const PlayingField = () => {
     const playerChipsList = useAppSelector(selectPlayersForChips);

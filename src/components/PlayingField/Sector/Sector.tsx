@@ -1,8 +1,8 @@
 import classes from './Sector.module.scss';
-import { Sector as SectorProps } from '../../../core/Sector/Sector.interface';
+import { Sector as SectorProps } from 'core/Sector/Sector.interface';
 import { useEffect, useRef } from 'react';
-import { useAppSelector } from '../../../app/hooks';
-import { selectCurrentPlayerId } from '../../../features/players/playersSlice';
+import { useAppSelector } from 'app/hooks';
+import { selectCurrentPlayerId } from 'features/players/selectors';
 
 const Sector = ({
     id,
