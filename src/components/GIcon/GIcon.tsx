@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { GIconProps } from "./GIconProps.model";
+import { GIconProps } from './GIconProps.model';
 
 const GIcon = ({
 	title,

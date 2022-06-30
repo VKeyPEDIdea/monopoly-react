@@ -1,5 +1,5 @@
-import PlayerChip from ".";
-import { PlayerChipInfo } from "./PlayerChipContainer.interface";
+import PlayerChip from '.';
+import { PlayerChipInfo } from './PlayerChipContainer.interface';
 
 interface PlayerChipContainer {
     list: PlayerChipInfo[];

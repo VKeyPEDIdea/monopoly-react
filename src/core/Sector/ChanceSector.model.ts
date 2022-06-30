@@ -1,7 +1,7 @@
-import { LineType } from "../../models/LineType.type";
-import { SectorCreateArg } from "../SectorFabric/SectorCreateArg.interface";
-import { Sector } from "./Sector.interface";
-import { SectorType } from "./SectorType.model";
+import { LineType } from '../../models/LineType.type';
+import { SectorCreateArg } from '../SectorFabric/SectorCreateArg.interface';
+import { Sector } from './Sector.interface';
+import { SectorType } from './SectorType.model';
 
 export class ChanceSector implements Sector {
     id: number;
