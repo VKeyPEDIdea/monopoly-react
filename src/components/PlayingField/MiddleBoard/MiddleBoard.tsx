@@ -39,7 +39,7 @@ const MiddleBoard = () => {
                 </div>
 			</div>
 			<div className={classes['middle-section']}>
-                <ExtraDimensionСard scale='1.1'>
+                <ExtraDimensionСard scale={1.1}>
                     <SectorCardPresenter />
                 </ExtraDimensionСard>
 			</div>
