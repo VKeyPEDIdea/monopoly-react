@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { useAppSelector } from 'app/hooks';
 import { payRent } from 'features/field/reducers';
 import {
     buySector,
@@ -14,6 +14,7 @@ import FlipCard from 'entities/FlipCard';
 import FaceSideMailCard from 'entities/MailCard/FaceSideMailCard';
 import BackSideCard from 'entities/MailCard/ShirtSideMailCard';
 import RealEstateCard from 'entities/RealEstateCard';
+import { useDispatch } from 'react-redux';
 
 const SectorCardPresenter = () => {
     const {
@@ -26,7 +27,7 @@ const SectorCardPresenter = () => {
         rentPrice,
         houseList,
     } = useAppSelector(selectTargetSector);
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const currentPlayerId = useAppSelector(selectCurrentPlayerId);
     const ownerId = (owner !== undefined) ? owner : null;
     const ownerName = useAppSelector(state => selectPlayerByID(state, ownerId));

@@ -1,6 +1,11 @@
 @import 'app/styles/vars';
 
-.topline {
+.top {
 	display: flex;
 	border-bottom: 2px solid $color-dark;
+}
+
+.bottom {
+	display: flex;
+	border-top: 2px solid $color-dark;
 }
