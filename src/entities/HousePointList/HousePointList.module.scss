@@ -1,0 +1,12 @@
+.point {
+	margin-right: 8px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.list {
+	display: flex;
+	justify-content: space-between;
+}
