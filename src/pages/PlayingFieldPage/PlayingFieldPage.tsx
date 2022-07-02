@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { useAppSelector } from 'app/hooks';
+import { useDispatch } from 'react-redux';
 import classes from './PlayingFieldPage.module.scss';
 import MiddleBoard from 'entities/MiddleBoard';
 import SectorLine from 'entities/SectorLine';
@@ -26,7 +27,7 @@ const PlayingField = () => {
     const currentPlayerId = useAppSelector(selectCurrentPlayerId);
     const [isInitialized, setIsInitialized] = useState(false);
     const playersIdList = useAppSelector(selectPlayersIdList);
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
 
     const showCoordinates = (element: HTMLDivElement | null) => {
         const coordinates = getSectorCoordinates(element, 'Top');
