@@ -1,5 +1,5 @@
-import HousePoint from 'entities/HousePoint/HousePoint';
-import { HousePointProps } from 'entities/HousePoint/HousePoint.model';
+import HousePoint from 'shared/ui/HousePoint/HousePoint';
+import { HousePointProps } from 'shared/ui/HousePoint/HousePoint.model';
 import classes from './HousePointList.module.scss';
 
 const HousePointList = ({

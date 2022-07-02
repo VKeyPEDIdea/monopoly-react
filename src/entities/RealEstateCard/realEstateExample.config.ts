@@ -1,4 +1,4 @@
-import { HousePointProps } from '../HousePoint/HousePoint.model';
+import { HousePointProps } from 'shared/ui/HousePoint/HousePoint.model';
 
 export const realEstateExampleConfig: HousePointProps[] = [
 	{

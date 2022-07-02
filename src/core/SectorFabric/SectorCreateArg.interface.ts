@@ -1,5 +1,5 @@
-import { Color } from '../../models/color.type';
-import { LineType } from '../../models/LineType.type';
+import { Color } from 'models/color.type';
+import { LineType } from 'models/LineType.type';
 
 export interface SectorCreateArg {
     id: number;
