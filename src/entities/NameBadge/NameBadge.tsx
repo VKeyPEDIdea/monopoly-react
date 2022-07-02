@@ -1,4 +1,4 @@
-import classes from './NameBadge.module.scss';
+import Badge from 'shared/ui/Badge';
 
 interface NameBadgeProps {
 	name: string;
@@ -10,11 +10,10 @@ const NameBadge = ({
     isShowToOwner,
 }: NameBadgeProps) => {
 	return (
-		<span className={
-            isShowToOwner
-                ? [classes.badge ,classes['badge--owner']].join(' ')
-                : classes.badge
-            }>{name}</span>
+        <Badge color={isShowToOwner ? 'purple' : 'dark'}
+            label={name}
+            border={true}
+        />
 	);
 };
 

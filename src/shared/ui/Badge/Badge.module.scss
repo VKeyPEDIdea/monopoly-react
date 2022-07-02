@@ -1,0 +1,60 @@
+@import 'app/styles/vars';
+
+.badge {
+	text-align: center;
+	font-size: 10px;
+	font-weight: 600;
+	line-height: 16px;
+	text-transform: uppercase;
+	padding: 4px 12px;
+	border-radius: 15px;
+
+    &--border {
+        border: 4px solid $color-body;
+    }
+
+    &--dark {
+        color: $color-on-dark;
+        background-color: $color-dark;
+    }
+    
+    &--blue {
+        color: $color-on-dark;
+        background-color: $color-blue;
+    }
+    
+    &--blue-sky {
+        color: $color-on-dark;
+        background-color: $color-blue-sky;
+    }
+    
+    &--red {
+        color: $color-on-dark;
+        background-color: $color-red;
+    }
+    
+    &--green {
+        color: $color-on-dark;
+        background-color: $color-green;
+    }
+    
+    &--yellow {
+        color: $color-body;
+        background-color: $color-yellow;
+    }
+    
+    &--orange {
+        color: $color-on-dark;
+        background-color: $color-orange;
+    }
+    
+    &--purple {
+        color: $color-on-dark;
+        background-color: $color-purple;
+    }
+    
+    &--pink {
+        color: $color-on-dark;
+        background-color: $color-pink;
+    }
+}
