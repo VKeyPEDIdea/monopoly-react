@@ -1,4 +1,4 @@
-import PlayingField from '../components/PlayingField';
+import PlayingField from '../pages/PlayingField';
 import 'app/index.scss';
 
 const App = () => {

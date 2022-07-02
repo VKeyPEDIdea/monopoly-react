@@ -1,7 +1,7 @@
-import BottomLine from './BottomLine';
-import TopLine from './TopLine/';
+import BottomLine from '../../components/BottomLine';
+import TopLine from '../../components/TopLine';
 import classes from './PlayingField.module.scss';
-import MiddleBoard from './MiddleBoard';
+import MiddleBoard from '../../components/MiddleBoard';
 import { useAppSelector } from 'app/hooks';
 import PlayerChipContainer from 'components/PlayerChip/PlayerChipContainer';
 import {
