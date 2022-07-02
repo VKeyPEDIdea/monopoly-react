@@ -25,19 +25,6 @@
 	text-align: center;
 }
 
-.street {
-	display: flex;
-	justify-content: space-between;
-}
-
-.point {
-	margin-right: 8px;
-
-	&:last-child {
-		margin-right: 0;
-	}
-}
-
 .actions {
 	border-top: 4px solid $color-gluon-grey;
 	display: flex;

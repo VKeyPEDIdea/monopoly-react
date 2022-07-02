@@ -1,10 +1,10 @@
 import { RealEstateCardProps } from './RealEstateCard.model';
 import CardButton from 'shared/ui/CardButton';
-import HousePoint from 'entities/HousePoint';
 import NameBadge from 'entities/NameBadge';
 import classes from './RealEstateCard.module.scss';
 import confetti from 'canvas-confetti';
 import ColoredSquare from 'shared/ui/ColoredSquare';
+import HousePointList from 'entities/HousePointList';
 
 const RealEstateCard = ({
     data: {
@@ -20,14 +20,6 @@ const RealEstateCard = ({
     onSellSectorClick,
     onPayRentClick,
 }: RealEstateCardProps) => {
-	const housePointList = buildingList?.map(({ state, price, buildType }) => {
-		return <div className={classes.point} key={title + price}>
-			<HousePoint state={state}
-				price={price}
-				buildType={buildType}/>
-		</div>;
-	});
-
     let btnTitle: string = '';
     let btnDetails: string = '';
     let btnAction = onbuySectorClick;
@@ -64,9 +56,7 @@ const RealEstateCard = ({
             </div>
 			<div className={classes.content}>
 				<p className={classes.title}>{title}</p>
-				<div className={classes.street}>
-					{housePointList}
-				</div>
+                <HousePointList list={buildingList}/>
 			</div>
             <div className={classes.actions}>
                 <div className={classes.btn}>
