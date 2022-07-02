@@ -1,0 +1,37 @@
+@import 'app/styles/vars';
+
+.color {
+    height: 100%;
+
+    &--blue {
+        background-color: $color-blue;
+    }
+    
+    &--blue-sky {
+        background-color: $color-blue-sky;
+    }
+    
+    &--red {
+        background-color: $color-red;
+    }
+    
+    &--green {
+        background-color: $color-green;
+    }
+    
+    &--yellow {
+        background-color: $color-yellow;
+    }
+    
+    &--orange {
+        background-color: $color-orange;
+    }
+    
+    &--purple {
+        background-color: $color-purple;
+    }
+    
+    &--pink {
+        background-color: $color-pink;
+    }
+}

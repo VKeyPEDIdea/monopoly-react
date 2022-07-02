@@ -4,6 +4,7 @@ import HousePoint from 'entities/HousePoint';
 import NameBadge from 'entities/NameBadge';
 import classes from './RealEstateCard.module.scss';
 import confetti from 'canvas-confetti';
+import ColoredSquare from 'shared/ui/ColoredSquare';
 
 const RealEstateCard = ({
     data: {
@@ -58,7 +59,9 @@ const RealEstateCard = ({
 			{ ownerName ? <div className={classes.owner}>
 				<NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
 			</div> : null }
-			<div className={`${classes.color} ${classes[`color--${color}`]}`}></div>
+            <div className={classes['color-box']}>
+			    <ColoredSquare color={color ?? 'blue'} />
+            </div>
 			<div className={classes.content}>
 				<p className={classes.title}>{title}</p>
 				<div className={classes.street}>

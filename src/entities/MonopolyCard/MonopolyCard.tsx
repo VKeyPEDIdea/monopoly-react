@@ -3,6 +3,7 @@ import CardButton from 'shared/ui/CardButton';
 import HousePoint from 'entities/HousePoint';
 import NameBadge from 'entities/NameBadge';
 import classes from './MonopolyCard.module.scss';
+import ColoredSquare from 'shared/ui/ColoredSquare';
 
 const MonopolyCard = ({
 	color,
@@ -28,7 +29,9 @@ const MonopolyCard = ({
 			<div className={classes.owner}>
 				<NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
 			</div>
-			<div className={`${classes.color} ${classes[`color--${color}`]}`}></div>
+            <div className={classes['color-box']}>
+                <ColoredSquare color={color ?? 'blue'} />
+            </div>
 			<div className={classes.content}>
 				<p className={classes.title}>Монополия</p>
 				{sectorList}

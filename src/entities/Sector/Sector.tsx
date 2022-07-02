@@ -3,6 +3,7 @@ import { Sector as SectorProps } from 'core/Sector/Sector.interface';
 import { useEffect, useRef } from 'react';
 import { useAppSelector } from 'app/hooks';
 import { selectCurrentPlayerId } from 'features/players/selectors';
+import ColoredSquare from 'shared/ui/ColoredSquare';
 
 const Sector = ({
     id,
@@ -41,7 +42,9 @@ const Sector = ({
 	} else if (line === 'Bottom') {
 		return (
 			<div ref={sector} className={sectorStyles} data-sector-id={id}>
-				<div className={`${classes.color} ${classes[`color--${color}`]}`}></div>
+                <div className={classes['color-box']}>
+				    <ColoredSquare color={color ?? 'blue'} />
+                </div>
 				<div className={classes.meta}>
 					<p className={`${classes.title} ${classes['title--bottom']}`}>{title}</p>
 					<p className={`${classes.price} ${classes['price--bottom']}`}>{price}</p>
@@ -56,7 +59,9 @@ const Sector = ({
 				<p className={classes.price}>{price}</p>
 				<p className={classes.title}>{title}</p>
 			</div>
-			<div className={`${classes.color} ${classes[`color--${color}`]}`}></div>
+            <div className={classes['color-box']}>
+                <ColoredSquare color={color ?? 'blue'} />
+            </div>
 		</div>
 	);
 };
