@@ -1,5 +1,5 @@
 import { HousePointProps } from './HousePoint.model';
-import GIcon from '../GIcon/';
+import GIcon from 'shared/ui/GIcon';
 import classes from './HousePoint.module.scss';
 
 enum Color {

@@ -1,7 +1,7 @@
 import { MonopolyCardProps } from './MonopolyCard.model';
-import CardButton from '../CardButton';
-import HousePoint from '../HousePoint';
-import NameBadge from '../NameBadge';
+import CardButton from 'shared/ui/CardButton';
+import HousePoint from 'entities/HousePoint';
+import NameBadge from 'entities/NameBadge';
 import classes from './MonopolyCard.module.scss';
 
 const MonopolyCard = ({

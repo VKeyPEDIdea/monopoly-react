@@ -1,9 +1,9 @@
-import BottomLine from '../../components/BottomLine';
-import TopLine from '../../components/TopLine';
-import classes from './PlayingField.module.scss';
-import MiddleBoard from '../../components/MiddleBoard';
+import BottomLine from 'entities/BottomLine';
+import TopLine from 'entities/TopLine';
+import classes from './PlayingFieldPage.module.scss';
+import MiddleBoard from 'entities/MiddleBoard';
 import { useAppSelector } from 'app/hooks';
-import PlayerChipContainer from 'components/PlayerChip/PlayerChipContainer';
+import PlayerChipContainer from 'entities/PlayerChip/PlayerChipContainer';
 import {
     selectPlayersForChips,
     selectCurrentPlayerId,

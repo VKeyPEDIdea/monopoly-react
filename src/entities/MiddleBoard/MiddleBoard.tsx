@@ -7,10 +7,10 @@ import {
 } from 'features/players/selectors';
 import { selectCurrentPlayerId } from 'features/players/selectors';
 import { passTheQueue } from 'features/players/reducers';
-import Dice from 'components/Dice';
-import ExtraDimensionСard from 'components/ExtraDimensionСard';
-import Rating from 'components/Rating';
-import SectorCardPresenter from 'components/SectorCardPresenter';
+import Dice from 'shared/ui/Dice';
+import ExtraDimensionСard from 'shared/ui/ExtraDimensionСard';
+import Rating from 'entities/Rating';
+import SectorCardPresenter from 'entities/SectorCardPresenter';
 import classes from './MiddleBoard.module.scss';
 
 const MiddleBoard = () => {

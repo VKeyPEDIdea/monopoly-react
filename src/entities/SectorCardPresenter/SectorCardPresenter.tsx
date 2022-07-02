@@ -10,10 +10,10 @@ import {
 } from 'features/players/selectors';
 import { selectTargetSector } from 'features/field/selectors';
 import { BuySectorData } from 'models/BuySectorData.interface';
-import FlipCard from 'components/FlipCard';
-import FaceSideMailCard from 'components/MailCard/FaceSideMailCard';
-import BackSideCard from 'components/MailCard/ShirtSideMailCard';
-import RealEstateCard from 'components/RealEstateCard';
+import FlipCard from 'entities/FlipCard';
+import FaceSideMailCard from 'entities/MailCard/FaceSideMailCard';
+import BackSideCard from 'entities/MailCard/ShirtSideMailCard';
+import RealEstateCard from 'entities/RealEstateCard';
 
 const SectorCardPresenter = () => {
     const {

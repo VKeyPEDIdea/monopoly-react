@@ -1,5 +1,5 @@
 import { RootState } from 'app/store';
-import { PlayerChipInfo } from 'components/PlayerChip/PlayerChipContainer.interface';
+import { PlayerChipInfo } from 'entities/PlayerChip/PlayerChipContainer.interface';
 
 const selectPlayersForChips = (state: RootState): PlayerChipInfo[] => {
     return state.players.list.map(({ name, location, id }) => { 

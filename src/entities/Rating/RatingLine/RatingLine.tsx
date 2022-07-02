@@ -1,4 +1,4 @@
-import GIcon from '../../GIcon';
+import GIcon from 'shared/ui/GIcon';
 import classes from './RatingLine.module.scss';
 import { RatingLineProps } from './RatingLineProps.model';
 

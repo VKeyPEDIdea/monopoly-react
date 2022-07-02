@@ -1,4 +1,4 @@
-import Sector from 'components/Sector';
+import Sector from 'entities/Sector';
 import classes from './BottomLine.module.scss';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {

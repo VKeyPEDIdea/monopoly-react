@@ -1,4 +1,4 @@
-import { HousePointProps } from '../../components/HousePoint/HousePoint.model';
+import { HousePointProps } from '../../entities/HousePoint/HousePoint.model';
 import { Color } from '../../models/color.type';
 import { LineType } from '../../models/LineType.type';
 import { SectorCreateArg } from '../SectorFabric/SectorCreateArg.interface';

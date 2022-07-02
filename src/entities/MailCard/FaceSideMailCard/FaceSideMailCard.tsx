@@ -1,4 +1,4 @@
-import CardButton from '../../CardButton';
+import CardButton from 'shared/ui/CardButton';
 import classes from './FaceSideMailCard.module.scss';
 
 interface FaceSideMailCardProps {

@@ -9,7 +9,7 @@ import { selectCurrentPlayerId } from 'features/players/selectors';
 import { moveChipToTargetSector } from 'features/players/reducers';
 import { setPlayerCoordinatesByPlayerId } from 'features/players/playersSlice';
 import getSectorCoordinates from 'utilities/getSectorCoordinates';
-import Sector from 'components/Sector';
+import Sector from 'entities/Sector';
 import classes from './TopLine.module.scss';
 
 const TopLine = () => {
