@@ -30,7 +30,7 @@ const PlayingField = () => {
     const dispatch = useDispatch();
 
     const showCoordinates = (element: HTMLDivElement | null) => {
-        const coordinates = getSectorCoordinates(element, 'Top');
+        const coordinates = getSectorCoordinates(element, targetSectorId < 19 ? 'Top' : 'Bottom');
         if (isInitialized) {
             dispatch(moveChipToTargetSector({
                 currentPlayerId,
