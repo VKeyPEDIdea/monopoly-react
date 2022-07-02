@@ -1,0 +1,57 @@
+@import 'app/styles/vars';
+
+.estate {
+	background-color: $color-surface;
+	border: 4px solid $color-on-light;
+	position: relative;
+}
+
+.owner {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: -5px;
+	width: max-content;
+}
+
+.content {
+	padding: 12px 10px;
+}
+
+.title {
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.street {
+	display: flex;
+	justify-content: space-between;
+}
+
+.point {
+	margin-right: 8px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.actions {
+	border-top: 4px solid $color-gluon-grey;
+	display: flex;
+}
+
+.btn {
+	flex-grow: 1;
+    border-right: 4px solid $color-gluon-grey;
+    
+	&:last-child {
+        border-right: none;
+	}
+}
+
+.color-box {
+	height: 24px;
+}

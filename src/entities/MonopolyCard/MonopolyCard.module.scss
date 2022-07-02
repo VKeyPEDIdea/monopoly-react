@@ -1,0 +1,80 @@
+@import '../../scss/vars';
+
+.card {
+	background-color: $color-surface;
+	border: 4px solid $color-on-light;
+	position: relative;
+    width: fit-content;
+}
+
+.owner {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: -5px;
+	width: max-content;
+}
+
+.content {
+	padding: 12px 10px;
+}
+
+.title {
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.sector {
+	border-bottom: 1px solid $color-cerebral-grey;
+	padding-bottom: 12px;
+	margin-bottom: 12px;
+	
+	&:last-child {
+		border-bottom: none;
+		margin-bottom: 0;
+		padding-bottom: 0px;
+	}
+}
+
+.subheading {
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 16px;
+	text-transform: uppercase;
+	color: $color-purple;
+	margin-bottom: 8px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.street {
+	display: flex;
+	justify-content: space-between;
+}
+
+.point {
+	margin-right: 8px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.actions {
+	border-top: 4px solid $color-gluon-grey;
+	display: flex;
+}
+
+.btn {
+	flex-grow: 1;
+
+	&:first-child {
+		border-right: 4px solid $color-gluon-grey;
+	}
+}
+
+.color-box {
+	height: 24px;
+}
