@@ -1,9 +1,9 @@
 import { MonopolyCardProps } from './MonopolyCard.model';
 import CardButton from 'shared/ui/CardButton';
-import HousePoint from 'entities/HousePoint';
 import NameBadge from 'entities/NameBadge';
 import classes from './MonopolyCard.module.scss';
 import ColoredSquare from 'shared/ui/ColoredSquare';
+import HousePointList from 'entities/HousePointList';
 
 const MonopolyCard = ({
 	color,
@@ -12,15 +12,11 @@ const MonopolyCard = ({
     isShowToOwner,
 }: MonopolyCardProps) => {
 	const sectorList = estateList.map(({ title, buildingList }, index) => {
-		const street = buildingList.map(({ state, price, buildType }) => {
-			return <div className={classes.point} key={title + index + 'point' + price}>
-				<HousePoint state={state} price={price} buildType={buildType} />
-			</div>;
-		});
-		
 		return <div className={classes.sector} key={title + index + 'sector'}>
 			<p className={classes.subheading}>{title}</p>
-			<div className={classes.street}>{street}</div>
+			<div className={classes.street}>
+                <HousePointList list={buildingList} />
+            </div>
 		</div>;
 	});
 
