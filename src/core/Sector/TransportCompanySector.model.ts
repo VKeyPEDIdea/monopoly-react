@@ -6,6 +6,8 @@ import { SectorType } from './SectorType.model';
 export class TransportCompanySector implements Sector {
     id: number;
     line: LineType;
+    currentPlayerId: number;
+    stepCount: number;
     readonly title: string;
     readonly type: SectorType;
     readonly price: number;
@@ -18,5 +20,7 @@ export class TransportCompanySector implements Sector {
         this.type = 'TransportCompany';
         this.price = price ?? 0;
         this.owner = null;
+        this.currentPlayerId = 0;
+        this.stepCount = 0;
     }
 }

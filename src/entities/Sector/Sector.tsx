@@ -1,9 +1,9 @@
 import classes from './Sector.module.scss';
 import { Sector as SectorProps } from 'core/Sector/Sector.interface';
 import { useEffect, useRef } from 'react';
-import { useAppSelector } from 'app/hooks';
-import { selectCurrentPlayerId } from 'features/players/selectors';
 import ColoredSquare from 'shared/ui/ColoredSquare';
+import { selectCurrentPlayerId } from 'features/players/selectors';
+import { useAppSelector } from 'app/hooks';
 
 const Sector = ({
     id,
@@ -14,12 +14,12 @@ const Sector = ({
 	type,
     target,
     owner,
+    stepCount,
     getСoordinates
 }: SectorProps) => {	
     const sector = useRef<HTMLDivElement>(null);
-    const currentPlayerId = useAppSelector(selectCurrentPlayerId);
     const ownerId = (owner !== undefined) ? owner : null;
-
+    const currentPlayerId = useAppSelector(selectCurrentPlayerId);
     const isShowToOwner = currentPlayerId === ownerId;
     
     useEffect(() => {
@@ -37,6 +37,7 @@ const Sector = ({
 			<div ref={sector} className={[classes.sector, classes['sector--simple']].join(' ')}
                 data-sector-id={id}>
 				<p className={classes.title}>{title}</p>
+                <p className={[classes['step-count'], classes[`step-count--${line === 'Top' ? 'top' : 'bottom'}`]].join(' ')}>{stepCount}</p>
 			</div>
 		);
 	} else if (line === 'Bottom') {
@@ -49,6 +50,7 @@ const Sector = ({
 					<p className={`${classes.title} ${classes['title--bottom']}`}>{title}</p>
 					<p className={`${classes.price} ${classes['price--bottom']}`}>{price}</p>
 				</div>
+                <p className={[classes['step-count'], classes['step-count--bottom']].join(' ')}>{stepCount}</p>
 			</div>
 		);
 	}
@@ -62,6 +64,7 @@ const Sector = ({
             <div className={classes['color-box']}>
                 <ColoredSquare color={color ?? 'blue'} />
             </div>
+            <p className={[classes['step-count'], classes['step-count--top']].join(' ')}>{stepCount}</p>
 		</div>
 	);
 };

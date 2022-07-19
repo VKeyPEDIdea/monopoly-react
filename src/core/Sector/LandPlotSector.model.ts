@@ -16,6 +16,8 @@ export class LandPlotSector implements Sector {
     readonly housePrice: number;
     readonly color: Color;
     owner: null | number;
+    currentPlayerId: number;
+    stepCount: number;
 
     constructor({ id, line, title, price, rentPrice, housePrice, rentPriceListWithHouse, color}: SectorCreateArg) {
         this.id = id;
@@ -34,6 +36,8 @@ export class LandPlotSector implements Sector {
         }) ?? [];
         this.color = color ?? 'blue';
         this.owner = null;
+        this.currentPlayerId = 0;
+        this.stepCount = 0;
     }
 
     buySector() {}

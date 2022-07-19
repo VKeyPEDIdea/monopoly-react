@@ -6,6 +6,8 @@ import { SectorType } from './SectorType.model';
 export class TrapSector implements Sector {
     id: number;
     line: LineType;
+    currentPlayerId: number;
+    stepCount: number;
     readonly title: string;
     readonly type: SectorType;
 
@@ -14,5 +16,7 @@ export class TrapSector implements Sector {
         this.line = line;
         this.title = title;
         this.type = 'Trap';
+        this.currentPlayerId = 0;
+        this.stepCount = 0;
     }
 }

@@ -15,5 +15,6 @@ export interface Sector {
 	type: SectorType;
     owner?: null | number;
     target?: boolean;
+    stepCount: number | null;
     getСoordinates?(element: HTMLDivElement | null): void;
 };

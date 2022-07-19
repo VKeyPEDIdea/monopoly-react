@@ -7,12 +7,18 @@ interface PlayingFieldState {
     targetSector: {
         id: number;
     },
+    previousSector: {
+        id: number;
+    };
     dice: [number | null, number | null]
 }
 
 const initialState: PlayingFieldState = {
     sectorList: playingFieldList,
     targetSector: {
+        id: 0,
+    },
+    previousSector: {
         id: 0,
     },
     dice: [null, null],
@@ -23,6 +29,7 @@ export const playingFieldSlice = createSlice({
     initialState,
     reducers: {
         setTargetSector: (state, { payload }) => {
+            state.previousSector.id = state.targetSector.id;
             state.targetSector.id = payload;
         },
         setDice: (state, { payload }) => {

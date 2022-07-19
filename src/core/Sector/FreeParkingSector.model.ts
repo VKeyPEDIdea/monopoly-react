@@ -6,6 +6,8 @@ import { SectorType } from './SectorType.model';
 export class FreeParkingSector implements Sector {
     id: number;
     line: LineType;
+    currentPlayerId: number;
+    stepCount: number;
     readonly title: string;
     readonly type: SectorType;
     readonly price: number;
@@ -16,5 +18,7 @@ export class FreeParkingSector implements Sector {
         this.title = title;
         this.type = 'FreeParking';
         this.price = price ?? 0;
+        this.currentPlayerId = 0;
+        this.stepCount = 0;
     }
 }

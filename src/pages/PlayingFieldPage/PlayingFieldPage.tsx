@@ -23,7 +23,7 @@ const PlayingField = () => {
     const playerChipsList = useAppSelector(selectPlayersForChips);
     const topLineSectors = useAppSelector(selectTopLineSectors);
     const bottomLineSectors = useAppSelector(selectBottomLineSectors);
-    const targetSectorId = useAppSelector(selectTargetSectorId);
+    const [, targetSectorId] = useAppSelector(selectTargetSectorId);
     const currentPlayerId = useAppSelector(selectCurrentPlayerId);
     const [isInitialized, setIsInitialized] = useState(false);
     const playersIdList = useAppSelector(selectPlayersIdList);
@@ -52,7 +52,7 @@ const PlayingField = () => {
                 list={topLineSectors}
                 target={targetSectorId}
                 getСoordinates={showCoordinates}
-            />
+                />
 			<MiddleBoard />
             <SectorLine position='Bottom'
                 list={bottomLineSectors}
