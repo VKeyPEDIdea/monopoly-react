@@ -1,3 +1,5 @@
+@import 'app/styles/vars';
+
 .board {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -20,6 +22,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.card {
+    position: absolute;
+    z-index: $z-index-extra-d-card;
 }
 
 .right-section {

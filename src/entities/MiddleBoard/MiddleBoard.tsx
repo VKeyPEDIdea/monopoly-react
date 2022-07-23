@@ -39,9 +39,11 @@ const MiddleBoard = () => {
                 </div>
 			</div>
 			<div className={classes['middle-section']}>
-                <ExtraDimensionСard scale={1.1}>
-                    <SectorCardPresenter />
-                </ExtraDimensionСard>
+                <div className={classes.card}>
+                    <ExtraDimensionСard scale={1.1}>
+                        <SectorCardPresenter />
+                    </ExtraDimensionСard>
+                </div>
 			</div>
 			<div className={classes['right-section']}>
 				<button onClick={foo}>Передать очередь след игроку</button>
