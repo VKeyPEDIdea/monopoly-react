@@ -18,6 +18,8 @@ import { useDispatch } from 'react-redux';
 import MonopolyCard from 'entities/MonopolyCard';
 import { BANK_LIST, CHANCE_LIST } from 'config/opportunitiesCard.config';
 import { getRandomArrayItem } from 'utilities/getRandomArrayItem';
+import { decreasePlayersCashCount, increasePlayersCashCount } from 'features/players/playersSlice';
+import ChanceBankCardPresenter from 'entities/ChanceBankCardPresenter';
 
 const SectorCardPresenter = () => {
     const {
@@ -90,46 +92,18 @@ const SectorCardPresenter = () => {
         case 'Chance':
             const chance = getRandomArrayItem(CHANCE_LIST);
             card = (
-                <FlipCard
-                    front={
-                        <BackSideCard title={chance.chanceTitle}/>
-                    }
-                    back={
-                        <FaceSideMailCard detailsText={chance.detailsText}
-                            btn={{
-                                clickHandler: () => console.log('Оплата'),
-                                count: chance.count,
-                                negative: chance.isNegative,
-                                title: chance.btnText
-                            }}
-                        />
-                    }
+                <ChanceBankCardPresenter 
+                    item={chance}
+                    currentPlayerId={currentPlayerId}
                 />
             );
             break;
         case 'Bank':
-            const {
-                chanceTitle,
-                detailsText,
-                count,
-                isNegative,
-                btnText
-            } = getRandomArrayItem(BANK_LIST);
+            const bank = getRandomArrayItem(BANK_LIST);
             card = (
-                <FlipCard
-                    front={
-                        <BackSideCard title={chanceTitle}/>
-                    }
-                    back={
-                        <FaceSideMailCard detailsText={detailsText}
-                            btn={{
-                                clickHandler: () => console.log('Оплата'),
-                                count,
-                                negative: isNegative,
-                                title: btnText
-                            }}
-                        />
-                    }
+                <ChanceBankCardPresenter 
+                    item={bank}
+                    currentPlayerId={currentPlayerId}
                 />
             );
             break;
