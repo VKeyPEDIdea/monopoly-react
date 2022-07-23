@@ -9,10 +9,10 @@ interface PlayersState {
 
 const initialState: PlayersState = {
     list: [
-        { ...new Person('Реджайна', 7000) },
-        { ...new Person('Павел', 5000) },
-        { ...new Person('Тихон', 8500) },
-        { ...new Person('Максим', 6500) }
+        { ...new Person('Реджайна', 1500) },
+        { ...new Person('Павел', 1500) },
+        { ...new Person('Тихон', 1500) },
+        { ...new Person('Максим', 1500) }
     ],
     currentPlayerId: 0,
 };

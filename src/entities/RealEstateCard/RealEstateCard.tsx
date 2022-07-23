@@ -21,22 +21,22 @@ const RealEstateCard = ({
     onPayRentClick,
 }: RealEstateCardProps) => {
     let btnTitle: string = '';
-    let btnDetails: string = '';
+    let btnDetails: number | null = null;
     let btnAction = onbuySectorClick;
 
     if (ownerName) {
         if (isShowToOwner) {
             btnTitle = 'Продать участок';
-            btnDetails = `+${price / 2}`;
+            btnDetails = price / 2;
             btnAction = onSellSectorClick;
         } else {
             btnTitle = 'Оплатить аренду';
-            btnDetails = `-${rentPrice}`;
+            btnDetails = rentPrice;
             btnAction = onPayRentClick;
         }
     } else {
         btnTitle = 'Купить участок'
-        btnDetails = `-${price}`;
+        btnDetails = -price;
         btnAction = () => {
             onbuySectorClick();
             confetti({

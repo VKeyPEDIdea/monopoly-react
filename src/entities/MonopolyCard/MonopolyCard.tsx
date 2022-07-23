@@ -36,13 +36,13 @@ const MonopolyCard = ({
 				<div className={classes.btn}>
 					<CardButton negative
 						title='Купить'
-						details='-90'
+						details={-90}
 						click={() => console.log('Купить')}/>
 				</div>
 				<div className={classes.btn}>
 					<CardButton
 						title='Купить'
-						details='-90'
+						details={-90}
 						click={() => console.log('Купить')}/>
 				</div>
 			</div>

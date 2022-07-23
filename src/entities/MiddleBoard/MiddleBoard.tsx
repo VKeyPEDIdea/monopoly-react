@@ -47,6 +47,7 @@ const MiddleBoard = () => {
 			</div>
 			<div className={classes['right-section']}>
 				<button onClick={foo}>Передать очередь след игроку</button>
+                <img src='/images/logo.svg' alt='logo'/>
 			</div>
 		</div>
 	);

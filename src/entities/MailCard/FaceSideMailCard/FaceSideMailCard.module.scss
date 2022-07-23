@@ -4,9 +4,6 @@ $card-border-width: 4px;
 $length-without-border: calc(100% - 2 * #{$card-border-width});
 
 .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-width: 400px - 2 * $card-border-width;
     height: $length-without-border;
     text-align: center;
@@ -16,6 +13,7 @@ $length-without-border: calc(100% - 2 * #{$card-border-width});
 
 .details {
     font-style: italic;
+    margin: 20px;
 }
 
 .actions {

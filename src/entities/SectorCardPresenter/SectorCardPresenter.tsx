@@ -15,6 +15,9 @@ import FaceSideMailCard from 'entities/MailCard/FaceSideMailCard';
 import BackSideCard from 'entities/MailCard/ShirtSideMailCard';
 import RealEstateCard from 'entities/RealEstateCard';
 import { useDispatch } from 'react-redux';
+import MonopolyCard from 'entities/MonopolyCard';
+import { BANK_LIST, CHANCE_LIST } from 'config/opportunitiesCard.config';
+import { getRandomArrayItem } from 'utilities/getRandomArrayItem';
 
 const SectorCardPresenter = () => {
     const {
@@ -77,21 +80,27 @@ const SectorCardPresenter = () => {
                     onbuySectorClick={() => buySectorClickHandler(payload)}
                     onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
                 />
+                // <MonopolyCard color='red' estateList={[
+                //     { title: 'Царство', buildingList: houseList || []},
+                //     { title: 'Царство', buildingList: houseList || []},
+                //     { title: 'Царство', buildingList: houseList || []},
+                // ]} ownerName='Паша' isShowToOwner={false}/>
             );
             break;
         case 'Chance':
+            const chance = getRandomArrayItem(CHANCE_LIST);
             card = (
                 <FlipCard
                     front={
-                        <BackSideCard title='Шанс'/>
+                        <BackSideCard title={chance.chanceTitle}/>
                     }
                     back={
-                        <FaceSideMailCard detailsText="Оплатите услуги доктора"
+                        <FaceSideMailCard detailsText={chance.detailsText}
                             btn={{
                                 clickHandler: () => console.log('Оплата'),
-                                count: '-50',
-                                negative: true,
-                                title: 'Оплатите'
+                                count: chance.count,
+                                negative: chance.isNegative,
+                                title: chance.btnText
                             }}
                         />
                     }
@@ -99,18 +108,25 @@ const SectorCardPresenter = () => {
             );
             break;
         case 'Bank':
+            const {
+                chanceTitle,
+                detailsText,
+                count,
+                isNegative,
+                btnText
+            } = getRandomArrayItem(BANK_LIST);
             card = (
                 <FlipCard
                     front={
-                        <BackSideCard title='Банк'/>
+                        <BackSideCard title={chanceTitle}/>
                     }
                     back={
-                        <FaceSideMailCard detailsText="Оплатите услуги доктора"
+                        <FaceSideMailCard detailsText={detailsText}
                             btn={{
                                 clickHandler: () => console.log('Оплата'),
-                                count: '-50',
-                                negative: true,
-                                title: 'Оплатите'
+                                count,
+                                negative: isNegative,
+                                title: btnText
                             }}
                         />
                     }
