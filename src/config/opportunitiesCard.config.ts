@@ -1,7 +1,12 @@
 const CHANCE_TITLE = 'Шанс';
 const BANK_TITLE = 'Банк';
 
-type OpportunityType = 'balance' | 'prison' | 'transfer' | 'expenses' | 'bonus';
+type OpportunityType = 'balance'
+| 'all-players'
+| 'prison'
+| 'transfer'
+| 'expenses'
+| 'bonus';
 
 export interface Opportunities {
     type: OpportunityType;
@@ -140,7 +145,7 @@ export const BANK_LIST: Opportunities[] = [
         type: 'balance',
         chanceTitle: BANK_TITLE,
         detailsText: 'Оплатите услуги доктора. Здоровье дороже всего',
-        count: -50,
+        count: 50,
         isNegative: true,
         btnText: 'Оплатите',
     },
@@ -241,7 +246,7 @@ export const BANK_LIST: Opportunities[] = [
         btnText: 'Получите прибыль',
     },
     {
-        type: 'balance',
+        type: 'all-players',
         chanceTitle: BANK_TITLE,
         detailsText: 'С днем рождения. Все игроки решили скинуться вам на подарок',
         count: 10,

@@ -33,7 +33,16 @@ const ChanceBankCardPresenter = ({
                 }
             }));
             break;
-    
+        case 'all-players':
+            break;
+        case 'prison':
+            break;
+        case 'transfer': 
+            break;
+        case 'expenses':
+            break;
+        case 'bonus':
+            break;
         default:
             break;
     }
