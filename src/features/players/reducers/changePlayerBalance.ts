@@ -10,7 +10,7 @@ const changePlayerBalance = ({
 }: {
     type: 'decrease' | 'increase',
     payload: {
-        count: number | null,
+        count: number,
         playerId: number,
     },
 }) => (dispatch: AppDispatch) => {

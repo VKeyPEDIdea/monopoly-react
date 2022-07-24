@@ -21,7 +21,7 @@ const RealEstateCard = ({
     onPayRentClick,
 }: RealEstateCardProps) => {
     let btnTitle: string = '';
-    let btnDetails: number | null = null;
+    let btnDetails: number = 0;
     let btnAction = onbuySectorClick;
 
     if (ownerName) {
@@ -31,7 +31,7 @@ const RealEstateCard = ({
             btnAction = onSellSectorClick;
         } else {
             btnTitle = 'Оплатить аренду';
-            btnDetails = rentPrice;
+            btnDetails = rentPrice || 0;
             btnAction = onPayRentClick;
         }
     } else {

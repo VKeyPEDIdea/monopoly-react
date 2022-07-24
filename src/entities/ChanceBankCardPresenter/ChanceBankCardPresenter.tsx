@@ -1,9 +1,15 @@
+import { useAppSelector } from 'app/hooks';
 import { Opportunities } from 'config/opportunitiesCard.config';
 import FlipCard from 'entities/FlipCard';
 import FaceSideMailCard from 'entities/MailCard/FaceSideMailCard';
 import BackSideCard from 'entities/MailCard/ShirtSideMailCard';
+import { setTargetSector } from 'features/field/playingFieldSlice';
+import { transferToTarger } from 'features/field/reducers';
+import { getTargetToTransfer } from 'features/field/selectors';
+import { changePlayerLocation } from 'features/players/playersSlice';
 import { changePlayerBalance } from 'features/players/reducers';
 import { useDispatch } from 'react-redux';
+import getSectorCoordinates from 'utilities/getSectorCoordinates';
 
 interface ChanceBankCardPresenterProps {
     item: Opportunities;
@@ -23,27 +29,49 @@ const ChanceBankCardPresenter = ({
 }: ChanceBankCardPresenterProps) => {
     const dispatch = useDispatch();
     let action: () => void = () => {};
+    let btnTitle: string = '';
+    let details: string = '';
+
     switch (type) {
         case 'balance':
-            action = () => dispatch(changePlayerBalance({
-                type: isNegative ? 'decrease' : 'increase',
-                payload: {
-                    playerId: currentPlayerId,
-                    count,
-                }
-            }));
+            if (count) {
+                action = () => dispatch(changePlayerBalance({
+                    type: isNegative ? 'decrease' : 'increase',
+                    payload: {
+                        playerId: currentPlayerId,
+                        count,
+                    }
+                }));
+                btnTitle = btnText;
+                details = detailsText;
+            }
             break;
         case 'all-players':
             break;
         case 'prison':
             break;
-        case 'transfer': 
+        case 'transfer':
+            const {
+                id,
+                title
+            } = useAppSelector(getTargetToTransfer);
+            action = () => {
+                dispatch(setTargetSector(id));
+                dispatch(transferToTarger({
+                    playerId: currentPlayerId,
+                    targetSectorId: id,
+                }));
+            };
+            btnTitle = btnText + title;
+            details = detailsText;
             break;
         case 'expenses':
             break;
         case 'bonus':
             break;
         default:
+            btnTitle = btnText;
+            details = detailsText;
             break;
     }
 
@@ -58,7 +86,7 @@ const ChanceBankCardPresenter = ({
                         clickHandler: action,
                         count: count,
                         negative: isNegative,
-                        title: btnText
+                        title: btnTitle,
                     }}
                 />
             }

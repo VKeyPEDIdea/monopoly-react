@@ -1,6 +1,6 @@
 export interface CardButtonProps {
 	title: string;
-	details: number | null;
+	details?: number;
 	negative?: boolean;
 	click: () => void;
 }

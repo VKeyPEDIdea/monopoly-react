@@ -6,8 +6,8 @@ interface FaceSideMailCardProps {
     btn: {
         title: string;
         clickHandler: () => void;
-        count: number | null;
-        negative: boolean; 
+        count?: number;
+        negative?: boolean; 
     }
 }
 

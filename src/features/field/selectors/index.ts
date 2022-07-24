@@ -3,6 +3,7 @@ import selectBottomLineSectors from './selectBottomLineSectors';
 import selectTargetSectorId from './selectTargetSectorId';
 import selectTargetSector from './selectTargetSector';
 import selectStepsCountBySectorId from './selectStepsCountBySectorId';
+import getTargetToTransfer from './getTargetToTransfer';
 
 export {
     selectTopLineSectors,
@@ -10,4 +11,5 @@ export {
     selectTargetSectorId,
     selectTargetSector,
     selectStepsCountBySectorId,
+    getTargetToTransfer,
 };
