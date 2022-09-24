@@ -4,6 +4,7 @@ import selectTargetSectorId from './selectTargetSectorId';
 import selectTargetSector from './selectTargetSector';
 import selectStepsCountBySectorId from './selectStepsCountBySectorId';
 import getTargetToTransfer from './getTargetToTransfer';
+import selectFieldIdByName from './selectFieldIdByName';
 
 export {
     selectTopLineSectors,
@@ -12,4 +13,5 @@ export {
     selectTargetSector,
     selectStepsCountBySectorId,
     getTargetToTransfer,
+    selectFieldIdByName,
 };

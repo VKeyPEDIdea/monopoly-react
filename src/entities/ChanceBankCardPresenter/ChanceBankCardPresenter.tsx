@@ -5,11 +5,12 @@ import FaceSideMailCard from 'entities/MailCard/FaceSideMailCard';
 import BackSideCard from 'entities/MailCard/ShirtSideMailCard';
 import { setTargetSector } from 'features/field/playingFieldSlice';
 import { transferToTarger } from 'features/field/reducers';
-import { getTargetToTransfer } from 'features/field/selectors';
-import { changePlayerLocation } from 'features/players/playersSlice';
+import {
+    getTargetToTransfer,
+    selectFieldIdByName
+} from 'features/field/selectors';
 import { changePlayerBalance } from 'features/players/reducers';
 import { useDispatch } from 'react-redux';
-import getSectorCoordinates from 'utilities/getSectorCoordinates';
 
 interface ChanceBankCardPresenterProps {
     item: Opportunities;
@@ -49,6 +50,16 @@ const ChanceBankCardPresenter = ({
         case 'all-players':
             break;
         case 'prison':
+            const fieldId  = useAppSelector(state => selectFieldIdByName(state, 'Тюрьма'));
+            action = () => {
+                dispatch(setTargetSector(fieldId));
+                dispatch(transferToTarger({
+                    playerId: currentPlayerId,
+                    targetSectorId: fieldId ?? 0,
+                }));
+            };
+            btnTitle = btnText;
+            details = detailsText;
             break;
         case 'transfer':
             const {
@@ -81,7 +92,7 @@ const ChanceBankCardPresenter = ({
                 <BackSideCard title={chanceTitle}/>
             }
             back={
-                <FaceSideMailCard detailsText={detailsText}
+                <FaceSideMailCard detailsText={details}
                     btn={{
                         clickHandler: action,
                         count: count,
