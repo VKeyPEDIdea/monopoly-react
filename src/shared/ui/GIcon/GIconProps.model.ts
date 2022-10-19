@@ -1,4 +1,4 @@
-import { GIconTitle } from "./GIconTitle";
+import { GIconTitle } from './GIconTitle';
 
 export interface GIconProps {
 	title: GIconTitle;

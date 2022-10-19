@@ -1,5 +1,5 @@
 import { useAppSelector } from 'app/hooks';
-import { Opportunities } from 'config/opportunitiesCard.config';
+import { Opportunities } from 'models/Opportunities.interface';
 import FlipCard from 'entities/FlipCard';
 import FaceSideMailCard from 'entities/MailCard/FaceSideMailCard';
 import BackSideCard from 'entities/MailCard/ShirtSideMailCard';
@@ -7,7 +7,8 @@ import { setTargetSector } from 'features/field/playingFieldSlice';
 import { transferToTarger } from 'features/field/reducers';
 import {
     getTargetToTransfer,
-    selectFieldIdByName
+    selectFieldIdByName,
+    selectRepairPrice
 } from 'features/field/selectors';
 import { changePlayerBalance } from 'features/players/reducers';
 import { useDispatch } from 'react-redux';
@@ -77,6 +78,20 @@ const ChanceBankCardPresenter = ({
             details = detailsText;
             break;
         case 'expenses':
+            const {
+                repairPrice,
+                houseCount,
+                hotelCount
+            } = useAppSelector(state => selectRepairPrice(state, currentPlayerId));
+            action = () => dispatch(changePlayerBalance({
+                type: 'decrease',
+                payload: {
+                    playerId: currentPlayerId,
+                    count: repairPrice,
+                }
+            }));
+            btnTitle = btnText;
+            details = detailsText + `${repairPrice} - стоимость ремонта. Количество домов: ${houseCount}, количество отелей: ${hotelCount}`;
             break;
         case 'bonus':
             break;

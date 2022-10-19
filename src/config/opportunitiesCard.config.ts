@@ -1,36 +1,20 @@
-const CHANCE_TITLE = 'Шанс';
-const BANK_TITLE = 'Банк';
-
-type OpportunityType = 'balance'
-| 'all-players'
-| 'prison'
-| 'transfer'
-| 'expenses'
-| 'bonus';
-
-export interface Opportunities {
-    type: OpportunityType;
-    chanceTitle: string;
-    detailsText: string;
-    isNegative?: boolean;
-    btnText: string;
-    count?: number;
-}
+import { Opportunities } from 'models/Opportunities.interface';
+import { CHANCE_TITLE, BANK_TITLE } from './constants';
 
 export const CHANCE_LIST: Opportunities[] = [
-    {
-        type: 'transfer',
-        chanceTitle: CHANCE_TITLE,
-        detailsText: 'Отправляйтесь на поле ',
-        btnText: 'Перейти на поле ',
-    },
     // {
-    //     type: 'expenses',
+    //     type: 'transfer',
     //     chanceTitle: CHANCE_TITLE,
-    //     detailsText: 'Скиньтесь на ремонт улицы. ', 
-    //     isNegative: true,
-    //     btnText: 'Оплатите 40 за каждый дом и 115 за каждый отель',
+    //     detailsText: 'Отправляйтесь на поле ',
+    //     btnText: 'Перейти на поле ',
     // },
+    {
+        type: 'expenses',
+        chanceTitle: CHANCE_TITLE,
+        detailsText: 'Скиньтесь на ремонт улицы. ', 
+        isNegative: true,
+        btnText: 'Оплатите 40 за каждый дом и 115 за каждый отель',
+    },
     // {
     //     type: 'transfer',
     //     chanceTitle: CHANCE_TITLE,
@@ -126,12 +110,12 @@ export const CHANCE_LIST: Opportunities[] = [
 ];
 
 export const BANK_LIST: Opportunities[] = [
-    {
-        type: 'transfer',
-        chanceTitle: CHANCE_TITLE,
-        detailsText: 'Отправляйтесь на поле ',
-        btnText: 'Перейти на поле ',
-    },
+    // {
+    //     type: 'transfer',
+    //     chanceTitle: BANK_TITLE,
+    //     detailsText: 'Отправляйтесь на поле ',
+    //     btnText: 'Перейти на поле ',
+    // },
     // {
     //     type: 'balance',
     //     chanceTitle: BANK_TITLE,
@@ -182,7 +166,7 @@ export const BANK_LIST: Opportunities[] = [
     //     type: 'prison',
     //     chanceTitle: BANK_TITLE,
     //     detailsText: 'Вы арестованы. Кто-то подставил вас - скорее всего безжалостные конкуренты',
-    //     btnText: 'Сдаться полиции и отправить в тюрьму',
+    //     btnText: 'Сдаться полиции и отправиться в тюрьму',
     // },
     // {
     //     type: 'balance',
