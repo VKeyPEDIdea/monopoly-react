@@ -10,7 +10,7 @@ import {
     selectFieldIdByName,
     selectRepairPrice
 } from 'features/field/selectors';
-import { changePlayerBalance } from 'features/players/reducers';
+import { changePlayerBalance, donateForGift } from 'features/players/reducers';
 import { useDispatch } from 'react-redux';
 
 interface ChanceBankCardPresenterProps {
@@ -49,6 +49,9 @@ const ChanceBankCardPresenter = ({
             }
             break;
         case 'all-players':
+            action = () => dispatch(donateForGift(count || 0, currentPlayerId));            
+            btnTitle = btnText;
+            details = detailsText;
             break;
         case 'prison':
             const fieldId  = useAppSelector(state => selectFieldIdByName(state, 'Тюрьма'));
