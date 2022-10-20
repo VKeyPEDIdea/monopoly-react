@@ -24,6 +24,7 @@ const ChanceBankCardPresenter = ({
         chanceTitle,
         detailsText,
         count,
+        targetSector,
         isNegative,
         btnText
     },
@@ -65,7 +66,18 @@ const ChanceBankCardPresenter = ({
             btnTitle = btnText;
             details = detailsText;
             break;
-        case 'transfer':
+        case 'transferToTarget':
+            action = () => {
+                dispatch(setTargetSector(targetSector));
+                dispatch(transferToTarger({
+                    playerId: currentPlayerId,
+                    targetSectorId: targetSector || 0,
+                }));
+            };
+            btnTitle = btnText;
+            details = detailsText;
+            break;
+        case 'transferToRandom':
             const {
                 id,
                 title

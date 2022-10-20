@@ -1,6 +1,7 @@
 export type OpportunityType = 'balance'
 | 'all-players'
 | 'prison'
-| 'transfer'
+| 'transferToRandom'
 | 'expenses'
-| 'bonus';
+| 'bonus'
+| 'transferToTarget';
