@@ -1,15 +1,16 @@
-import { SectorType } from '../core/Sector/SectorType.model';
-import { bankSectorFabric } from '../core/SectorFabric/BankSectorFabric.model';
-import { chanceSectorFabric } from '../core/SectorFabric/ChanceSectorFabric.model';
-import { freeParkingSectorFabric } from '../core/SectorFabric/FreeParkingSectorFabric.model';
-import { landPlotSectorFabric } from '../core/SectorFabric/LandPlotSectorFabric.model';
-import { startSectorFabric } from '../core/SectorFabric/StartSectorFabric.model';
-import { transportCompanySectorFabric } from '../core/SectorFabric/TransportCompanySectorFabric.model';
-import { trapSectorFabric } from '../core/SectorFabric/TrapSectorFabric.model';
-import { utilityCompanySectorFabric } from '../core/SectorFabric/UtilityCompanySectorFabric.model';
-import { Color } from '../models/color.type';
-import { LineType } from '../models/LineType.type';
-import { idGenerator } from '../utilities/idGenerator';
+import { SectorType } from 'core/Sector/SectorType.model';
+import { bankSectorFabric } from 'core/SectorFabric/BankSectorFabric.model';
+import { chanceSectorFabric } from 'core/SectorFabric/ChanceSectorFabric.model';
+import { freeParkingSectorFabric } from 'core/SectorFabric/FreeParkingSectorFabric.model';
+import { landPlotSectorFabric } from 'core/SectorFabric/LandPlotSectorFabric.model';
+import { startSectorFabric } from 'core/SectorFabric/StartSectorFabric.model';
+import { transportCompanySectorFabric } from 'core/SectorFabric/TransportCompanySectorFabric.model';
+import { trapSectorFabric } from 'core/SectorFabric/TrapSectorFabric.model';
+import { arrestSectorFabric } from 'core/SectorFabric/ArrestSectorFabric.model';
+import { utilityCompanySectorFabric } from 'core/SectorFabric/UtilityCompanySectorFabric.model';
+import { Color } from 'models/color.type';
+import { LineType } from 'models/LineType.type';
+import { idGenerator } from 'utilities/idGenerator';
 
 interface Field {
     title: string;
@@ -266,7 +267,7 @@ const bottomLineConfig: Field[] = [
     {
         title: 'Арест',
         price: 0,
-        type: 'Trap',
+        type: 'Arrest',
         line: 'Bottom',
     },
     {
@@ -390,6 +391,9 @@ function getSectorList(config: Field[]) {
                 break;
             case 'Trap':
                 fabric = trapSectorFabric;
+                break;
+            case 'Arrest':
+                fabric = arrestSectorFabric;
                 break;
             case 'UtilityCompany':
                 fabric = utilityCompanySectorFabric;

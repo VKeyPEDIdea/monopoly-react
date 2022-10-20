@@ -5,4 +5,5 @@ export type SectorType = 'LandPlot'
 	| 'FreeParking'
 	| 'UtilityCompany'
 	| 'Start'
+    | 'Arrest'
 	| 'Trap';

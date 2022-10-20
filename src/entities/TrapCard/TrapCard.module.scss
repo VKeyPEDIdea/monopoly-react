@@ -1,0 +1,38 @@
+@import 'app/styles/vars';
+
+$card-border-width: 4px;
+$length-without-border: calc(100% - 2 * #{$card-border-width});
+
+.card {
+    min-width: 400px - 2 * $card-border-width;
+    height: $length-without-border;
+    text-align: center;
+    text-transform: uppercase;
+    border: $card-border-width solid $color-on-light;
+    background-color: $color-surface;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 80px;
+}
+
+.details {
+    font-style: italic;
+    margin: 20px;
+}
+
+.actions {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    width: $length-without-border;
+    border: $card-border-width solid $color-on-light;
+    overflow: hidden;
+}
+
+.btn {
+    flex-grow: 1;
+}

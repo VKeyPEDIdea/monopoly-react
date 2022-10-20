@@ -1,5 +1,5 @@
 import { useAppSelector } from 'app/hooks';
-import { payRent } from 'features/field/reducers';
+import { payRent, transferToTarger } from 'features/field/reducers';
 import {
     buySector,
     sellSector,
@@ -10,16 +10,14 @@ import {
 } from 'features/players/selectors';
 import { selectTargetSector } from 'features/field/selectors';
 import { BuySectorData } from 'models/BuySectorData.interface';
-import FlipCard from 'entities/FlipCard';
-import FaceSideMailCard from 'entities/MailCard/FaceSideMailCard';
-import BackSideCard from 'entities/MailCard/ShirtSideMailCard';
 import RealEstateCard from 'entities/RealEstateCard';
 import { useDispatch } from 'react-redux';
 import MonopolyCard from 'entities/MonopolyCard';
 import { BANK_LIST, CHANCE_LIST } from 'config/opportunitiesCard.config';
 import { getRandomArrayItem } from 'utilities/getRandomArrayItem';
-import { decreasePlayersCashCount, increasePlayersCashCount } from 'features/players/playersSlice';
 import ChanceBankCardPresenter from 'entities/ChanceBankCardPresenter';
+import TrapCard from 'entities/TrapCard';
+import { setTargetSector } from 'features/field/playingFieldSlice';
 
 const SectorCardPresenter = () => {
     const {
@@ -53,6 +51,14 @@ const SectorCardPresenter = () => {
         tenantPlayerId: number,    
     }) => {
         dispatch(payRent(payload));
+    };
+
+    const goToPrison = () => {
+        dispatch(setTargetSector(10));
+        dispatch(transferToTarger({
+            playerId: currentPlayerId,
+            targetSectorId: 10,
+        }));
     };
 
     switch (type) {
@@ -104,6 +110,16 @@ const SectorCardPresenter = () => {
                 <ChanceBankCardPresenter 
                     item={bank}
                     currentPlayerId={currentPlayerId}
+                />
+            );
+            break;
+        case 'Arrest':
+            card = (
+                <TrapCard detailsText='Вы арестованы. Проследуйте в свою камеру'
+                    btn={{
+                        title: 'Придется подчиниться. Но я этого так не оставлю',
+                        clickHandler: () => goToPrison(),
+                    }}
                 />
             );
             break;
