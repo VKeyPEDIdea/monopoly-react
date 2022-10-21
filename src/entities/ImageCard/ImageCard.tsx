@@ -1,16 +1,18 @@
 import CardButton from 'shared/ui/CardButton';
-import classes from './TrapCard.module.scss';
+import classes from './ImageCard.module.scss';
 
 interface TrapCardProps {
     detailsText: string;
+    imgSrc: string;
     btn: {
         title: string;
         clickHandler: () => void;
     }
 }
 
-const TrapCard = ({
+const ImageCard = ({
     detailsText,
+    imgSrc,
     btn: {
         title,
         clickHandler,
@@ -19,7 +21,7 @@ const TrapCard = ({
     return (
         <div className={classes.card}>
             <p className={classes.details}>{detailsText}</p>
-            <img className={classes.image} src='/images/cards/arrested.png' alt='trap'/>
+            <img className={classes.image} src={imgSrc} alt='' />
             <div className={classes.actions}>
                 <div className={classes.btn}>
                     <CardButton title={title}
@@ -30,4 +32,4 @@ const TrapCard = ({
     );
 };
 
-export default TrapCard;
+export default ImageCard;

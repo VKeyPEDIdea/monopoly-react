@@ -16,7 +16,7 @@ import MonopolyCard from 'entities/MonopolyCard';
 import { BANK_LIST, CHANCE_LIST } from 'config/opportunitiesCard.config';
 import { getRandomArrayItem } from 'utilities/getRandomArrayItem';
 import ChanceBankCardPresenter from 'entities/ChanceBankCardPresenter';
-import TrapCard from 'entities/TrapCard';
+import ImageCard from 'entities/ImageCard';
 import { setTargetSector } from 'features/field/playingFieldSlice';
 
 const SectorCardPresenter = () => {
@@ -115,10 +115,22 @@ const SectorCardPresenter = () => {
             break;
         case 'Arrest':
             card = (
-                <TrapCard detailsText='Вы арестованы. Проследуйте в свою камеру'
+                <ImageCard detailsText='Вы арестованы. Проследуйте в свою камеру'
+                    imgSrc='/images/cards/arrested.png'
                     btn={{
                         title: 'Придется подчиниться. Но я этого так не оставлю',
                         clickHandler: () => goToPrison(),
+                    }}
+                />
+            );
+            break;
+        case 'TransportCompany':
+            card = (
+                <ImageCard detailsText={title}
+                    imgSrc='/images/cards/cargo-ship.png'
+                    btn={{
+                        title: 'Купить',
+                        clickHandler: () => console.log('Северный порт'),
                     }}
                 />
             );
