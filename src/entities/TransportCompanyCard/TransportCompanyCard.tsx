@@ -1,7 +1,7 @@
 import { TransportCompanyCardProps } from './TransportCompanyCard.model';
 import CardButton from 'shared/ui/CardButton';
 import NameBadge from 'entities/NameBadge';
-import classes from './RealEstateCard.module.scss';
+import classes from './TransportCompanyCard.module.scss';
 import confetti from 'canvas-confetti';
 import ColoredSquare from 'shared/ui/ColoredSquare';
 
@@ -45,7 +45,7 @@ const TransportCompanyCard = ({
     }
 
 	return (
-		<div className={classes.estate}>
+		<div className={classes.card}>
 			{ ownerName ? <div className={classes.owner}>
 				<NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
 			</div> : null }

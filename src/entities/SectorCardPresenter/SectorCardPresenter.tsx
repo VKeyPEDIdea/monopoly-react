@@ -18,6 +18,7 @@ import { getRandomArrayItem } from 'utilities/getRandomArrayItem';
 import ChanceBankCardPresenter from 'entities/ChanceBankCardPresenter';
 import ImageCard from 'entities/ImageCard';
 import { setTargetSector } from 'features/field/playingFieldSlice';
+import TransportCompanyCard from 'entities/TransportCompanyCard';
 
 const SectorCardPresenter = () => {
     const {
@@ -61,28 +62,29 @@ const SectorCardPresenter = () => {
         }));
     };
 
+    const cardData = {
+        title,
+        ownerName,
+        isShowToOwner: currentPlayerId === ownerId,
+        price: price ? price : 0,
+        color: color ? color : null,
+        buildingList: houseList ? houseList : null,
+        rentPrice: rentPrice || null,
+    };
+
+    const payload = {
+        playerId: currentPlayerId,
+        sectorId: id || null,
+    };
+
+    const payRentPayload = {
+        sectorId: id || null,
+        ownerPlayerId: ownerId,
+        tenantPlayerId: currentPlayerId,            
+    };
+
     switch (type) {
         case 'LandPlot':
-        case 'TransportCompany':
-            const cardData = {
-                title,
-                ownerName,
-                isShowToOwner: currentPlayerId === ownerId,
-                price: price ? price : 0,
-                color: color ? color : null,
-                buildingList: houseList ? houseList : null,
-                rentPrice: rentPrice || null,
-            };
-            const payload = {
-                playerId: currentPlayerId,
-                sectorId: id || null,
-            };
-            const payRentPayload = {
-                sectorId: id || null,
-                ownerPlayerId: ownerId,
-                tenantPlayerId: currentPlayerId,            
-            };
-
             card = (
                 <RealEstateCard data={cardData} 
                     onSellSectorClick={() => sellSectorClickHandler(payload)}
@@ -94,6 +96,15 @@ const SectorCardPresenter = () => {
                 //     { title: 'Царство', buildingList: houseList || []},
                 //     { title: 'Царство', buildingList: houseList || []},
                 // ]} ownerName='Паша' isShowToOwner={false}/>
+            );
+            break;
+        case 'TransportCompany':
+            card = (
+                <TransportCompanyCard data={cardData} 
+                    onSellSectorClick={() => sellSectorClickHandler(payload)}
+                    onbuySectorClick={() => buySectorClickHandler(payload)}
+                    onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
+                />
             );
             break;
         case 'Chance':
