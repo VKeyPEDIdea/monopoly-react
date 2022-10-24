@@ -73,24 +73,6 @@ const RealEstateCard = ({
                         details={btnDetails}
                         click={btnAction} />
                 </div>
-                <div className={classes.btn}>
-                    <CardButton negative={!isShowToOwner}
-                        title={'Северный'}
-                        details={btnDetails}
-                        click={btnAction} />
-                </div>
-                <div className={classes.btn}>
-                    <CardButton negative={!isShowToOwner}
-                        title={'Восточный'}
-                        details={btnDetails}
-                        click={btnAction} />
-                </div>
-                <div className={classes.btn}>
-                    <CardButton negative={!isShowToOwner}
-                        title={'Южный'}
-                        details={btnDetails}
-                        click={btnAction} />
-                </div>
             </div>
 		</div>
 	);

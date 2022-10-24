@@ -46,9 +46,6 @@ const TransportCompanyCard = ({
 
 	return (
 		<div className={classes.card}>
-			{ ownerName ? <div className={classes.owner}>
-				<NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
-			</div> : null }
             {
                 color
                     ? <div className={classes['color-box']}>
@@ -57,6 +54,9 @@ const TransportCompanyCard = ({
                     : null
             }
 			<div className={classes.content}>
+                { ownerName ? <div className={classes.owner}>
+                    <NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
+                </div> : null }
 				<p className={classes.title}>{title}</p>
                 <img className={classes.image} src={'images/cards/cargo-ship.png'} alt='' />
 			</div>
