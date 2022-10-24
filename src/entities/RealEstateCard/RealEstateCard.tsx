@@ -51,17 +51,43 @@ const RealEstateCard = ({
 			{ ownerName ? <div className={classes.owner}>
 				<NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
 			</div> : null }
-            <div className={classes['color-box']}>
-			    <ColoredSquare color={color ?? 'blue'} />
-            </div>
+            {
+                color
+                    ? <div className={classes['color-box']}>
+                        <ColoredSquare color={color ?? 'blue'} />
+                    </div>
+                    : null
+            }
 			<div className={classes.content}>
 				<p className={classes.title}>{title}</p>
-                <HousePointList list={buildingList}/>
+                {
+                    buildingList
+                        ? <HousePointList list={buildingList} />
+                        : <img className={classes.image} src={'images/cards/cargo-ship.png'} alt='' />
+                }
 			</div>
             <div className={classes.actions}>
                 <div className={classes.btn}>
                     <CardButton negative={!isShowToOwner}
                         title={btnTitle}
+                        details={btnDetails}
+                        click={btnAction} />
+                </div>
+                <div className={classes.btn}>
+                    <CardButton negative={!isShowToOwner}
+                        title={'Северный'}
+                        details={btnDetails}
+                        click={btnAction} />
+                </div>
+                <div className={classes.btn}>
+                    <CardButton negative={!isShowToOwner}
+                        title={'Восточный'}
+                        details={btnDetails}
+                        click={btnAction} />
+                </div>
+                <div className={classes.btn}>
+                    <CardButton negative={!isShowToOwner}
+                        title={'Южный'}
                         details={btnDetails}
                         click={btnAction} />
                 </div>

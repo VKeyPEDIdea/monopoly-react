@@ -19,6 +19,7 @@ interface Field {
     line: LineType;
     color?: Color;
     rentPrice?: number;
+    transferPrice?: number;
     housePrice?: number;
     rentPriceListWithHouse?: number[];
 }
@@ -64,7 +65,9 @@ const topLineConfig: Field[] = [
     },
     {
         title: 'Западный порт',
-        price: 0,
+        price: 200,
+        rentPrice: 20,
+        transferPrice: 50,
         type: 'TransportCompany',
         line: 'Top',
     },
@@ -148,7 +151,9 @@ const topLineConfig: Field[] = [
     },
     {
         title: 'Северный порт',
-        price: 0,
+        price: 200,
+        rentPrice: 20,
+        transferPrice: 50,
         type: 'TransportCompany',
         line: 'Top',
     },
@@ -224,7 +229,9 @@ const bottomLineConfig: Field[] = [
     },
     {
         title: 'Южный порт',
-        price: 0,
+        price: 200,
+        rentPrice: 20,
+        transferPrice: 50,
         type: 'TransportCompany',
         line: 'Bottom',
     },
@@ -308,7 +315,9 @@ const bottomLineConfig: Field[] = [
     },
     {
         title: 'Восточный порт',
-        price: 0,
+        price: 200,
+        rentPrice: 20,
+        transferPrice: 50,
         type: 'TransportCompany',
         line: 'Bottom',
     },
@@ -365,6 +374,7 @@ function getSectorList(config: Field[]) {
         color,
         price,
         rentPrice,
+        transferPrice,
         rentPriceListWithHouse,
         housePrice
     }) => {
@@ -410,6 +420,7 @@ function getSectorList(config: Field[]) {
             color,
             price,
             rentPrice,
+            transferPrice,
             housePrice,
             rentPriceListWithHouse,
         };

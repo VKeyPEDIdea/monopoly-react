@@ -34,7 +34,7 @@ const Sector = ({
 
 	if (type !== 'LandPlot') {
 		return (
-			<div ref={sector} className={[classes.sector, classes['sector--simple']].join(' ')}
+			<div ref={sector} className={[type === 'TransportCompany' ? sectorStyles : classes.sector, classes['sector--simple']].join(' ')}
                 data-sector-id={id}>
 				<p className={classes.title}>{title}</p>
                 <p className={[classes['step-count'], classes[`step-count--${line === 'Top' ? 'top' : 'bottom'}`]].join(' ')}>{stepCount}</p>

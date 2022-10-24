@@ -63,12 +63,13 @@ const SectorCardPresenter = () => {
 
     switch (type) {
         case 'LandPlot':
+        case 'TransportCompany':
             const cardData = {
                 title,
                 ownerName,
                 isShowToOwner: currentPlayerId === ownerId,
                 price: price ? price : 0,
-                color: color ? color : 'blue',
+                color: color ? color : null,
                 buildingList: houseList ? houseList : null,
                 rentPrice: rentPrice || null,
             };
@@ -124,17 +125,17 @@ const SectorCardPresenter = () => {
                 />
             );
             break;
-        case 'TransportCompany':
-            card = (
-                <ImageCard detailsText={title}
-                    imgSrc='/images/cards/cargo-ship.png'
-                    btn={{
-                        title: 'Купить',
-                        clickHandler: () => console.log('Северный порт'),
-                    }}
-                />
-            );
-            break;
+        // case 'TransportCompany':
+        //     card = (
+        //         <ImageCard detailsText={title}
+        //             imgSrc='/images/cards/cargo-ship.png'
+        //             btn={{
+        //                 title: 'Купить',
+        //                 clickHandler: () => console.log('Северный порт'),
+        //             }}
+        //         />
+        //     );
+        //     break;
     
         default:
             break;

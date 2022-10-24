@@ -7,6 +7,7 @@ export interface SectorCreateArg {
 	title: string;
 	price?: number;
     rentPrice?: number;
+    transferPrice?: number;
     housePrice?: number;
     rentPriceListWithHouse?: number[];
 	readonly color?: Color | null;

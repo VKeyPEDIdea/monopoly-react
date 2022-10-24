@@ -9,6 +9,7 @@ export interface Sector {
 	title: string;
 	price?: number;
     rentPrice?: number;
+    transferPrice?: number;
     housePrice?: number;
     houseList?: HousePointProps[];
 	readonly color?: Color | null;
