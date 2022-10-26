@@ -13,10 +13,12 @@ const TransportCompanyCard = ({
         ownerName,
         isShowToOwner,
         rentPrice,
+        harborList
     },
     onbuySectorClick,
     onSellSectorClick,
     onPayRentClick,
+    onTransferClick
 }: TransportCompanyCardProps) => {
     let btnTitle: string = '';
     let btnDetails: number = 0;
@@ -44,6 +46,16 @@ const TransportCompanyCard = ({
         };
     }
 
+    const transferActionList = harborList.map(({ id, title, transferPrice}) => {
+        return (
+            <div className={classes.btn}>
+                <CardButton negative={!isShowToOwner}
+                    title={title}
+                    details={btnDetails}
+                    click={() => onTransferClick(id, transferPrice)} />
+            </div>
+        );
+    });
 	return (
 		<div className={classes.card}>
             {
@@ -67,24 +79,7 @@ const TransportCompanyCard = ({
                         details={btnDetails}
                         click={btnAction} />
                 </div>
-                <div className={classes.btn}>
-                    <CardButton negative={!isShowToOwner}
-                        title={'Северный'}
-                        details={btnDetails}
-                        click={btnAction} />
-                </div>
-                <div className={classes.btn}>
-                    <CardButton negative={!isShowToOwner}
-                        title={'Восточный'}
-                        details={btnDetails}
-                        click={btnAction} />
-                </div>
-                <div className={classes.btn}>
-                    <CardButton negative={!isShowToOwner}
-                        title={'Южный'}
-                        details={btnDetails}
-                        click={btnAction} />
-                </div>
+                { transferActionList }
             </div>
 		</div>
 	);

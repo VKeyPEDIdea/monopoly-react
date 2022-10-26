@@ -8,7 +8,7 @@ import {
     selectCurrentPlayerId,
     selectPlayerByID
 } from 'features/players/selectors';
-import { selectTargetSector } from 'features/field/selectors';
+import { getTransportCompaniesListForCard, selectTargetSector } from 'features/field/selectors';
 import { BuySectorData } from 'models/BuySectorData.interface';
 import RealEstateCard from 'entities/RealEstateCard';
 import { useDispatch } from 'react-redux';
@@ -35,6 +35,7 @@ const SectorCardPresenter = () => {
     const currentPlayerId = useAppSelector(selectCurrentPlayerId);
     const ownerId = (owner !== undefined) ? owner : null;
     const ownerName = useAppSelector(state => selectPlayerByID(state, ownerId));
+    const transportCompanyList = useAppSelector(getTransportCompaniesListForCard);
     
     let card;
 
@@ -59,6 +60,15 @@ const SectorCardPresenter = () => {
         dispatch(transferToTarger({
             playerId: currentPlayerId,
             targetSectorId: 10,
+        }));
+    };
+
+    const transferToPortHandler = (targetSectorId: number, transferPrice: number) => {
+        // снимать оплату за проезд
+        dispatch(setTargetSector(targetSectorId));
+        dispatch(transferToTarger({
+            playerId: currentPlayerId,
+            targetSectorId: targetSectorId,
         }));
     };
 
@@ -99,11 +109,21 @@ const SectorCardPresenter = () => {
             );
             break;
         case 'TransportCompany':
+            const portCardData = {
+                title,
+                ownerName,
+                isShowToOwner: currentPlayerId === ownerId,
+                price: price ? price : 0,
+                color: color ? color : null,
+                rentPrice: rentPrice || null,
+                harborList: transportCompanyList,
+            };
             card = (
-                <TransportCompanyCard data={cardData} 
+                <TransportCompanyCard data={portCardData} 
                     onSellSectorClick={() => sellSectorClickHandler(payload)}
                     onbuySectorClick={() => buySectorClickHandler(payload)}
                     onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
+                    onTransferClick={transferToPortHandler}
                 />
             );
             break;

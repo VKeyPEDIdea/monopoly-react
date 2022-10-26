@@ -60,11 +60,7 @@ const RealEstateCard = ({
             }
 			<div className={classes.content}>
 				<p className={classes.title}>{title}</p>
-                {
-                    buildingList
-                        ? <HousePointList list={buildingList} />
-                        : <img className={classes.image} src={'images/cards/cargo-ship.png'} alt='' />
-                }
+                <HousePointList list={buildingList} />
 			</div>
             <div className={classes.actions}>
                 <div className={classes.btn}>
