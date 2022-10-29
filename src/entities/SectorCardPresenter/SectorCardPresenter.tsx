@@ -19,6 +19,7 @@ import ChanceBankCardPresenter from 'entities/ChanceBankCardPresenter';
 import ImageCard from 'entities/ImageCard';
 import { setTargetSector } from 'features/field/playingFieldSlice';
 import TransportCompanyCard from 'entities/TransportCompanyCard';
+import { payForTransfer } from 'features/players/reducers';
 
 const SectorCardPresenter = () => {
     const {
@@ -63,8 +64,8 @@ const SectorCardPresenter = () => {
         }));
     };
 
-    const transferToPortHandler = (targetSectorId: number, transferPrice: number) => {
-        // снимать оплату за проезд
+    const transferToPortHandler = (targetSectorId: number, transferPrice: number, owner: number | null) => {
+        dispatch(payForTransfer(transferPrice, currentPlayerId, owner))
         dispatch(setTargetSector(targetSectorId));
         dispatch(transferToTarger({
             playerId: currentPlayerId,

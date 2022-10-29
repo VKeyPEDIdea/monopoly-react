@@ -4,6 +4,7 @@ interface Harbor {
     id: number;
     title: string;
     transferPrice: number;
+    owner: number | null;
 }
 
 export interface TransportCompanyCardProps {
@@ -19,5 +20,5 @@ export interface TransportCompanyCardProps {
     onbuySectorClick(): void;
     onSellSectorClick(): void;
     onPayRentClick(): void;
-    onTransferClick(targetSectorId: number, transferPrice: number): void;
+    onTransferClick(targetSectorId: number, transferPrice: number, owner: number | null): void;
 }

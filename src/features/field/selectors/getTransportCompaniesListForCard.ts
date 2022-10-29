@@ -5,7 +5,12 @@ const getTransportCompaniesListForCard = (state: RootState) => {
         return type === 'TransportCompany' && id !== state.field.targetSector.id
     });
 
-    return transportCompanyList.map(({ id, title, transferPrice }) => ({ id, title, transferPrice: transferPrice || 0 }));
+    return transportCompanyList.map(({ id, title, transferPrice, owner }) => ({
+        id,
+        title,
+        transferPrice: transferPrice || 0,
+        owner: owner || null
+    }));
 };
 
 export default getTransportCompaniesListForCard;

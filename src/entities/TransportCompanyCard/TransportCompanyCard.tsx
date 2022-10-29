@@ -26,7 +26,7 @@ const TransportCompanyCard = ({
 
     if (ownerName) {
         if (isShowToOwner) {
-            btnTitle = 'Продать участок';
+            btnTitle = 'Продать';
             btnDetails = price / 2;
             btnAction = onSellSectorClick;
         } else {
@@ -46,13 +46,13 @@ const TransportCompanyCard = ({
         };
     }
 
-    const transferActionList = harborList.map(({ id, title, transferPrice}) => {
+    const transferActionList = harborList.map(({ id, title, transferPrice, owner}) => {
         return (
             <div className={classes.btn}>
-                <CardButton negative={!isShowToOwner}
+                <CardButton negative={true}
                     title={title}
-                    details={btnDetails}
-                    click={() => onTransferClick(id, transferPrice)} />
+                    details={isShowToOwner ? transferPrice - 20 : transferPrice}
+                    click={() => onTransferClick(id, isShowToOwner ? transferPrice - 20 : transferPrice, isShowToOwner ? null : owner)} />
             </div>
         );
     });
