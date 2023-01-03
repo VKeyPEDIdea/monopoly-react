@@ -10,7 +10,7 @@ import { arrestSectorFabric } from 'core/SectorFabric/ArrestSectorFabric.model';
 import { utilityCompanySectorFabric } from 'core/SectorFabric/UtilityCompanySectorFabric.model';
 import { Color } from 'models/color.type';
 import { LineType } from 'models/LineType.type';
-import { idGenerator } from 'utilities/idGenerator';
+import { idGenerator } from 'utilities/idGenerator/idGenerator';
 
 interface Field {
     title: string;
