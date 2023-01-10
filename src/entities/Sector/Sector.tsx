@@ -28,9 +28,7 @@ const Sector = ({
         }
     }, [target]);
 
-    const sectorStyles = isShowToOwner
-        ? [classes.sector, classes['sector--owner']].join(' ')
-        : classes.sector;
+    const sectorStyles = `${classes.sector} ${isShowToOwner ? classes['sector--owner'] : ''}`;
 
 	if (type !== 'LandPlot') {
 		return (
