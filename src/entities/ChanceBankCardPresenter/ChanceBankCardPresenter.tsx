@@ -18,6 +18,12 @@ interface ChanceBankCardPresenterProps {
     currentPlayerId: number;
 }
 
+interface ChanceAction {
+    btnTitle: string;
+    details: string;
+    action: () => void;
+}
+
 const ChanceBankCardPresenter = ({
     item: {
         type,
@@ -31,89 +37,102 @@ const ChanceBankCardPresenter = ({
     currentPlayerId
 }: ChanceBankCardPresenterProps) => {
     const dispatch = useDispatch();
+
     let action: () => void = () => {};
     let btnTitle: string = '';
     let details: string = '';
 
-    switch (type) {
-        case 'balance':
+    const chanceActions: {
+        [key: string]: () => ChanceAction | null
+    } = {
+        balance: () => {
             if (count) {
-                action = () => dispatch(changePlayerBalance({
-                    type: isNegative ? 'decrease' : 'increase',
-                    payload: {
-                        playerId: currentPlayerId,
-                        count,
-                    }
-                }));
-                btnTitle = btnText;
-                details = detailsText;
+                return {
+                    btnTitle: btnText,
+                    details: detailsText,
+                    action: () => dispatch(changePlayerBalance({
+                        type: isNegative ? 'decrease' : 'increase',
+                        payload: {
+                            playerId: currentPlayerId,
+                            count,
+                        }
+                    }))
+                }
+            } else {
+                return null;
             }
-            break;
-        case 'all-players':
-            action = () => dispatch(donateForGift(count || 0, currentPlayerId));            
-            btnTitle = btnText;
-            details = detailsText;
-            break;
-        case 'prison':
-            const fieldId  = useAppSelector(state => selectFieldIdByName(state, 'Тюрьма'));
-            action = () => {
-                dispatch(setTargetSector(fieldId));
-                dispatch(transferToTarger({
-                    playerId: currentPlayerId,
-                    targetSectorId: fieldId ?? 0,
-                }));
-            };
-            btnTitle = btnText;
-            details = detailsText;
-            break;
-        case 'transferToTarget':
-            action = () => {
+        },
+        'all-players': () => ({
+            btnTitle: btnText,
+            details: detailsText,
+            action: () => dispatch(donateForGift(count || 0, currentPlayerId))
+        }),
+        prison: () => {
+            const fieldId = useAppSelector(state => selectFieldIdByName(state, 'Тюрьма'));
+            return {
+                btnTitle: btnText,
+                details: detailsText,
+                action: () => {
+                    dispatch(setTargetSector(fieldId));
+                    dispatch(transferToTarger({
+                        playerId: currentPlayerId,
+                        targetSectorId: fieldId ?? 0,
+                    }));
+                }
+            }
+        },
+        transferToTarget: () => ({
+            btnTitle: btnText,
+            details: detailsText,
+            action: () => {
                 dispatch(setTargetSector(targetSector));
                 dispatch(transferToTarger({
                     playerId: currentPlayerId,
                     targetSectorId: targetSector || 0,
                 }));
-            };
-            btnTitle = btnText;
-            details = detailsText;
-            break;
-        case 'transferToRandom':
+            }
+        }),
+        transferToRandom: () => {
             const {
                 id,
                 title
             } = useAppSelector(getTargetToTransfer);
-            action = () => {
-                dispatch(setTargetSector(id));
-                dispatch(transferToTarger({
-                    playerId: currentPlayerId,
-                    targetSectorId: id,
-                }));
-            };
-            btnTitle = btnText + title;
-            details = detailsText;
-            break;
-        case 'expenses':
+            return {
+                btnTitle: btnText + title,
+                details: detailsText,
+                action: () => {
+                    dispatch(setTargetSector(id));
+                    dispatch(transferToTarger({
+                        playerId: currentPlayerId,
+                        targetSectorId: id,
+                    }));
+                }
+            }
+        },
+        expenses: () => {
             const {
                 repairPrice,
                 houseCount,
                 hotelCount
             } = useAppSelector(state => selectRepairPrice(state, currentPlayerId));
-            action = () => dispatch(changePlayerBalance({
-                type: 'decrease',
-                payload: {
-                    playerId: currentPlayerId,
-                    count: repairPrice,
-                }
-            }));
-            btnTitle = btnText;
-            details = detailsText + `${repairPrice} - стоимость ремонта. Количество домов: ${houseCount}, количество отелей: ${hotelCount}`;
-            break;
-        case 'bonus':
-            break;
-        default:
-            btnTitle = btnText;
-            details = detailsText;
-            break;
+            return {
+                btnTitle: btnText,
+                details: detailsText + `${repairPrice} - стоимость ремонта. Количество домов: ${houseCount}, количество отелей: ${hotelCount}`,
+                action: () => dispatch(changePlayerBalance({
+                    type: 'decrease',
+                    payload: {
+                        playerId: currentPlayerId,
+                        count: repairPrice,
+                    }
+                }))
+            }
+        },
+    };
+
+    const chanceAction = chanceActions[type]?.();
+    
+    if (!chanceAction) {
+        return null;
     }
 
     return (
