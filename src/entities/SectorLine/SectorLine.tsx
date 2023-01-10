@@ -3,6 +3,7 @@ import { Sector as SectorProps } from 'core/Sector/Sector.interface';
 import classes from './SectorLine.module.scss';
 import { useAppSelector } from 'app/hooks';
 import { selectStepsCountBySectorId } from 'features/field/selectors';
+import { selectCurrentPlayerId } from 'features/players/selectors';
 
 const SectorLine = ({
     list,
@@ -15,6 +16,7 @@ const SectorLine = ({
     position: 'Top' | 'Bottom',
     getСoordinates(element: HTMLDivElement | null): void;
 }) => {
+    const currentPlayerId = useAppSelector(selectCurrentPlayerId);
 	
     const sectorList = list.map(({
 		id,
@@ -32,6 +34,7 @@ const SectorLine = ({
             line={position}
 			type={type}
             owner={owner}
+            currentPlayerId={currentPlayerId}
             getСoordinates={getСoordinates}
             target={end === id}
             stepCount={useAppSelector(state => selectStepsCountBySectorId(state, id))}

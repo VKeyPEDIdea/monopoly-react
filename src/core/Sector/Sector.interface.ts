@@ -15,6 +15,7 @@ export interface Sector {
 	readonly color?: Color | null;
 	type: SectorType;
     owner?: null | number;
+    currentPlayerId?: null | number;
     target?: boolean;
     stepCount: number | null;
     getСoordinates?(element: HTMLDivElement | null): void;
