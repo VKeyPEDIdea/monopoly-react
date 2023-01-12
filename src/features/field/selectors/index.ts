@@ -7,6 +7,7 @@ import getTargetToTransfer from './getTargetToTransfer';
 import selectFieldIdByName from './selectFieldIdByName';
 import selectRepairPrice from './selectRepairPrice';
 import getTransportCompaniesListForCard from './getTransportCompaniesListForCard';
+import checkIsMonopoly from './checkIsMonopoly';
 
 export {
     selectTopLineSectors,
@@ -18,4 +19,5 @@ export {
     selectFieldIdByName,
     selectRepairPrice,
     getTransportCompaniesListForCard,
+    checkIsMonopoly
 };

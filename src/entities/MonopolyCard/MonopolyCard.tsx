@@ -35,9 +35,9 @@ const MonopolyCard = ({
 			<div className={classes.actions}>
 				<div className={classes.btn}>
 					<CardButton negative
-						title='Купить'
+						title='Продать'
 						details={-90}
-						click={() => console.log('Купить')}/>
+						click={() => console.log('Продать')}/>
 				</div>
 				<div className={classes.btn}>
 					<CardButton

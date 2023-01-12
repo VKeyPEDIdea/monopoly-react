@@ -48,7 +48,7 @@ const TransportCompanyCard = ({
 
     const transferActionList = harborList.map(({ id, title, transferPrice, owner}) => {
         return (
-            <div className={classes.btn}>
+            <div key={id + title} className={classes.btn}>
                 <CardButton negative={true}
                     title={title}
                     details={isShowToOwner ? transferPrice - 20 : transferPrice}

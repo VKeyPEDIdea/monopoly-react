@@ -8,7 +8,7 @@ import {
     selectCurrentPlayerId,
     selectPlayerByID
 } from 'features/players/selectors';
-import { getTransportCompaniesListForCard, selectTargetSector } from 'features/field/selectors';
+import { checkIsMonopoly, getTransportCompaniesListForCard, selectTargetSector } from 'features/field/selectors';
 import { BuySectorData } from 'models/BuySectorData.interface';
 import RealEstateCard from 'entities/RealEstateCard';
 import { useDispatch } from 'react-redux';
@@ -39,6 +39,8 @@ const SectorCardPresenter = () => {
     const transportCompanyList = useAppSelector(getTransportCompaniesListForCard);
     
     let card;
+
+    const isMonopoly = useAppSelector(state => checkIsMonopoly(state, id));
 
     const buySectorClickHandler = (payload: BuySectorData) => {
         dispatch(buySector(payload));
@@ -97,16 +99,17 @@ const SectorCardPresenter = () => {
     switch (type) {
         case 'LandPlot':
             card = (
-                <RealEstateCard data={cardData} 
-                    onSellSectorClick={() => sellSectorClickHandler(payload)}
-                    onbuySectorClick={() => buySectorClickHandler(payload)}
-                    onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
-                />
-                // <MonopolyCard color='red' estateList={[
-                //     { title: 'Царство', buildingList: houseList || []},
-                //     { title: 'Царство', buildingList: houseList || []},
-                //     { title: 'Царство', buildingList: houseList || []},
-                // ]} ownerName='Паша' isShowToOwner={false}/>
+                isMonopoly
+                    ? <MonopolyCard color={color || 'blue'} estateList={[
+                        { title: 'Царство', buildingList: houseList || []},
+                        { title: 'Царство', buildingList: houseList || []},
+                        { title: 'Царство', buildingList: houseList || []},
+                    ]} ownerName={ownerName || ''} isShowToOwner={true}/>
+                    : <RealEstateCard data={cardData} 
+                        onSellSectorClick={() => sellSectorClickHandler(payload)}
+                        onbuySectorClick={() => buySectorClickHandler(payload)}
+                        onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
+                    />
             );
             break;
         case 'TransportCompany':
