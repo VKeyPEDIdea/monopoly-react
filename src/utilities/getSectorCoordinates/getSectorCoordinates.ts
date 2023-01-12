@@ -1,5 +1,5 @@
-import { LineType } from '../models/LineType.type';
-import { SectorCoordinates } from '../models/SectorCoordinates.interface';
+import { LineType } from '../../models/LineType.type';
+import { SectorCoordinates } from '../../models/SectorCoordinates.interface';
 
 export default function getSectorCoordinates(element: HTMLDivElement | null, line: LineType): SectorCoordinates {
     if (element) {

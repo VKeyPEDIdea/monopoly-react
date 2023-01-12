@@ -2,8 +2,6 @@ import classes from './Sector.module.scss';
 import { Sector as SectorProps } from 'core/Sector/Sector.interface';
 import { useEffect, useRef } from 'react';
 import ColoredSquare from 'shared/ui/ColoredSquare';
-import { selectCurrentPlayerId } from 'features/players/selectors';
-import { useAppSelector } from 'app/hooks';
 
 const Sector = ({
     id,
@@ -14,12 +12,12 @@ const Sector = ({
 	type,
     target,
     owner,
+    currentPlayerId,
     stepCount,
     getСoordinates
 }: SectorProps) => {	
     const sector = useRef<HTMLDivElement>(null);
     const ownerId = (owner !== undefined) ? owner : null;
-    const currentPlayerId = useAppSelector(selectCurrentPlayerId);
     const isShowToOwner = currentPlayerId === ownerId;
     
     useEffect(() => {
@@ -28,9 +26,7 @@ const Sector = ({
         }
     }, [target]);
 
-    const sectorStyles = isShowToOwner
-        ? [classes.sector, classes['sector--owner']].join(' ')
-        : classes.sector;
+    const sectorStyles = `${classes.sector} ${isShowToOwner ? classes['sector--owner'] : ''}`;
 
 	if (type !== 'LandPlot') {
 		return (

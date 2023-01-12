@@ -1,7 +1,7 @@
-import { Coordinates } from "../../models/Coordinates.interface";
-import { idGenerator } from "../../utilities/idGenerator";
-import { Player } from "./Player.interface";
-import { PlayerType } from "./PlayerType.type";
+import { Coordinates } from 'models/Coordinates.interface';
+import { idGenerator } from 'utilities/idGenerator';
+import { Player } from './Player.interface';
+import { PlayerType } from './PlayerType.type';
 
 export class Robot implements Player {
     id: number;

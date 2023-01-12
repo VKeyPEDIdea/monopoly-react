@@ -1,4 +1,4 @@
-class IDGenerator {
+export class IDGenerator {
     private playerID: number;
     private sectorID: number;
 
