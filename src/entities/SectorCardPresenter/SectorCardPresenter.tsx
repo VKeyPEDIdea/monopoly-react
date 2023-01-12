@@ -8,7 +8,12 @@ import {
     selectCurrentPlayerId,
     selectPlayerByID
 } from 'features/players/selectors';
-import { checkIsMonopoly, getTransportCompaniesListForCard, selectTargetSector } from 'features/field/selectors';
+import {
+    checkIsMonopoly,
+    getTransportCompaniesListForCard,
+    selectMonopolyByColor,
+    selectTargetSector
+} from 'features/field/selectors';
 import { BuySectorData } from 'models/BuySectorData.interface';
 import RealEstateCard from 'entities/RealEstateCard';
 import { useDispatch } from 'react-redux';
@@ -20,6 +25,7 @@ import ImageCard from 'entities/ImageCard';
 import { setTargetSector } from 'features/field/playingFieldSlice';
 import TransportCompanyCard from 'entities/TransportCompanyCard';
 import { payForTransfer } from 'features/players/reducers';
+import { HousePointProps } from 'shared/ui/HousePoint/HousePoint.model';
 
 const SectorCardPresenter = () => {
     const {
@@ -37,10 +43,21 @@ const SectorCardPresenter = () => {
     const ownerId = (owner !== undefined) ? owner : null;
     const ownerName = useAppSelector(state => selectPlayerByID(state, ownerId));
     const transportCompanyList = useAppSelector(getTransportCompaniesListForCard);
+    const monopolySectorList = useAppSelector(state => selectMonopolyByColor(state, color || 'blue'));
     
     let card;
+    let estateList: {title: string, buildingList: HousePointProps[]}[] = [];
 
     const isMonopoly = useAppSelector(state => checkIsMonopoly(state, id));
+    if (isMonopoly) {
+        estateList = monopolySectorList.map(({ title, houseList}) => {
+            return {
+                title: title,
+                buildingList: houseList || [{buildType: 'house', price: 0, state: 'vacant'}],
+            }
+        });
+    }
+
 
     const buySectorClickHandler = (payload: BuySectorData) => {
         dispatch(buySector(payload));
@@ -100,11 +117,10 @@ const SectorCardPresenter = () => {
         case 'LandPlot':
             card = (
                 isMonopoly
-                    ? <MonopolyCard color={color || 'blue'} estateList={[
-                        { title: 'Царство', buildingList: houseList || []},
-                        { title: 'Царство', buildingList: houseList || []},
-                        { title: 'Царство', buildingList: houseList || []},
-                    ]} ownerName={ownerName || ''} isShowToOwner={true}/>
+                    ? <MonopolyCard color={color || 'blue'}
+                        estateList={estateList}
+                        ownerName={ownerName || ''}
+                        isShowToOwner={true}/>
                     : <RealEstateCard data={cardData} 
                         onSellSectorClick={() => sellSectorClickHandler(payload)}
                         onbuySectorClick={() => buySectorClickHandler(payload)}

@@ -8,6 +8,7 @@ import selectFieldIdByName from './selectFieldIdByName';
 import selectRepairPrice from './selectRepairPrice';
 import getTransportCompaniesListForCard from './getTransportCompaniesListForCard';
 import checkIsMonopoly from './checkIsMonopoly';
+import selectMonopolyByColor from './selectMonopolyByColor';
 
 export {
     selectTopLineSectors,
@@ -19,5 +20,6 @@ export {
     selectFieldIdByName,
     selectRepairPrice,
     getTransportCompaniesListForCard,
-    checkIsMonopoly
+    checkIsMonopoly,
+    selectMonopolyByColor
 };
