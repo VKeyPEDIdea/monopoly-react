@@ -41,7 +41,7 @@ const MiddleBoard = () => {
 			<div className={classes['middle-section']}>
                 <div className={classes.card}>
                     <ExtraDimensionСard scale={1.1}>
-                        <SectorCardPresenter />
+                        <SectorCardPresenter currentPlayerId={currentPlayerId}/>
                     </ExtraDimensionСard>
                 </div>
 			</div>

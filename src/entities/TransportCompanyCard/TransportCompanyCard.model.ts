@@ -15,10 +15,16 @@ export interface TransportCompanyCardProps {
         rentPrice: number | null;
         ownerName: string | null;
         isShowToOwner: boolean;
+        currentPlayerId: number;
         harborList: Array<Harbor>;
     }
     onbuySectorClick(): void;
     onSellSectorClick(): void;
     onPayRentClick(): void;
-    onTransferClick(targetSectorId: number, transferPrice: number, owner: number | null): void;
+    onTransferClick(
+        targetSectorId: number,
+        transferPrice: number,
+        owner: number | null,
+        playerId: number,
+    ): void;
 }

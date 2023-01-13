@@ -13,7 +13,8 @@ const TransportCompanyCard = ({
         ownerName,
         isShowToOwner,
         rentPrice,
-        harborList
+        harborList,
+        currentPlayerId
     },
     onbuySectorClick,
     onSellSectorClick,
@@ -52,7 +53,12 @@ const TransportCompanyCard = ({
                 <CardButton negative={true}
                     title={title}
                     details={isShowToOwner ? transferPrice - 20 : transferPrice}
-                    click={() => onTransferClick(id, isShowToOwner ? transferPrice - 20 : transferPrice, isShowToOwner ? null : owner)} />
+                    click={() => onTransferClick(
+                        id,
+                        isShowToOwner ? transferPrice - 20 : transferPrice,
+                        isShowToOwner ? null : owner,
+                        currentPlayerId,
+                    )} />
             </div>
         );
     });

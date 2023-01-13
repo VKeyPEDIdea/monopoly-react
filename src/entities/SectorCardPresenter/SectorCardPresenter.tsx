@@ -1,13 +1,11 @@
 import { useAppSelector } from 'app/hooks';
-import { payRent, transferToTarger } from 'features/field/reducers';
 import {
-    buySector,
-    sellSector,
+    goToPrison,
+    payRent,
+    transferToPort,
 } from 'features/field/reducers';
-import {
-    selectCurrentPlayerId,
-    selectPlayerByID
-} from 'features/players/selectors';
+import { buySector, sellSector } from 'features/field/reducers';
+import { selectPlayerByID } from 'features/players/selectors';
 import {
     checkIsMonopoly,
     getTransportCompaniesListForCard,
@@ -22,12 +20,16 @@ import { BANK_LIST, CHANCE_LIST } from 'config/opportunitiesCard.config';
 import { getRandomArrayItem } from 'utilities/getRandomArrayItem';
 import ChanceBankCardPresenter from 'entities/ChanceBankCardPresenter';
 import ImageCard from 'entities/ImageCard';
-import { setTargetSector } from 'features/field/playingFieldSlice';
 import TransportCompanyCard from 'entities/TransportCompanyCard';
-import { payForTransfer } from 'features/players/reducers';
 import { HousePointProps } from 'shared/ui/HousePoint/HousePoint.model';
 
-const SectorCardPresenter = () => {
+interface SectorCardPresenterProps {
+    currentPlayerId: number;
+}
+
+const SectorCardPresenter = ({
+    currentPlayerId
+}: SectorCardPresenterProps) => {
     const {
         id,
         type,
@@ -39,7 +41,6 @@ const SectorCardPresenter = () => {
         houseList,
     } = useAppSelector(selectTargetSector);
     const dispatch = useDispatch();
-    const currentPlayerId = useAppSelector(selectCurrentPlayerId);
     const ownerId = (owner !== undefined) ? owner : null;
     const ownerName = useAppSelector(state => selectPlayerByID(state, ownerId));
     const transportCompanyList = useAppSelector(getTransportCompaniesListForCard);
@@ -53,11 +54,10 @@ const SectorCardPresenter = () => {
         estateList = monopolySectorList.map(({ title, houseList}) => {
             return {
                 title: title,
-                buildingList: houseList || [{buildType: 'house', price: 0, state: 'vacant'}],
+                buildingList: houseList || [{ buildType: 'house', price: 0, state: 'vacant' }],
             }
         });
     }
-
 
     const buySectorClickHandler = (payload: BuySectorData) => {
         dispatch(buySector(payload));
@@ -75,23 +75,6 @@ const SectorCardPresenter = () => {
         dispatch(payRent(payload));
     };
 
-    const goToPrison = () => {
-        dispatch(setTargetSector(10));
-        dispatch(transferToTarger({
-            playerId: currentPlayerId,
-            targetSectorId: 10,
-        }));
-    };
-
-    const transferToPortHandler = (targetSectorId: number, transferPrice: number, owner: number | null) => {
-        dispatch(payForTransfer(transferPrice, currentPlayerId, owner))
-        dispatch(setTargetSector(targetSectorId));
-        dispatch(transferToTarger({
-            playerId: currentPlayerId,
-            targetSectorId: targetSectorId,
-        }));
-    };
-
     const cardData = {
         title,
         ownerName,
@@ -102,7 +85,7 @@ const SectorCardPresenter = () => {
         rentPrice: rentPrice || null,
     };
 
-    const payload = {
+    const buySellPayload = {
         playerId: currentPlayerId,
         sectorId: id || null,
     };
@@ -122,8 +105,8 @@ const SectorCardPresenter = () => {
                         ownerName={ownerName || ''}
                         isShowToOwner={true}/>
                     : <RealEstateCard data={cardData} 
-                        onSellSectorClick={() => sellSectorClickHandler(payload)}
-                        onbuySectorClick={() => buySectorClickHandler(payload)}
+                        onSellSectorClick={() => sellSectorClickHandler(buySellPayload)}
+                        onbuySectorClick={() => buySectorClickHandler(buySellPayload)}
                         onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
                     />
             );
@@ -137,13 +120,14 @@ const SectorCardPresenter = () => {
                 color: color ? color : null,
                 rentPrice: rentPrice || null,
                 harborList: transportCompanyList,
+                currentPlayerId,
             };
             card = (
                 <TransportCompanyCard data={portCardData} 
-                    onSellSectorClick={() => sellSectorClickHandler(payload)}
-                    onbuySectorClick={() => buySectorClickHandler(payload)}
+                    onSellSectorClick={() => sellSectorClickHandler(buySellPayload)}
+                    onbuySectorClick={() => buySectorClickHandler(buySellPayload)}
                     onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
-                    onTransferClick={transferToPortHandler}
+                    onTransferClick={transferToPort}
                 />
             );
             break;
@@ -171,7 +155,7 @@ const SectorCardPresenter = () => {
                     imgSrc='/images/cards/arrested.png'
                     btn={{
                         title: 'Придется подчиниться. Но я этого так не оставлю',
-                        clickHandler: () => goToPrison(),
+                        clickHandler: () => goToPrison(currentPlayerId),
                     }}
                 />
             );
