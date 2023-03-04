@@ -10,6 +10,7 @@ import getTransportCompaniesListForCard from './getTransportCompaniesListForCard
 import checkIsMonopoly from './checkIsMonopoly';
 import selectMonopolyByColor from './selectMonopolyByColor';
 import getHousePriceBySectorId from './getHousePriceBySectorId';
+import getSectorRentPrice from './getSectorRentPrice';
 
 export {
     selectTopLineSectors,
@@ -24,4 +25,5 @@ export {
     checkIsMonopoly,
     selectMonopolyByColor,
     getHousePriceBySectorId,
+    getSectorRentPrice,
 };

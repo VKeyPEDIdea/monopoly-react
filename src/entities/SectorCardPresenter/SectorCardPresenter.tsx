@@ -10,6 +10,7 @@ import { selectPlayerByID } from 'features/players/selectors';
 import {
     checkIsMonopoly,
     getHousePriceBySectorId,
+    getSectorRentPrice,
     getTransportCompaniesListForCard,
     selectMonopolyByColor,
     selectTargetSector
@@ -48,6 +49,7 @@ const SectorCardPresenter = ({
     const transportCompanyList = useAppSelector(getTransportCompaniesListForCard);
     const monopolySectorList = useAppSelector(state => selectMonopolyByColor(state, color || 'blue'));
     const housePrice = useAppSelector(state => getHousePriceBySectorId(state, id));
+    const monopolySectorRentPrice = useAppSelector(state => getSectorRentPrice(state, id));
 
     let card;
     let estateList: {title: string, buildingList: HousePointProps[]}[] = [];
@@ -74,7 +76,7 @@ const SectorCardPresenter = ({
         sectorId: number | null,
         ownerPlayerId: number | null,
         tenantPlayerId: number,
-        isMonopoly: boolean, 
+        monopolyRentPrice: number, 
     }) => {
         dispatch(payRent(payload));
     };
@@ -102,7 +104,7 @@ const SectorCardPresenter = ({
         sectorId: id || null,
         ownerPlayerId: ownerId,
         tenantPlayerId: currentPlayerId,
-        isMonopoly,     
+        monopolyRentPrice: monopolySectorRentPrice,     
     };
 
     switch (type) {
@@ -111,7 +113,7 @@ const SectorCardPresenter = ({
                 isMonopoly
                     ? <MonopolyCard color={color || 'blue'}
                         estateList={estateList}
-                        rentPrice={rentPrice || 0}
+                        rentPrice={monopolySectorRentPrice}
                         ownerName={ownerName || ''}
                         housePrice={housePrice || 1}
                         isShowToOwner={currentPlayerId === ownerId}

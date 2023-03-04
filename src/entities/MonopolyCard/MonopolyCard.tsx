@@ -56,7 +56,7 @@ const MonopolyCard = ({
                         : <div className={classes.btn}>
                             <CardButton negative
                                 title='Оплатить аренду'
-                                details={-rentPrice * 2}
+                                details={-rentPrice}
                                 click={onPayRentClick}/>
                         </div>
                 }
