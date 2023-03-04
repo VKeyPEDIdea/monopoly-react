@@ -12,6 +12,7 @@ export interface Sector {
     transferPrice?: number;
     housePrice?: number;
     houseList?: HousePointProps[];
+    isLastUpgraded?: boolean;
 	readonly color?: Color | null;
 	type: SectorType;
     owner?: null | number;

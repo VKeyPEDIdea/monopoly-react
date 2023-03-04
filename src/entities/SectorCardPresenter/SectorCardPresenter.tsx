@@ -1,5 +1,6 @@
 import { useAppSelector } from 'app/hooks';
 import {
+    buildHouse,
     goToPrison,
     payRent,
     transferToPort,
@@ -8,6 +9,7 @@ import { buySector, sellSector } from 'features/field/reducers';
 import { selectPlayerByID } from 'features/players/selectors';
 import {
     checkIsMonopoly,
+    getHousePriceBySectorId,
     getTransportCompaniesListForCard,
     selectMonopolyByColor,
     selectTargetSector
@@ -45,7 +47,8 @@ const SectorCardPresenter = ({
     const ownerName = useAppSelector(state => selectPlayerByID(state, ownerId));
     const transportCompanyList = useAppSelector(getTransportCompaniesListForCard);
     const monopolySectorList = useAppSelector(state => selectMonopolyByColor(state, color || 'blue'));
-    
+    const housePrice = useAppSelector(state => getHousePriceBySectorId(state, id));
+
     let card;
     let estateList: {title: string, buildingList: HousePointProps[]}[] = [];
 
@@ -70,9 +73,14 @@ const SectorCardPresenter = ({
     const payRentSectorClickHandler = (payload: {
         sectorId: number | null,
         ownerPlayerId: number | null,
-        tenantPlayerId: number,    
+        tenantPlayerId: number,
+        isMonopoly: boolean, 
     }) => {
         dispatch(payRent(payload));
+    };
+
+    const buildHouseClickHandler = () => {
+        dispatch(buildHouse(id));
     };
 
     const cardData = {
@@ -93,7 +101,8 @@ const SectorCardPresenter = ({
     const payRentPayload = {
         sectorId: id || null,
         ownerPlayerId: ownerId,
-        tenantPlayerId: currentPlayerId,            
+        tenantPlayerId: currentPlayerId,
+        isMonopoly,     
     };
 
     switch (type) {
@@ -102,8 +111,12 @@ const SectorCardPresenter = ({
                 isMonopoly
                     ? <MonopolyCard color={color || 'blue'}
                         estateList={estateList}
+                        rentPrice={rentPrice || 0}
                         ownerName={ownerName || ''}
-                        isShowToOwner={true}/>
+                        housePrice={housePrice || 1}
+                        isShowToOwner={currentPlayerId === ownerId}
+                        onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
+                        onBuyHouseClick={() => buildHouseClickHandler()}/>
                     : <RealEstateCard data={cardData} 
                         onSellSectorClick={() => sellSectorClickHandler(buySellPayload)}
                         onbuySectorClick={() => buySectorClickHandler(buySellPayload)}

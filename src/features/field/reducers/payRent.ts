@@ -7,19 +7,21 @@ import {
 const payRent = (payload: {
     sectorId: number | null,
     ownerPlayerId: number | null,
-    tenantPlayerId: number
+    tenantPlayerId: number,
+    isMonopoly: boolean,
 }) => (dispatch: AppDispatch, getState: () => RootState) => {
     const sector = getState().field.sectorList.find(({ id }) => id === payload.sectorId);
     
     if (sector) {
         const { rentPrice } = sector;
+        const count = payload.isMonopoly ? rentPrice! * 2 : rentPrice;
 
         dispatch(increasePlayersCashCount({
-            count: rentPrice || 0,
+            count: count || 0,
             playerId: payload.ownerPlayerId,
         }));
         dispatch(decreasePlayersCashCount({
-            count: rentPrice || 0,
+            count: count || 0,
             playerId: payload.tenantPlayerId,
         }));
     }

@@ -9,7 +9,11 @@ const MonopolyCard = ({
 	color,
 	estateList,
 	ownerName,
+    rentPrice,
+    housePrice,
     isShowToOwner,
+    onPayRentClick,
+    onBuyHouseClick,
 }: MonopolyCardProps) => {
 	const sectorList = estateList.map(({ title, buildingList }, index) => {
 		return <div className={classes.sector} key={title + index + 'sector'}>
@@ -33,18 +37,29 @@ const MonopolyCard = ({
 				{sectorList}
 			</div>
 			<div className={classes.actions}>
-				<div className={classes.btn}>
-					<CardButton negative
-						title='Продать'
-						details={-90}
-						click={() => console.log('Продать')}/>
-				</div>
-				<div className={classes.btn}>
-					<CardButton
-						title='Купить'
-						details={-90}
-						click={() => console.log('Купить')}/>
-				</div>
+                {
+                    isShowToOwner
+                        ? <>
+                            <div className={classes.btn}>
+                                <CardButton
+                                    title='Снести дом'
+                                    details={housePrice / 2}
+                                    click={() => console.log('Продать')}/>
+                            </div>
+                            <div className={classes.btn}>
+                                <CardButton negative
+                                    title='Построить дом'
+                                    details={-housePrice}
+                                    click={onBuyHouseClick}/>
+                            </div>
+                        </>
+                        : <div className={classes.btn}>
+                            <CardButton negative
+                                title='Оплатить аренду'
+                                details={-rentPrice * 2}
+                                click={onPayRentClick}/>
+                        </div>
+                }
 			</div>
 		</div>
 	);

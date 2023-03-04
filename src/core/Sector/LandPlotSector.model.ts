@@ -12,12 +12,13 @@ export class LandPlotSector implements Sector {
     readonly type: SectorType;
     readonly price: number;
     readonly rentPrice: number;
-    houseList: HousePointProps[];
+    public houseList: HousePointProps[];
     readonly housePrice: number;
     readonly color: Color;
     owner: null | number;
     currentPlayerId: number;
     stepCount: number;
+    public isLastUpgraded: boolean;
 
     constructor({ id, line, title, price, rentPrice, housePrice, rentPriceListWithHouse, color}: SectorCreateArg) {
         this.id = id;
@@ -27,6 +28,7 @@ export class LandPlotSector implements Sector {
         this.price = price ?? 0;
         this.rentPrice = rentPrice ?? 0;
         this.housePrice = housePrice ?? 0;
+        this.isLastUpgraded = false;
         this.houseList = rentPriceListWithHouse?.map((num, index) => {
             return {
                 state: 'vacant',

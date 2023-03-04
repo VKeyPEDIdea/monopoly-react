@@ -9,6 +9,7 @@ import selectRepairPrice from './selectRepairPrice';
 import getTransportCompaniesListForCard from './getTransportCompaniesListForCard';
 import checkIsMonopoly from './checkIsMonopoly';
 import selectMonopolyByColor from './selectMonopolyByColor';
+import getHousePriceBySectorId from './getHousePriceBySectorId';
 
 export {
     selectTopLineSectors,
@@ -21,5 +22,6 @@ export {
     selectRepairPrice,
     getTransportCompaniesListForCard,
     checkIsMonopoly,
-    selectMonopolyByColor
+    selectMonopolyByColor,
+    getHousePriceBySectorId,
 };

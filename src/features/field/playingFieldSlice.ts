@@ -47,6 +47,19 @@ export const playingFieldSlice = createSlice({
 
             if (sector) sector.owner = null;
         },
+        setLastUpgradedSector: (state, { payload }) => {
+            const sector = state.sectorList.find(sector => sector.id === payload.sectorId);
+            const lastUpgradedSector = state.sectorList.find(sector => sector.isLastUpgraded);
+
+            if (lastUpgradedSector) lastUpgradedSector.isLastUpgraded = false;
+            if (sector) sector.isLastUpgraded = true;
+        },
+        setHouseState: (state, { payload }) => {
+            const sector = state.sectorList.find(sector => sector.id === payload.sectorId);
+            const house = sector?.houseList![payload.houseIndex];
+
+            if (house) house.state = payload.state;
+        }
     },
 });
 
@@ -55,6 +68,8 @@ export const {
     setDice,
     setOwnerForSector,
     setFreeSector,
+    setLastUpgradedSector,
+    setHouseState,
 } = playingFieldSlice.actions;
 
 export default playingFieldSlice.reducer;
