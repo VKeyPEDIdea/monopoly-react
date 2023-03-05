@@ -1,6 +1,7 @@
 import { useAppSelector } from 'app/hooks';
 import {
     buildHouse,
+    demolishHouse,
     goToPrison,
     payRent,
     transferToPort,
@@ -85,6 +86,10 @@ const SectorCardPresenter = ({
         dispatch(buildHouse(id));
     };
 
+    const demolishHouseClickHandler = () => {
+        dispatch(demolishHouse(id));
+    };
+
     const cardData = {
         title,
         ownerName,
@@ -118,7 +123,8 @@ const SectorCardPresenter = ({
                         housePrice={housePrice || 1}
                         isShowToOwner={currentPlayerId === ownerId}
                         onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
-                        onBuyHouseClick={() => buildHouseClickHandler()}/>
+                        onBuyHouseClick={buildHouseClickHandler}
+                        onDemolishHouseClick={demolishHouseClickHandler}/>
                     : <RealEstateCard data={cardData} 
                         onSellSectorClick={() => sellSectorClickHandler(buySellPayload)}
                         onbuySectorClick={() => buySectorClickHandler(buySellPayload)}

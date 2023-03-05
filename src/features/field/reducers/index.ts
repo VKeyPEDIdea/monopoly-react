@@ -6,6 +6,7 @@ import transferToTarger from './transferToTarger';
 import goToPrison from './goToPrison';
 import transferToPort from './transferToPort';
 import buildHouse from './buildHouse';
+import demolishHouse from './demolishHouse';
 
 export {
     payRent,
@@ -15,5 +16,6 @@ export {
     transferToTarger,
     goToPrison,
     transferToPort,
-    buildHouse
+    buildHouse,
+    demolishHouse
 };

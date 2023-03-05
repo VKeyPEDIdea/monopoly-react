@@ -10,4 +10,5 @@ export interface MonopolyCardProps {
     isShowToOwner: boolean; 
     onPayRentClick: () => void;
     onBuyHouseClick: () => void;
+    onDemolishHouseClick: () => void;
 };
