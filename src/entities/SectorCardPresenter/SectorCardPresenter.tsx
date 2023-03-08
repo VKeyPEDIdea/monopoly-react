@@ -73,11 +73,20 @@ const SectorCardPresenter = ({
         dispatch(sellSector(payload));
     };
 
-    const payRentSectorClickHandler = (payload: {
+    const payRentMonopolySectorClickHandler = (payload: {
         sectorId: number | null,
         ownerPlayerId: number | null,
         tenantPlayerId: number,
         monopolyRentPrice: number, 
+    }) => {
+        dispatch(payRent(payload));
+    };
+
+    const payRentSectorClickHandler = (payload: {
+        sectorId: number | null,
+        ownerPlayerId: number | null,
+        tenantPlayerId: number,
+        rentPrice: number, 
     }) => {
         dispatch(payRent(payload));
     };
@@ -105,11 +114,18 @@ const SectorCardPresenter = ({
         sectorId: id || null,
     };
 
-    const payRentPayload = {
+    const payMonopolyRentPayload = {
         sectorId: id || null,
         ownerPlayerId: ownerId,
         tenantPlayerId: currentPlayerId,
         monopolyRentPrice: monopolySectorRentPrice,     
+    };
+
+    const payRentPayload = {
+        sectorId: id || null,
+        ownerPlayerId: ownerId,
+        tenantPlayerId: currentPlayerId,
+        rentPrice: rentPrice || 0,    
     };
 
     switch (type) {
@@ -122,7 +138,7 @@ const SectorCardPresenter = ({
                         ownerName={ownerName || ''}
                         housePrice={housePrice || 1}
                         isShowToOwner={currentPlayerId === ownerId}
-                        onPayRentClick={() => payRentSectorClickHandler({ ...payRentPayload })}
+                        onPayRentClick={() => payRentMonopolySectorClickHandler({ ...payMonopolyRentPayload })}
                         onBuyHouseClick={buildHouseClickHandler}
                         onDemolishHouseClick={demolishHouseClickHandler}/>
                     : <RealEstateCard data={cardData} 
