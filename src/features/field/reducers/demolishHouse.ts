@@ -22,7 +22,6 @@ const demolishHouse = (sectorId: number) => (dispatch: AppDispatch, getState: ()
             const indexOfLastUpgraded = sectorList.indexOf(lastUpgradedSector);
             const prevSector = sectorList[indexOfLastUpgraded - 1] ? sectorList[indexOfLastUpgraded - 1] : sectorList[sectorList.length - 1];
             demolishHouseIndex = getIndexOfAquiredHouse(lastUpgradedSector.houseList!);
-            console.log('demolishHouseIndex', demolishHouseIndex);
             sectorId = prevSector.id;
         }
         
