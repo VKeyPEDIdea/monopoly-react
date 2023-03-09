@@ -1,9 +1,9 @@
 import classes from './Sector.module.scss';
 import { Sector as SectorProps } from 'core/Sector/Sector.interface';
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import ColoredSquare from 'shared/ui/ColoredSquare';
 
-const Sector = ({
+const Sector = memo(({
     id,
 	line,
 	price,
@@ -63,6 +63,6 @@ const Sector = ({
             <p className={[classes['step-count'], classes['step-count--top']].join(' ')}>{stepCount}</p>
 		</div>
 	);
-};
+});
 
 export default Sector;

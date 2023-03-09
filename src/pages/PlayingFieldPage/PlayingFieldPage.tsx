@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useAppSelector } from 'app/hooks';
 import { useDispatch } from 'react-redux';
 import classes from './PlayingFieldPage.module.scss';
@@ -18,6 +18,7 @@ import {
 import { moveChipToTargetSector } from 'features/players/reducers';
 import { setPlayerCoordinatesByPlayerId } from 'features/players/playersSlice';
 import getSectorCoordinates from 'utilities/getSectorCoordinates';
+import { SectorCoordinates } from 'models/SectorCoordinates.interface';
 
 const PlayingField = () => {
     const playerChipsList = useAppSelector(selectPlayersForChips);
@@ -28,20 +29,29 @@ const PlayingField = () => {
     const [isInitialized, setIsInitialized] = useState(false);
     const playersIdList = useAppSelector(selectPlayersIdList);
     const dispatch = useDispatch();
+    const lineType = targetSectorId < 19 ? 'Top' : 'Bottom';
 
-    const showCoordinates = (element: HTMLDivElement | null) => {
-        const coordinates = getSectorCoordinates(element, targetSectorId < 19 ? 'Top' : 'Bottom');
+    const showCoordinates = useCallback((element: HTMLDivElement | null) => {
+        const coordinates = getSectorCoordinates(element, lineType);
         if (isInitialized) {
-            dispatch(moveChipToTargetSector({
-                currentPlayerId,
-                coordinates,
-            }));
+            handleIsInit(coordinates);
         } else {
-            for (const id of playersIdList) {
-                dispatch(setPlayerCoordinatesByPlayerId({ playerId: id, coordinates }));
-            }
-            setIsInitialized(true);
+            handleIsNotInit(coordinates);
         }
+    }, [isInitialized, lineType]);
+
+    const handleIsInit = (coordinates: SectorCoordinates) => {
+        dispatch(moveChipToTargetSector({
+            currentPlayerId,
+            coordinates,
+        }));
+    };
+
+    const handleIsNotInit = (coordinates: SectorCoordinates) => {
+        for (const id of playersIdList) {
+            dispatch(setPlayerCoordinatesByPlayerId({ playerId: id, coordinates }));
+        }
+        setIsInitialized(true);
     };
 
 	return (
@@ -51,13 +61,13 @@ const PlayingField = () => {
             <SectorLine position='Top'
                 list={topLineSectors}
                 target={targetSectorId}
-                getСoordinates={showCoordinates}
+                getCoordinates={showCoordinates}
                 />
 			<MiddleBoard />
             <SectorLine position='Bottom'
                 list={bottomLineSectors}
                 target={targetSectorId}
-                getСoordinates={showCoordinates}
+                getCoordinates={showCoordinates}
             />
 		</div>
 	);

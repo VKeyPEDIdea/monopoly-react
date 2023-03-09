@@ -17,5 +17,5 @@ export {
     goToPrison,
     transferToPort,
     buildHouse,
-    demolishHouse
+    demolishHouse,
 };

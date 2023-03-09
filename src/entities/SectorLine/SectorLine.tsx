@@ -7,16 +7,19 @@ import { selectCurrentPlayerId } from 'features/players/selectors';
 
 const SectorLine = ({
     list,
-    target: end,
+    target,
     position,
-    getСoordinates,
+    getCoordinates,
 }: {
     list: SectorProps[],
     target: number,
     position: 'Top' | 'Bottom',
-    getСoordinates(element: HTMLDivElement | null): void;
+    getCoordinates(element: HTMLDivElement | null): void;
 }) => {
     const currentPlayerId = useAppSelector(selectCurrentPlayerId);
+    const stepsCountBySectorId = (id: number) => {
+        return useAppSelector(state => selectStepsCountBySectorId(state, id));
+    };
 	
     const sectorList = list.map(({
 		id,
@@ -25,8 +28,8 @@ const SectorLine = ({
 		price,
 		type,
         owner,
-	}, index) => {
-		return <Sector key={'sector' + index}
+	}) => {
+		return <Sector key={'sector' + id + title}
             id={id}
 			title={title}
 			price={price}
@@ -35,13 +38,12 @@ const SectorLine = ({
 			type={type}
             owner={owner}
             currentPlayerId={currentPlayerId}
-            getСoordinates={getСoordinates}
-            target={end === id}
-            stepCount={useAppSelector(state => selectStepsCountBySectorId(state, id))}
+            getСoordinates={getCoordinates}
+            target={target === id}
+            stepCount={stepsCountBySectorId(id)}
         />;
 	});
 
-	
 	return (
 		<div className={position === 'Top' ? classes.top : classes.bottom}>
 			{sectorList}
