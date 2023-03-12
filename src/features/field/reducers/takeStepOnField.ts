@@ -5,6 +5,7 @@ import { changePlayerLocation } from 'features/players/playersSlice';
 
 const takeStepOnField = (payload: {dice: [number, number], playerId: number}) => (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(setDice(payload.dice));
+    const doubleCount = getState().field.dice.double;
 
     const { list } = getState().players;
     const player = list.find(({ id }) => id === payload.playerId);
@@ -13,7 +14,9 @@ const takeStepOnField = (payload: {dice: [number, number], playerId: number}) =>
     const result = locationId + d1Value + d2Value;
     let targetSectorId: number;
 
-    if (result > 39) {
+    if (doubleCount === 3) {
+        targetSectorId = 10;
+    } else if (result > 39) {
         const diff = result - 40;
         targetSectorId = diff;
     } else {

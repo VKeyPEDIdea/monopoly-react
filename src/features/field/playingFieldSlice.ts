@@ -10,7 +10,10 @@ interface PlayingFieldState {
     previousSector: {
         id: number;
     };
-    dice: [number | null, number | null]
+    dice: {
+        values: [number | null, number | null],
+        double: number,
+    }
 }
 
 const initialState: PlayingFieldState = {
@@ -21,7 +24,10 @@ const initialState: PlayingFieldState = {
     previousSector: {
         id: 0,
     },
-    dice: [null, null],
+    dice: {
+        values: [null, null],
+        double: 0,
+    },
 };
 
 export const playingFieldSlice = createSlice({
@@ -32,8 +38,13 @@ export const playingFieldSlice = createSlice({
             state.previousSector.id = state.targetSector.id;
             state.targetSector.id = payload;
         },
-        setDice: (state, { payload }) => {
-            state.dice = payload;
+        setDice: (state, { payload }: { payload: [number, number]}) => {
+            const isDouble = payload[0] === payload[1];
+
+            state.dice = {
+                values: payload,
+                double:  isDouble ? state.dice.double + 1 : 0,
+            };
         },
         setOwnerForSector: (state, { payload }) => {
             const sector = state.sectorList.find(sector => sector.id === payload.sectorId);
