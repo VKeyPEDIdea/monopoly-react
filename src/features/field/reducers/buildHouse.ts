@@ -27,19 +27,21 @@ const buildHouse = (sectorId: number) => (dispatch: AppDispatch, getState: () =>
             sectorId = nextSector.id;
             // todo: add logic for updating housePrice in sector
         }
-        
-        dispatch(setLastUpgradedSector({
-            sectorId,
-        }));
-        dispatch(setHouseState({
-            sectorId,
-            houseIndex,
-            state: 'acquired',
-        }));
-        dispatch(decreasePlayersCashCount({
-            count: sector.housePrice,
-            playerId: sector.owner,
-        }));
+
+        if (typeof houseIndex === 'number') {
+            dispatch(setLastUpgradedSector({
+                sectorId,
+            }));
+            dispatch(setHouseState({
+                sectorId,
+                houseIndex,
+                state: 'acquired',
+            }));
+            dispatch(decreasePlayersCashCount({
+                count: sector.housePrice,
+                playerId: sector.owner,
+            }));
+        }
     }
 };
 

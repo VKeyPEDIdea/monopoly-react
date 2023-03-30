@@ -31,14 +31,14 @@ const PlayingField = () => {
     const dispatch = useDispatch();
     const lineType = targetSectorId < 19 ? 'Top' : 'Bottom';
 
-    const showCoordinates = useCallback((element: HTMLDivElement | null) => {
+    const showCoordinates = (element: HTMLDivElement | null) => {
         const coordinates = getSectorCoordinates(element, lineType);
         if (isInitialized) {
             handleIsInit(coordinates);
         } else {
             handleIsNotInit(coordinates);
         }
-    }, [isInitialized, lineType]);
+    };
 
     const handleIsInit = (coordinates: SectorCoordinates) => {
         dispatch(moveChipToTargetSector({

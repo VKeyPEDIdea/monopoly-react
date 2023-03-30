@@ -3,7 +3,6 @@ import passTheQueue from './passTheQueue';
 import changePlayerBalance from './changePlayerBalance';
 import donateForGift from './donateForGift';
 import payForTransfer from './payForTransfer';
-import setCoordinatesForPlayer from './setCoordinatesForPlayer';
 
 export {
     moveChipToTargetSector,
@@ -11,5 +10,4 @@ export {
     changePlayerBalance,
     donateForGift,
     payForTransfer,
-    setCoordinatesForPlayer,
 };

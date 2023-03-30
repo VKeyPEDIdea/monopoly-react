@@ -24,19 +24,21 @@ const demolishHouse = (sectorId: number) => (dispatch: AppDispatch, getState: ()
             demolishHouseIndex = getIndexOfAquiredHouse(lastUpgradedSector.houseList!);
             sectorId = prevSector.id;
         }
-        
-        dispatch(setLastUpgradedSector({
-            sectorId,
-        }));
-        dispatch(setHouseState({
-            sectorId: lastUpgradedSector.id,
-            houseIndex: demolishHouseIndex,
-            state: 'vacant',
-        }));
-        dispatch(increasePlayersCashCount({
-            count: sector.housePrice! / 2,
-            playerId: sector.owner,
-        }));
+
+        if (typeof demolishHouseIndex === 'number') {    
+            dispatch(setLastUpgradedSector({
+                sectorId,
+            }));
+            dispatch(setHouseState({
+                sectorId: lastUpgradedSector.id,
+                houseIndex: demolishHouseIndex,
+                state: 'vacant',
+            }));
+            dispatch(increasePlayersCashCount({
+                count: sector.housePrice! / 2,
+                playerId: sector.owner,
+            }));
+        }
     }
 };
 
