@@ -1,6 +1,6 @@
 import { AppDispatch, RootState } from 'app/store';
 import { Sector } from 'core/Sector/Sector.interface';
-import { increasePlayersCashCount } from 'features/players/playersSlice';
+import { decreasePlayersPropertyCount, increasePlayersCashCount } from 'features/players/playersSlice';
 import { HousePointProps } from 'shared/ui/HousePoint/HousePoint.model';
 import { setHouseState, setLastUpgradedSector } from '../playingFieldSlice';
 
@@ -35,6 +35,10 @@ const demolishHouse = (sectorId: number) => (dispatch: AppDispatch, getState: ()
                 state: 'vacant',
             }));
             dispatch(increasePlayersCashCount({
+                count: sector.housePrice! / 2,
+                playerId: sector.owner,
+            }));
+            dispatch(decreasePlayersPropertyCount({
                 count: sector.housePrice! / 2,
                 playerId: sector.owner,
             }));
