@@ -41,6 +41,7 @@ const getRotation = (d1: number, d2: number, flip: boolean): [r1: { x: number, y
 
 const faceNumbers = [1, 2, 3, 4, 5, 6];
 const colors = ['red', 'blue', 'green', 'purple', 'orange', 'pink'];
+const inactiveColor = 'inactive';
 
 const Dice = ({
     isActive,
@@ -53,8 +54,14 @@ const Dice = ({
 	const [color2, setColor2] = useState('blue');
 
     useEffect(() => {
-        setColor1(isActive ? colors[getRandomInt(0, 5)] : 'inactive');
-        setColor2(isActive ? colors[getRandomInt(0, 5)] : 'inactive');
+        setColor1(colors[getRandomInt(0, 5)]);
+        setColor2(colors[getRandomInt(0, 5)]);
+        if (!isActive) {
+            setTimeout(() => {
+                setColor1(inactiveColor);
+                setColor2(inactiveColor);        
+            }, 750);
+        }
     }, [isActive]);
 
 	function rollTheDice() {

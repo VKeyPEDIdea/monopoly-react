@@ -1,5 +1,5 @@
 import { RootState, AppDispatch } from 'app/store';
-import { setDice } from '../playingFieldSlice';
+import { setDice, setDiceActivityStatus } from '../playingFieldSlice';
 import { setTargetSector } from '../playingFieldSlice';
 import { changePlayerLocation } from 'features/players/playersSlice';
 
