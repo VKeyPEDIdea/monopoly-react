@@ -17,6 +17,7 @@ const MiddleBoard = () => {
     const players = useAppSelector(selectOrderedPlayersList);
     const maxScore = useAppSelector(selectMaxScore);
     const currentPlayerId = useAppSelector(selectCurrentPlayerId);
+    const isActiveDice = useAppSelector(state => state.field.dice.isActive);
     const dispatch = useDispatch();
     const onRollDiceHandler = (diceValue: [number, number]) => {       
         dispatch(takeStepOnField({
@@ -35,10 +36,10 @@ const MiddleBoard = () => {
                     currentPlayer={currentPlayerId}
                     maxScore={maxScore}/>
                 <div className={classes['dice-box']}>
-				    <Dice onRollDice={onRollDiceHandler}/>
+				    <Dice onRollDice={onRollDiceHandler} isActive={isActiveDice}/>
                 </div>
 			</div>
-			<div className={classes['middle-section']}>
+			<div className={classes['middle-section']}> 
                 <div className={classes.card}>
                     <ExtraDimensionСard scale={1.1}>
                         <SectorCardPresenter currentPlayerId={currentPlayerId}/>

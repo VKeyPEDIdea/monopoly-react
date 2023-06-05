@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classes from './Dice.module.scss';
 
 interface DiceProps {
+    isActive: boolean;
     onRollDice: ([diceOneValue, diceTwoValue]: [number, number]) => void;
 }
 
@@ -42,6 +43,7 @@ const faceNumbers = [1, 2, 3, 4, 5, 6];
 const colors = ['red', 'blue', 'green', 'purple', 'orange', 'pink'];
 
 const Dice = ({
+    isActive,
     onRollDice
 }: DiceProps) => {
 	const [flip, setFlip] = useState(true);
@@ -50,15 +52,20 @@ const Dice = ({
 	const [color1, setColor1] = useState('red');
 	const [color2, setColor2] = useState('blue');
 
+    useEffect(() => {
+        setColor1(isActive ? colors[getRandomInt(0, 5)] : 'inactive');
+        setColor2(isActive ? colors[getRandomInt(0, 5)] : 'inactive');
+    }, [isActive]);
+
 	function rollTheDice() {
-		setFlip(!flip);
-        const diceOneValue = getRandomInt(1, 7);
-        const diceTwoValue = getRandomInt(1, 7);
-		setD1(diceOneValue);
-		setD2(diceTwoValue);
-		setColor1(colors[getRandomInt(0, 5)]);
-		setColor2(colors[getRandomInt(0, 5)]);
-        onRollDice([diceOneValue, diceTwoValue]);
+        if (isActive) {
+            setFlip(!flip);
+            const diceOneValue = getRandomInt(1, 7);
+            const diceTwoValue = getRandomInt(1, 7);
+            setD1(diceOneValue);
+            setD2(diceTwoValue);
+            onRollDice([diceOneValue, diceTwoValue]);
+        }
 	};
 
 	function getRandomInt(min: number, max: number) {

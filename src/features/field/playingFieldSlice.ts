@@ -12,7 +12,8 @@ interface PlayingFieldState {
     };
     dice: {
         values: [number | null, number | null],
-        double: number,
+        double: number;
+        isActive: boolean;
     }
 }
 
@@ -27,6 +28,7 @@ const initialState: PlayingFieldState = {
     dice: {
         values: [null, null],
         double: 0,
+        isActive: true,
     },
 };
 
@@ -44,7 +46,14 @@ export const playingFieldSlice = createSlice({
             state.dice = {
                 values: payload,
                 double:  isDouble ? state.dice.double + 1 : 0,
+                isActive: isDouble ? true : false,
             };
+        },
+        setDiceActivityStatus: (state, { payload }: { payload: boolean }) => {
+            state.dice = {
+                ...state.dice,
+                isActive: payload,
+            }
         },
         setOwnerForSector: (state, { payload }) => {
             const sector = state.sectorList.find(sector => sector.id === payload.sectorId);
@@ -77,6 +86,7 @@ export const playingFieldSlice = createSlice({
 export const {
     setTargetSector,
     setDice,
+    setDiceActivityStatus,
     setOwnerForSector,
     setFreeSector,
     setLastUpgradedSector,

@@ -99,6 +99,11 @@
 			background-color: $color-pink;
 		}
 
+		&--inactive {
+			background-color: #aaaaaa;
+			cursor: not-allowed;
+		}
+
     }
 }
 
