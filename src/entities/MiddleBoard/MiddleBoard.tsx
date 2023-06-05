@@ -4,6 +4,7 @@ import { takeStepOnField } from 'features/field/reducers';
 import {
     selectOrderedPlayersList,
     selectMaxScore,
+    selectPlayerByID,
 } from 'features/players/selectors';
 import { selectCurrentPlayerId } from 'features/players/selectors';
 import { passTheQueue } from 'features/players/reducers';
@@ -17,6 +18,8 @@ const MiddleBoard = () => {
     const players = useAppSelector(selectOrderedPlayersList);
     const maxScore = useAppSelector(selectMaxScore);
     const currentPlayerId = useAppSelector(selectCurrentPlayerId);
+    const nextPlayerId = useAppSelector(state => state.players.next);
+    const nextPlayerName = useAppSelector(state => selectPlayerByID(state, nextPlayerId));
     const isActiveDice = useAppSelector(state => state.field.dice.isActive);
     const dispatch = useDispatch();
     const onRollDiceHandler = (diceValue: [number, number]) => {       
@@ -38,6 +41,9 @@ const MiddleBoard = () => {
                 <div className={classes['dice-box']}>
 				    <Dice onRollDice={onRollDiceHandler} isActive={isActiveDice}/>
                 </div>
+                <div className={classes['ctrl-panel']}>
+				    <button onClick={foo}>Передать ход {nextPlayerName}</button>
+                </div>
 			</div>
 			<div className={classes['middle-section']}> 
                 <div className={classes.card}>
@@ -47,7 +53,6 @@ const MiddleBoard = () => {
                 </div>
 			</div>
 			<div className={classes['right-section']}>
-				<button onClick={foo}>Передать очередь след игроку</button>
                 <img src='/images/logo.svg' alt='logo'/>
 			</div>
 		</div>

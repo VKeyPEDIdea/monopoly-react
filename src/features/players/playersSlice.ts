@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Player } from 'core/Player/Player.interface';
 import { Person } from 'core/Player/Person.model';
+import getNextListItemId from 'utilities/getNextListItem';
 
 interface PlayersState {
     list: Player[],
     currentPlayerId: number;
+    next: number;
 }
 
 const initialState: PlayersState = {
@@ -15,6 +17,7 @@ const initialState: PlayersState = {
         { ...new Person('Максим', 1500) }
     ],
     currentPlayerId: 0,
+    next: 1, 
 };
 
 export const playersSlice = createSlice({
@@ -34,11 +37,8 @@ export const playersSlice = createSlice({
             }
         },
         turnToNextPlayer: state => {
-            if (state.currentPlayerId < state.list.length - 1) {
-                state.currentPlayerId += 1;
-            } else {
-                state.currentPlayerId = 0;
-            }
+            state.currentPlayerId = getNextListItemId(state.currentPlayerId, state.list);
+            state.next = getNextListItemId(state.next, state.list);
         },
         decreasePlayersCashCount: (state, { payload }) => {
             const player = state.list.find(player => player.id === payload.playerId);
