@@ -208,7 +208,17 @@ const SectorCardPresenter = ({
         //         />
         //     );
         //     break;
-    
+        case 'Trap':
+            card = (
+                <ImageCard detailsText='Вы арестованы. Проследуйте в свою камеру'
+                    imgSrc='/images/cards/arrested.png'
+                    btn={{
+                        title: 'Придется подчиниться. Но я этого так не оставлю',
+                        clickHandler: () => goToPrison(currentPlayerId),
+                    }}
+                />
+            )
+            break;
         default:
             break;
     }
