@@ -6,4 +6,6 @@ export type SectorType = 'LandPlot'
 	| 'UtilityCompany'
 	| 'Start'
     | 'Arrest'
-	| 'Trap';
+	| 'Trap'
+    | 'Prison'
+    | 'Tax';

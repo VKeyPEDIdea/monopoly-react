@@ -26,6 +26,8 @@ import ChanceBankCardPresenter from 'entities/ChanceBankCardPresenter';
 import ImageCard from 'entities/ImageCard';
 import TransportCompanyCard from 'entities/TransportCompanyCard';
 import { HousePointProps } from 'shared/ui/HousePoint/HousePoint.model';
+import { decreasePlayersPropertyCount } from 'features/players/playersSlice';
+import CardButton from 'shared/ui/CardButton/CardButton';
 
 interface SectorCardPresenterProps {
     currentPlayerId: number;
@@ -97,6 +99,10 @@ const SectorCardPresenter = ({
 
     const demolishHouseClickHandler = () => {
         dispatch(demolishHouse(id));
+    };
+
+    const payForExpensiveThing = () => {
+        dispatch(decreasePlayersPropertyCount({ id: currentPlayerId, count: 100 }));
     };
 
     const cardData = {
@@ -190,33 +196,29 @@ const SectorCardPresenter = ({
             card = (
                 <ImageCard detailsText='Вы арестованы. Проследуйте в свою камеру'
                     imgSrc='/images/cards/arrested.png'
-                    btn={{
-                        title: 'Придется подчиниться. Но я этого так не оставлю',
-                        clickHandler: () => goToPrison(currentPlayerId),
-                    }}
-                />
+                >
+                    <CardButton title='Придется подчиниться. Но я этого так не оставлю'
+                        click={() => goToPrison(currentPlayerId)}
+                    />
+                </ImageCard>
             );
             break;
-        // case 'TransportCompany':
-        //     card = (
-        //         <ImageCard detailsText={title}
-        //             imgSrc='/images/cards/cargo-ship.png'
-        //             btn={{
-        //                 title: 'Купить',
-        //                 clickHandler: () => console.log('Северный порт'),
-        //             }}
-        //         />
-        //     );
-        //     break;
+        case 'Prison':
+            card = (
+                <ImageCard detailsText='Вы посещаете тюрьму'
+                    imgSrc='/images/cards/arrested.png'
+                />
+            )
+            break;
         case 'Trap':
             card = (
-                <ImageCard detailsText='Вы арестованы. Проследуйте в свою камеру'
+                <ImageCard detailsText='Вы совершили дорогую покупку'
                     imgSrc='/images/cards/arrested.png'
-                    btn={{
-                        title: 'Придется подчиниться. Но я этого так не оставлю',
-                        clickHandler: () => goToPrison(currentPlayerId),
-                    }}
-                />
+                >
+                    <CardButton title='Заплатить 100'
+                        click={payForExpensiveThing}
+                    />
+                </ImageCard>
             )
             break;
         default:

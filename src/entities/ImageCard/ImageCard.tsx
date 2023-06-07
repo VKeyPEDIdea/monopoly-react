@@ -1,32 +1,24 @@
 import CardButton from 'shared/ui/CardButton';
 import classes from './ImageCard.module.scss';
+import { ReactElement } from 'react';
 
 interface TrapCardProps {
     detailsText: string;
     imgSrc: string;
-    btn: {
-        title: string;
-        clickHandler: () => void;
-    }
+    children?: ReactElement;
 }
 
 const ImageCard = ({
     detailsText,
     imgSrc,
-    btn: {
-        title,
-        clickHandler,
-    }
+    children
 }: TrapCardProps) => {
     return (
         <div className={classes.card}>
             <p className={classes.details}>{detailsText}</p>
             <img className={classes.image} src={imgSrc} alt='' />
             <div className={classes.actions}>
-                <div className={classes.btn}>
-                    <CardButton title={title}
-                        click={clickHandler}/>
-                </div>
+                <div className={classes.btn}>{children}</div>
             </div>
         </div>
     );

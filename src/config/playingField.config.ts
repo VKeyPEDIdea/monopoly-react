@@ -11,6 +11,8 @@ import { utilityCompanySectorFabric } from 'core/SectorFabric/UtilityCompanySect
 import { Color } from 'models/color.type';
 import { LineType } from 'models/LineType.type';
 import { idGenerator } from 'utilities/idGenerator/idGenerator';
+import { prisonSectorFabric } from 'core/SectorFabric/PrisonSectorFabric.model';
+import { taxSectorFabric } from 'core/SectorFabric/TaxSectorFabric.model';
 
 interface Field {
     title: string;
@@ -60,7 +62,7 @@ const topLineConfig: Field[] = [
     {
         title: 'Налог с дохода',
         price: 0,
-        type: 'Trap',
+        type: 'Tax',
         line: 'Top',
     },
     {
@@ -110,7 +112,7 @@ const topLineConfig: Field[] = [
     {
         title: 'Тюрьма',
         price: 0,
-        type: 'Trap',
+        type: 'Prison',
         line: 'Top',
     },
     {
@@ -401,6 +403,12 @@ function getSectorList(config: Field[]) {
                 break;
             case 'Trap':
                 fabric = trapSectorFabric;
+                break;
+            case 'Prison':
+                fabric = prisonSectorFabric;
+                break;
+            case 'Tax':
+                fabric = taxSectorFabric;
                 break;
             case 'Arrest':
                 fabric = arrestSectorFabric;
