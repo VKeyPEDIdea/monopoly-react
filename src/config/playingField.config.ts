@@ -13,6 +13,7 @@ import { LineType } from 'models/LineType.type';
 import { idGenerator } from 'utilities/idGenerator/idGenerator';
 import { prisonSectorFabric } from 'core/SectorFabric/PrisonSectorFabric.model';
 import { taxSectorFabric } from 'core/SectorFabric/TaxSectorFabric.model';
+import { SectorFabric } from 'core/SectorFabric/SectorFabric.model';
 
 interface Field {
     title: string;
@@ -380,46 +381,20 @@ function getSectorList(config: Field[]) {
         rentPriceListWithHouse,
         housePrice
     }) => {
-        let fabric;
-    
-        switch (type) {
-            case 'Bank':
-                fabric = bankSectorFabric;
-                break;
-            case 'Chance':
-                fabric = chanceSectorFabric;
-                break;
-            case 'FreeParking':
-                fabric = freeParkingSectorFabric;
-                break;
-            case 'LandPlot':
-                fabric = landPlotSectorFabric;
-                break;
-            case 'Start':
-                fabric = startSectorFabric;
-                break;
-            case 'TransportCompany':
-                fabric = transportCompanySectorFabric;
-                break;
-            case 'Trap':
-                fabric = trapSectorFabric;
-                break;
-            case 'Prison':
-                fabric = prisonSectorFabric;
-                break;
-            case 'Tax':
-                fabric = taxSectorFabric;
-                break;
-            case 'Arrest':
-                fabric = arrestSectorFabric;
-                break;
-            case 'UtilityCompany':
-                fabric = utilityCompanySectorFabric;
-                break;
-            default:
-                fabric = landPlotSectorFabric;
-                break;
-        }
+        type Fabric = { [key in SectorType]: SectorFabric };
+        let fabric: Fabric = {
+            'Arrest': arrestSectorFabric,
+            'Bank': bankSectorFabric,
+            'Chance': chanceSectorFabric,
+            'FreeParking': freeParkingSectorFabric,
+            'LandPlot': landPlotSectorFabric,
+            'Prison': prisonSectorFabric,
+            'Start': startSectorFabric,
+            'Tax': taxSectorFabric,
+            'TransportCompany': transportCompanySectorFabric,
+            'Trap': trapSectorFabric,
+            'UtilityCompany': utilityCompanySectorFabric,
+        };
     
         const config = {
             id: idGenerator.getNewSectorID(),
@@ -433,7 +408,7 @@ function getSectorList(config: Field[]) {
             rentPriceListWithHouse,
         };
     
-        return { ...fabric.createSector(config) };
+        return { ...fabric[type].createSector(config) };
     })
 }
 const topLineList = getSectorList(topLineConfig);
