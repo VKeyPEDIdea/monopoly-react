@@ -26,7 +26,7 @@ import ChanceBankCardPresenter from 'entities/ChanceBankCardPresenter';
 import ImageCard from 'entities/ImageCard';
 import TransportCompanyCard from 'entities/TransportCompanyCard';
 import { HousePointProps } from 'shared/ui/HousePoint/HousePoint.model';
-import { decreasePlayersPropertyCount } from 'features/players/playersSlice';
+import { decreasePlayersCashCount } from 'features/players/playersSlice';
 import CardButton from 'shared/ui/CardButton/CardButton';
 
 interface SectorCardPresenterProps {
@@ -102,7 +102,11 @@ const SectorCardPresenter = ({
     };
 
     const payForExpensiveThing = () => {
-        dispatch(decreasePlayersPropertyCount({ id: currentPlayerId, count: 100 }));
+        dispatch(decreasePlayersCashCount({ playerId: currentPlayerId, count: 200 }));
+    };
+
+    const payTax = () => {
+        dispatch(decreasePlayersCashCount({ playerId: currentPlayerId, count: 100 }));
     };
 
     const cardData = {
@@ -198,7 +202,7 @@ const SectorCardPresenter = ({
                     imgSrc='/images/cards/arrested.png'
                 >
                     <CardButton title='Придется подчиниться. Но я этого так не оставлю'
-                        click={() => goToPrison(currentPlayerId)}
+                        click={() => dispatch(goToPrison(currentPlayerId))}
                     />
                 </ImageCard>
             );
@@ -215,8 +219,19 @@ const SectorCardPresenter = ({
                 <ImageCard detailsText='Вы совершили дорогую покупку'
                     imgSrc='/images/cards/arrested.png'
                 >
+                    <CardButton title='Заплатить 200'
+                        click={() => payForExpensiveThing()}
+                    />
+                </ImageCard>
+            )
+            break;
+        case 'Tax':
+            card = (
+                <ImageCard detailsText=''
+                    imgSrc='/images/cards/arrested.png'
+                >
                     <CardButton title='Заплатить 100'
-                        click={payForExpensiveThing}
+                        click={() => payTax()}
                     />
                 </ImageCard>
             )

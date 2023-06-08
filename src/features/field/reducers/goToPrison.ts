@@ -1,11 +1,9 @@
 import { PRISON_SECTOR_ID } from 'config/constants';
-import { useDispatch } from 'react-redux';
 import { setTargetSector } from '../playingFieldSlice';
 import transferToTarger from './transferToTarger';
+import { AppDispatch } from 'app/store';
 
-const goToPrison = (playerId: number) => {
-    const dispatch = useDispatch();
-
+const goToPrison = (playerId: number) => (dispatch: AppDispatch) => {
     dispatch(setTargetSector(PRISON_SECTOR_ID));
     dispatch(transferToTarger({
         playerId,
