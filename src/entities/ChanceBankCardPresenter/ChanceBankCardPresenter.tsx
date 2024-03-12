@@ -5,60 +5,55 @@ import BackSideCard from 'entities/MailCard/ShirtSideMailCard';
 import getChanceActions from './getChanceAction';
 
 interface ChanceBankCardPresenterProps {
-    item: Opportunities;
-    currentPlayerId: number;
+  item: Opportunities;
+  currentPlayerId: number;
 }
 
 const ChanceBankCardPresenter = ({
-    item: {
-        type,
-        btnText,
-        detailsText,
-        count,
-        isNegative,
-        chanceTitle,
-        targetSector,
-    },
-    currentPlayerId
+  item: {
+    type,
+    btnText,
+    detailsText,
+    count,
+    isNegative,
+    chanceTitle,
+    targetSector,
+  },
+  currentPlayerId,
 }: ChanceBankCardPresenterProps) => {
-    const actionConfig = {
-        type,
-        btnText,
-        detailsText,
-        count,
-        isNegative,
-        targetSector,
-        currentPlayerId
-    }
-    const chanceAction = getChanceActions(actionConfig);
-    
-    let {
-        btnTitle = '',
-        action = () => {},
-        details = ''
-    } = chanceAction || {};
-    
-    if (!chanceAction) {
-        return null;
-    }
+  const actionConfig = {
+    type,
+    btnText,
+    detailsText,
+    count,
+    isNegative,
+    targetSector,
+    currentPlayerId,
+  };
+  const chanceAction = getChanceActions(actionConfig);
 
-    return (
-        <FlipCard
-            front={
-                <BackSideCard title={chanceTitle}/>
-            }
-            back={
-                <FaceSideMailCard detailsText={details}
-                    btn={{
-                        clickHandler: action,
-                        count: count,
-                        negative: isNegative,
-                        title: btnTitle,
-                    }}
-                />
-            }
+  const { btnTitle = '', action = () => {}, details = '' } = chanceAction || {};
+
+  if (!chanceAction) {
+    return null;
+  }
+
+  return (
+    <FlipCard
+      front={<BackSideCard title={chanceTitle} />}
+      back={
+        <FaceSideMailCard
+          detailsText={details}
+          btn={{
+            clickHandler: action,
+            count,
+            negative: isNegative,
+            title: btnTitle,
+          }}
         />
-    );
+      }
+    />
+  );
 };
 
 export default ChanceBankCardPresenter;

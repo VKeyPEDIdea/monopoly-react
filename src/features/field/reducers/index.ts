@@ -9,13 +9,13 @@ import buildHouse from './buildHouse';
 import demolishHouse from './demolishHouse';
 
 export {
-    payRent,
-    sellSector,
-    buySector,
-    takeStepOnField,
-    transferToTarger,
-    goToPrison,
-    transferToPort,
-    buildHouse,
-    demolishHouse,
+  payRent,
+  sellSector,
+  buySector,
+  takeStepOnField,
+  transferToTarger,
+  goToPrison,
+  transferToPort,
+  buildHouse,
+  demolishHouse,
 };

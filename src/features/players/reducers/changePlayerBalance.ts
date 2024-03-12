@@ -1,24 +1,26 @@
 import { AppDispatch } from 'app/store';
 import {
-    decreasePlayersCashCount,
-    increasePlayersCashCount
+  decreasePlayersCashCount,
+  increasePlayersCashCount,
 } from '../playersSlice';
 
-const changePlayerBalance = ({
+const changePlayerBalance =
+  ({
     type,
     payload,
-}: {
-    type: 'decrease' | 'increase',
+  }: {
+    type: 'decrease' | 'increase';
     payload: {
-        count: number,
-        playerId: number,
-    },
-}) => (dispatch: AppDispatch) => {
+      count: number;
+      playerId: number;
+    };
+  }) =>
+  (dispatch: AppDispatch) => {
     dispatch(
-        type === 'decrease'
-            ? decreasePlayersCashCount(payload) 
-            : increasePlayersCashCount(payload)
+      type === 'decrease'
+        ? decreasePlayersCashCount(payload)
+        : increasePlayersCashCount(payload)
     );
-};
+  };
 
 export default changePlayerBalance;

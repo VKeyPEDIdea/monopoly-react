@@ -4,28 +4,33 @@ import { Player } from './Player.interface';
 import { PlayerType } from './PlayerType.type';
 
 export class Person implements Player {
-    id: number;
-    readonly name: string;
-    cashCount: number;
-    propertyCount: number;
-    type: PlayerType;
-    location: {
-        coordinates: Coordinates;
-        id: number;
-    };
+  id: number;
 
-    constructor(name: string, cash: number) {
-        this.id = idGenerator.getNewPlayerID();
-        this.name = name;
-        this.cashCount = cash;
-        this.propertyCount = 0;
-        this.type = 'Person';
-        this.location = {
-            coordinates: {
-                x: null,
-                y: null,
-            },
-            id: 0
-        };
-    }
+  readonly name: string;
+
+  cashCount: number;
+
+  propertyCount: number;
+
+  type: PlayerType;
+
+  location: {
+    coordinates: Coordinates;
+    id: number;
+  };
+
+  constructor(name: string, cash: number) {
+    this.id = idGenerator.getNewPlayerID();
+    this.name = name;
+    this.cashCount = cash;
+    this.propertyCount = 0;
+    this.type = 'Person';
+    this.location = {
+      coordinates: {
+        x: null,
+        y: null,
+      },
+      id: 0,
+    };
+  }
 }

@@ -10,21 +10,23 @@ export default {
 } as ComponentMeta<typeof CardButton>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof CardButton> = (args) => <CardButton {...args} />;
+const Template: ComponentStory<typeof CardButton> = (args) => (
+  <CardButton {...args} />
+);
 
 export const Negative = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Negative.args = {
-    title: 'Negative',
-    details: 30,
-    negative: true,
-    click: () => console.log('Negative')
+  title: 'Negative',
+  details: 30,
+  negative: true,
+  click: () => console.log('Negative'),
 };
 
 export const Positive = Template.bind({});
 Positive.args = {
-    title: 'Positive',
-    details: 30,
-    negative: false,
-    click: () => console.log('Positive')
+  title: 'Positive',
+  details: 30,
+  negative: false,
+  click: () => console.log('Positive'),
 };

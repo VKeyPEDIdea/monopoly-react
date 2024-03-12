@@ -5,9 +5,9 @@ import donateForGift from './donateForGift';
 import payForTransfer from './payForTransfer';
 
 export {
-    moveChipToTargetSector,
-    passTheQueue,
-    changePlayerBalance,
-    donateForGift,
-    payForTransfer,
+  moveChipToTargetSector,
+  passTheQueue,
+  changePlayerBalance,
+  donateForGift,
+  payForTransfer,
 };

@@ -1,5 +1,3 @@
 import { idGenerator } from './idGenerator';
 
-export {
-    idGenerator
-};
+export { idGenerator };

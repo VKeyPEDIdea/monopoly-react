@@ -1,21 +1,22 @@
 export class IDGenerator {
-    private playerID: number;
-    private sectorID: number;
+  private playerID: number;
 
-    constructor() {
-        this.playerID = -1;
-        this.sectorID = -1;
-    }
+  private sectorID: number;
 
-    getNewPlayerID() {
-        this.playerID += 1;
-        return this.playerID;
-    }
+  constructor() {
+    this.playerID = -1;
+    this.sectorID = -1;
+  }
 
-    getNewSectorID() {
-        this.sectorID += 1;
-        return this.sectorID;
-    }
+  getNewPlayerID() {
+    this.playerID += 1;
+    return this.playerID;
+  }
+
+  getNewSectorID() {
+    this.sectorID += 1;
+    return this.sectorID;
+  }
 }
 
 export const idGenerator = new IDGenerator();

@@ -1,4 +1,4 @@
 export interface BuySectorData {
-    playerId: number | null;
-    sectorId: number | null;
+  playerId: number | null;
+  sectorId: number | null;
 }
