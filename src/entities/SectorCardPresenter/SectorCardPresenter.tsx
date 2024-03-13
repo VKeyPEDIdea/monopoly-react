@@ -23,7 +23,7 @@ import RealEstateCard from 'entities/RealEstateCard';
 import { useDispatch } from 'react-redux';
 import MonopolyCard from 'entities/MonopolyCard';
 import { BANK_LIST, CHANCE_LIST } from 'config/opportunitiesCard.config';
-import { getRandomArrayItem } from 'utilities/getRandomArrayItem';
+import getRandomArrayItem from 'utilities/getRandomArrayItem';
 import ChanceBankCardPresenter from 'entities/ChanceBankCardPresenter';
 import ImageCard from 'entities/ImageCard';
 import TransportCompanyCard from 'entities/TransportCompanyCard';

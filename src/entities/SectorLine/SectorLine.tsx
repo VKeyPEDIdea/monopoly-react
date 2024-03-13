@@ -36,7 +36,8 @@ const SectorLine = ({
         getСoordinates={getCoordinates}
         target={target === id}
         stepCount={stepsCountBySectorId(id)}
-		/>;
+		/>
+    );
   });
 
   return (

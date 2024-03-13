@@ -10,7 +10,7 @@ const HousePointList = ({ list }: { list: HousePointProps[] | null }) => {
       return (
         <div className={classes.point} key={Date.now() + i + price}>
           <HousePoint state={state} price={price} buildType={buildType} />
-                   </div>;
+        </div>
       );
     });
   } else {

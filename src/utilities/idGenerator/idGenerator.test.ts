@@ -1,4 +1,4 @@
-import { describe } from '@jest/globals';
+import { describe } from 'vitest';
 import { IDGenerator } from './idGenerator';
 
 let idGenerator: IDGenerator | null = null;

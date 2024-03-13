@@ -1,6 +1,6 @@
 import { RootState } from 'app/store';
 import { Sector } from 'core/Sector/Sector.interface';
-import { getRandomArrayItem } from 'utilities/getRandomArrayItem';
+import getRandomArrayItem from 'utilities/getRandomArrayItem';
 
 const getTargetToTransfer = (state: RootState) => {
   const randomTarget: Sector = getRandomArrayItem(state.field.sectorList);

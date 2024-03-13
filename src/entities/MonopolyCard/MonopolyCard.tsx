@@ -22,8 +22,9 @@ const MonopolyCard = ({
         <p className={classes.subheading}>{title}</p>
         <div className={classes.street}>
           <HousePointList list={buildingList} />
-   </div>
-         </div>;
+        </div>
+      </div>
+    );
   });
 
   return (
@@ -64,7 +65,8 @@ const MonopolyCard = ({
               title="Оплатить аренду"
               details={-rentPrice}
               click={onPayRentClick}
-                          </div>
+            />
+          </div>
         )}
       </div>
     </div>

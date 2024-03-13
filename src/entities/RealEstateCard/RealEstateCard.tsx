@@ -48,13 +48,12 @@ const RealEstateCard = ({
 
   return (
     <div className={classes.estate}>
-      {ownerName ? (
-        (
-<div className={classes.owner}>
-				<NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
-			</div>
-) : null }
-      ) : null}
+      {ownerName ? 
+        ( 
+          <div className={classes.owner}>
+            <NameBadge name={ownerName} isShowToOwner={isShowToOwner}/>
+          </div>
+        ) : null }
       {color ? (
         <div className={classes['color-box']}>
           <ColoredSquare color={color ?? 'blue'} />

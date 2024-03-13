@@ -79,7 +79,8 @@ const TransportCompanyCard = ({
         {ownerName ? (
           <div className={classes.owner}>
             <NameBadge name={ownerName} isShowToOwner={isShowToOwner} />
-                              </div> : null }
+          </div> )
+          : null }
         <p className={classes.title}>{title}</p>
         <img
           className={classes.image}
