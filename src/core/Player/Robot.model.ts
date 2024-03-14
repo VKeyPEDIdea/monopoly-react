@@ -1,9 +1,9 @@
 import { Coordinates } from 'models/Coordinates.interface';
-import { idGenerator } from 'utilities/idGenerator';
+import idGenerator from 'utilities/idGenerator';
 import { Player } from './Player.interface';
 import { PlayerType } from './PlayerType.type';
 
-export class Robot implements Player {
+export default class Robot implements Player {
   id: number;
 
   readonly name: string;
