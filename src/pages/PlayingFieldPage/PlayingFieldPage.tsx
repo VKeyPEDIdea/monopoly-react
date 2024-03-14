@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useAppSelector } from 'app/hooks';
 import { useDispatch } from 'react-redux';
 import MiddleBoard from 'entities/MiddleBoard';
@@ -31,15 +31,6 @@ const PlayingField = () => {
   const dispatch = useDispatch();
   const lineType = targetSectorId < 19 ? 'Top' : 'Bottom';
 
-  const showCoordinates = (element: HTMLDivElement | null) => {
-    const coordinates = getSectorCoordinates(element, lineType);
-    if (isInitialized) {
-      handleIsInit(coordinates);
-    } else {
-      handleIsNotInit(coordinates);
-    }
-  };
-
   const handleIsInit = (coordinates: SectorCoordinates) => {
     dispatch(
       moveChipToTargetSector({
@@ -54,6 +45,15 @@ const PlayingField = () => {
       dispatch(setPlayerCoordinatesByPlayerId({ playerId: id, coordinates }));
     }
     setIsInitialized(true);
+  };
+
+  const showCoordinates = (element: HTMLDivElement | null) => {
+    const coordinates = getSectorCoordinates(element, lineType);
+    if (isInitialized) {
+      handleIsInit(coordinates);
+    } else {
+      handleIsNotInit(coordinates);
+    }
   };
 
   return (
