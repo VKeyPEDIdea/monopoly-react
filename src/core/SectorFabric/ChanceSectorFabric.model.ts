@@ -4,9 +4,9 @@ import { SectorCreateArg } from './SectorCreateArg.interface';
 import { SectorFabric } from './SectorFabric.model';
 
 class ChanceSectorFabric extends SectorFabric {
-    createSector(config: SectorCreateArg): Sector {
-        return new ChanceSector(config);
-    }
+  createSector(config: SectorCreateArg): Sector {
+    return new ChanceSector(config);
+  }
 }
 
 export const chanceSectorFabric = new ChanceSectorFabric();

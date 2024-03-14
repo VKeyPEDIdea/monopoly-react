@@ -1,0 +1,55 @@
+@import 'app/styles/vars';
+
+.card {
+    display: flex;
+    box-sizing: border-box;
+	background-color: $color-surface;
+	border: 4px solid $color-on-light;
+}
+
+.owner {
+    position: absolute;
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: -5px;
+	width: max-content;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 12px 10px;
+    text-align: center;
+    min-width: 320px;
+}
+
+.title {
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.actions {
+	border-left: 4px solid $color-gluon-grey;
+}
+
+.btn {
+    border-bottom: 4px solid $color-gluon-grey;
+    
+	&:last-child {
+        border-bottom: none;
+	}
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+}
+
+.color-box {
+	height: 24px;
+}

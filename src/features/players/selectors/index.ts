@@ -8,12 +8,12 @@ import selectCurrentPlayerId from './selectCurrentPlayerId';
 import selectPlayerByID from './selectPlayerByID';
 
 export {
-    selectPlayers,
-    selectOrderedPlayersList,
-    selectMaxScore,
-    selectPlayersForChips,
-    selectPlayerLocationId,
-    selectPlayersIdList,
-    selectCurrentPlayerId,
-    selectPlayerByID,
-}
+  selectPlayers,
+  selectOrderedPlayersList,
+  selectMaxScore,
+  selectPlayersForChips,
+  selectPlayerLocationId,
+  selectPlayersIdList,
+  selectCurrentPlayerId,
+  selectPlayerByID,
+};

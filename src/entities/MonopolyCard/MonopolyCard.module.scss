@@ -1,4 +1,4 @@
-@import '../../scss/vars';
+@import 'app/styles/vars.scss';
 
 .card {
 	background-color: $color-surface;
@@ -69,10 +69,11 @@
 
 .btn {
 	flex-grow: 1;
+    border-right: 4px solid $color-gluon-grey;
 
-	&:first-child {
-		border-right: 4px solid $color-gluon-grey;
-	}
+	&:last-child {
+        border-right: none;
+    }
 }
 
 .color-box {

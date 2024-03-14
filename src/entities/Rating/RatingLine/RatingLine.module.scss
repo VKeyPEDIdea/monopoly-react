@@ -36,10 +36,6 @@
     background-color: $color-surface;
 }
 
-.position, .meta, .counts {
-    border-radius: 8px;
-}
-
 .name {
     font-size: 14px;
     line-height: 18px;
@@ -87,10 +83,6 @@
 .graph {
     position: relative;
     display: flex;
-}
-
-.column {
-    border-radius: 8px;
 }
 
 .money {

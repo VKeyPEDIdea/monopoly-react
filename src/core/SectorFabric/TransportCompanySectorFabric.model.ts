@@ -4,9 +4,9 @@ import { SectorCreateArg } from './SectorCreateArg.interface';
 import { SectorFabric } from './SectorFabric.model';
 
 class TransportCompanySectorFabric extends SectorFabric {
-    createSector(config: SectorCreateArg): Sector {
-        return new TransportCompanySector(config);
-    }
+  createSector(config: SectorCreateArg): Sector {
+    return new TransportCompanySector(config);
+  }
 }
 
 export const transportCompanySectorFabric = new TransportCompanySectorFabric();

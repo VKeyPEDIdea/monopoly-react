@@ -1,6 +1,7 @@
 @import 'app/styles/vars';
 
 .sector {
+    position: relative;
 	border: 2px solid $color-dark;
 	text-align: center;
 	flex-grow: 1;
@@ -54,5 +55,22 @@
 
     .color-box {
         height: 40px;
+    }
+
+    .step-count {
+        position: absolute;
+        width: 100%;
+        margin-bottom: 0;
+        font-style: italic;
+        text-align: center;
+        color: $color-quicksilver;
+        
+        &--bottom {
+            top: -30px;
+        }
+        
+        &--top {
+            bottom: -30px;
+        }
     }
 }

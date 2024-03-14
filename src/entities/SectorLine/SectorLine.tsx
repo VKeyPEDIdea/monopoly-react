@@ -1,44 +1,50 @@
 import Sector from 'entities/Sector';
 import { Sector as SectorProps } from 'core/Sector/Sector.interface';
+import { useAppSelector } from 'app/hooks';
+import { selectStepsCountBySectorId } from 'features/field/selectors';
+import { selectCurrentPlayerId } from 'features/players/selectors';
 import classes from './SectorLine.module.scss';
 
 const SectorLine = ({
-    list,
-    target,
-    position,
-    getСoordinates,
+  list,
+  target,
+  position,
+  getCoordinates,
 }: {
-    list: SectorProps[],
-    target: number,
-    position: 'Top' | 'Bottom',
-    getСoordinates(element: HTMLDivElement | null): void;
+  list: SectorProps[];
+  target: number;
+  position: 'Top' | 'Bottom';
+  getCoordinates(element: HTMLDivElement | null): void;
 }) => {
-	const sectorList = list.map(({
-		id,
-        title,
-		color,
-		price,
-		type,
-        owner,
-	}, index) => {
-		return <Sector key={'sector' + index}
-            id={id}
-			title={title}
-			price={price}
-			color={color}
-            line={position}
-			type={type}
-            owner={owner}
-            getСoordinates={getСoordinates}
-            target={target === id}
-        />;
-	});
-	
-	return (
-		<div className={position === 'Top' ? classes.top : classes.bottom}>
-			{sectorList}
-		</div>
-	);
+  const currentPlayerId = useAppSelector(selectCurrentPlayerId);
+  const stepsCountBySectorId = (id: number) => {
+    return useAppSelector((state) => selectStepsCountBySectorId(state, id));
+  };
+
+  const sectorList = list.map(({ id, title, color, price, type, owner }) => {
+    return (
+      <Sector
+        key={`sector${  id  }${title}`}
+        id={id}
+        title={title}
+        price={price}
+        color={color}
+        line={position}
+        type={type}
+        owner={owner}
+        currentPlayerId={currentPlayerId}
+        getСoordinates={getCoordinates}
+        target={target === id}
+        stepCount={stepsCountBySectorId(id)}
+		/>
+    );
+  });
+
+  return (
+    <div className={position === 'Top' ? classes.top : classes.bottom}>
+      {sectorList}
+    </div>
+  );
 };
 
 export default SectorLine;

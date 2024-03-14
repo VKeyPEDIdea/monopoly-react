@@ -1,8 +1,12 @@
-export type SectorType = 'LandPlot'
-	| 'TransportCompany'
-	| 'Chance'
-	| 'Bank'
-	| 'FreeParking'
-	| 'UtilityCompany'
-	| 'Start'
-	| 'Trap';
+export type SectorType =
+  | 'LandPlot'
+  | 'TransportCompany'
+  | 'Chance'
+  | 'Bank'
+  | 'FreeParking'
+  | 'UtilityCompany'
+  | 'Start'
+  | 'Arrest'
+  | 'Trap'
+  | 'Prison'
+  | 'Tax';

@@ -4,9 +4,9 @@ import { SectorCreateArg } from './SectorCreateArg.interface';
 import { SectorFabric } from './SectorFabric.model';
 
 class LandPlotSectorFabric extends SectorFabric {
-    createSector(config: SectorCreateArg): Sector {
-        return new LandPlotSector(config);
-    }
+  createSector(config: SectorCreateArg): Sector {
+    return new LandPlotSector(config);
+  }
 }
 
 export const landPlotSectorFabric = new LandPlotSectorFabric();

@@ -1,10 +1,7 @@
+import React from 'react';
 import PlayingField from '../pages/PlayingFieldPage';
 import 'app/index.scss';
 
-const App = () => {
-	return (
-		<PlayingField />
-	);
-};
+const App = () => <PlayingField />;
 
 export default App;
