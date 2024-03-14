@@ -23,10 +23,11 @@ export default defineConfig({
   },
   plugins: [react()],
   build: {
-    manifest: true,
+    manifest: 'manifest.json',
     rollupOptions: {
       output: {
         format: 'iife',
+        dir: '../monopoly-server/application/static'
       },
     },
   },
